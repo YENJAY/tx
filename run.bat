@@ -1,1 +1,1 @@
-java -cp out oracle.bband.Oracle input.csv
+java -cp out oracle.bband.Oracle input/SampleInput.csv
