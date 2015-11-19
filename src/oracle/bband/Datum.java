@@ -21,4 +21,8 @@ public class Datum {
     public void setMA(double MA) {
         this.MA = MA;
     }
+    public String toString() {
+        return "Output=[start high low end upperBound lowerBound timeStamp]\n" +
+            start + " " + high + " " + low + " " + end + " " + upperBound + " " + lowerBound + " " + timeStamp;
+    }
 }

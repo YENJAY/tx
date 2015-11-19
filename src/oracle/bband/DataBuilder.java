@@ -97,9 +97,9 @@ class DataBuilder {
     }
 
     public String toString() {
-        String ret = "Output...\n";
+        String ret = "Output = [end upperBound MA lowerBound]\n";
         for(Datum d : ring) {
-            ret += d.end + "," + d.upperBound + "," + d.MA + "," + d.lowerBound + "\n";
+            ret += d.end + " " + d.upperBound + " " + d.MA + " " + d.lowerBound + "\n";
         }
         return ret;
     }
