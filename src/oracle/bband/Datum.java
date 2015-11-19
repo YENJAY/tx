@@ -7,12 +7,13 @@ public class Datum {
     public double start, high, low, end;
     public double upperBound,  lowerBound;
     public double MA;
+    private SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd_HHmmss");
     public Datum(double start, double high, double low, double end) {
         this.start = start;
         this.high = high;
         this.low = low;
         this.end = end;
-        timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
+        timeStamp = formatter.format(Calendar.getInstance().getTime());
     }
     public void setBounds(double upper, double lower) {
         upperBound = upper;

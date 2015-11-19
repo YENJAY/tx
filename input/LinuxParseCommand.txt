@@ -1,0 +1,1 @@
+grep MTX Daily_2015_11_19_C.txt | sort -t "," -u | tr "," " " | awk '{print $1" "$4" "$7}'
