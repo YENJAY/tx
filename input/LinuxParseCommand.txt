@@ -1,1 +1,1 @@
-grep MTX Daily_2015_11_19_C.txt | tr "," " " | awk '{print $1" "$4" "$7}' | sort -u > 20151119_MTX.txt
+grep MTX Daily_2015_11_19_C.txt | tr "," " " | awk '{print $1" "$4" "$7}' | sort -u -n > 20151119_MTX.txt
