@@ -101,7 +101,7 @@ class KBarBuilder {
     }
 
     public static void main(String[] args) {
-        KBarBuilder builder = new KBarBuilder(1000); // in millisecond
+        KBarBuilder builder = new KBarBuilder(60*1000); // in millisecond
         BufferedReader reader = null;
         int count = 0;
         try {
