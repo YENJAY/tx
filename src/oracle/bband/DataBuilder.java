@@ -95,17 +95,16 @@ class DataBuilder {
         }
         else {
             Datum lastDatum = ring.getTail();
+            ring.add(d);
             if(lastDatum == null) {
                 // the queue is not full yet
-                ring.add(d);
                 return;
             }
             else {
-                ring.add(d);
+                double MA = getMA();
                 double std = getStd();
-                d.setBounds(d.end+stdMulFactor*std, d.end-stdMulFactor*std);
-                d.setMA(getMA());
-
+                d.setBounds(MA+stdMulFactor*std, MA-stdMulFactor*std);
+                d.setMA(MA);
             }
         }
     }
