@@ -3,17 +3,18 @@ import java.text.*;
 import java.util.*;
 
 public class Datum {
-    String timeStamp;
+    Date timestamp;
     public double start, high, low, end;
     public double upperBound,  lowerBound;
     public double MA;
-    private SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd_HHmmss");
-    public Datum(double start, double high, double low, double end) {
+    private SimpleDateFormat formatter = new SimpleDateFormat("HHmmss");
+
+    public Datum(Date d, double start, double high, double low, double end) {
+        this.timestamp = d;
         this.start = start;
         this.high = high;
         this.low = low;
         this.end = end;
-        timeStamp = formatter.format(Calendar.getInstance().getTime());
     }
     public void setBounds(double upper, double lower) {
         upperBound = upper;
@@ -23,7 +24,7 @@ public class Datum {
         this.MA = MA;
     }
     public String toString() {
-        return "Output=[start high low end upperBound lowerBound timeStamp]\n" +
-            start + " " + high + " " + low + " " + end + " " + upperBound + " " + lowerBound + " " + timeStamp;
+        return "Output=[timestamp start high low end upperBound lowerBound timestamp]\n" +
+            formatter.format(timestamp) + " " + start + " " + high + " " + low + " " + end + " " + upperBound + " " + lowerBound;
     }
 }

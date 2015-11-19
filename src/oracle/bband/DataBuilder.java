@@ -1,6 +1,7 @@
 package oracle.bband;
 import java.io.*;
 import java.util.*;
+import java.text.*;
 
 class DataBuilder {
     private CircularFifoQueue<Datum> ring;
@@ -8,6 +9,7 @@ class DataBuilder {
     private double upperBound, lowerBound;
     private double stdMulFactor;
     private Vector<Datum> bbandSquence = new Vector<Datum>();
+    private SimpleDateFormat formatter = new SimpleDateFormat("HHmmss");
 
     public DataBuilder(int length, int stdMulFactor) {
         ring = new CircularFifoQueue<Datum>(length);
@@ -64,16 +66,26 @@ class DataBuilder {
     }
 
     public void parseOneK(String rawInput) {
-        // assume the fomrat is like: 8110 8230 8420 8220
+        // assume the fomrat is like: 134301 134302 8110 8230 8420 8220
         String[] input = rawInput.split("\\s");
-        if(input.length != 4) {
+        // for(String s : input) {
+        //     System.out.println(s);
+        // }
+        if(input.length != 6) {
             throw new RuntimeException("Your raw data have problem...");
         }
-        double[] values = new double[4];
-        for(int i=0; i<input.length; i++) {
-            values[i] = Double.parseDouble(input[i]);
+        Date date = null;
+        try {
+            date = formatter.parse(input[1]);
         }
-        Datum d = new Datum(values[0], values[1], values[2], values[3]);
+        catch(ParseException e) {
+            e.printStackTrace();
+        }
+        double[] values = new double[4];
+        for(int i=2; i<input.length; i++) {
+            values[i-2] = Double.parseDouble(input[i]);
+        }
+        Datum d = new Datum(date, values[0], values[1], values[2], values[3]);
         bbandSquence.add(d);
 
         // need to add the datum to the FIFO queue first
@@ -89,18 +101,19 @@ class DataBuilder {
                 return;
             }
             else {
-                double std = getStd();
-                lastDatum.setBounds(d.end+stdMulFactor*std, d.end-stdMulFactor*std);
-                lastDatum.setMA(getMA());
                 ring.add(d);
+                double std = getStd();
+                d.setBounds(d.end+stdMulFactor*std, d.end-stdMulFactor*std);
+                d.setMA(getMA());
+
             }
         }
     }
 
     public String toString() {
-        String ret = "Output = [end upperBound MA lowerBound]\n";
+        String ret = "Output = [timestamp end upperBound MA lowerBound]\n";
         for(Datum d : bbandSquence) {
-            ret += d.end + " " + d.upperBound + " " + d.MA + " " + d.lowerBound + "\n";
+            ret += formatter.format(d.timestamp) + " " + d.end + " " + d.upperBound + " " + d.MA + " " + d.lowerBound + "\n";
         }
         return ret;
     }
