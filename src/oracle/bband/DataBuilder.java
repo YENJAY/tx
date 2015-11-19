@@ -1,12 +1,13 @@
 package oracle.bband;
 import java.io.*;
+import java.util.*;
 
 class DataBuilder {
-
     private CircularFifoQueue<Datum> ring;
     private int length;
     private double upperBound, lowerBound;
     private double stdMulFactor;
+    private Vector<Datum> bbandSquence = new Vector<Datum>();
 
     public DataBuilder(int length, int stdMulFactor) {
         ring = new CircularFifoQueue<Datum>(length);
@@ -29,7 +30,7 @@ class DataBuilder {
     }
 
     public double getMA() {
-        System.out.println("Ring size = " + ring.size());
+        // System.out.println("Ring size = " + ring.size());
         if(ring.size() < length) {
             // System.out.println(ring.isFull());
             return Double.NaN; // history is not enough long
@@ -41,7 +42,7 @@ class DataBuilder {
                 sum += d.end;
             }
             MA = sum/length;
-            System.out.println("MA = " + MA);
+            // System.out.println("MA = " + MA);
             return MA;
         }
     }
@@ -63,18 +64,18 @@ class DataBuilder {
     }
 
     public void parseOneK(String rawInput) {
-        // assume the fomrat is like: 8110,8230,8420,8220
-        String[] input = rawInput.split(",");
+        // assume the fomrat is like: 8110 8230 8420 8220
+        String[] input = rawInput.split("\\s");
         if(input.length != 4) {
             throw new RuntimeException("Your raw data have problem...");
         }
         double[] values = new double[4];
-        int i = 0;
-        for(String s : input) {
-            values[i] = Double.parseDouble(s);
-            i++;
+        for(int i=0; i<input.length; i++) {
+            values[i] = Double.parseDouble(input[i]);
         }
         Datum d = new Datum(values[0], values[1], values[2], values[3]);
+        bbandSquence.add(d);
+
         // need to add the datum to the FIFO queue first
         if(ring.isEmpty()) {
             ring.add(d);
@@ -98,7 +99,7 @@ class DataBuilder {
 
     public String toString() {
         String ret = "Output = [end upperBound MA lowerBound]\n";
-        for(Datum d : ring) {
+        for(Datum d : bbandSquence) {
             ret += d.end + " " + d.upperBound + " " + d.MA + " " + d.lowerBound + "\n";
         }
         return ret;
