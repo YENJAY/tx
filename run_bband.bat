@@ -1,1 +1,1 @@
-@java -cp out oracle.bband.Oracle samples/SampleKBarOutput.txt
+@java -cp out oracle.bband.Oracle %1
