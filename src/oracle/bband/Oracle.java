@@ -6,7 +6,7 @@ public class Oracle {
             System.out.println("append the input after the command, please.");
         }
         else {
-            DataBuilder builder = new DataBuilder(22, 2);
+            BBandBuilder builder = new BBandBuilder(22, 2);
             builder.parseOneKFromFile(args[0]);
             System.out.println(builder);
         }

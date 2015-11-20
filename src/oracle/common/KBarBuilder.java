@@ -29,7 +29,7 @@ class KBarBuilder {
 
     public boolean consumeAndMakeKBar() {
         if(rawSequence.size() <= 1) {
-            System.out.println("Too few sequence #1");
+            System.out.println("# Too few sequence #1");
             return false; // too few data
         }
         Unit lastUnit = rawSequence.lastElement();
@@ -41,7 +41,7 @@ class KBarBuilder {
             }
         }
         if(i>0 && rawSequence.get(i-1).equals(lastUnit)) {
-            System.out.println("Too few sequence #2");
+            System.out.println("# Too few sequence #2");
             return false; // too few data
         }
         else {
@@ -91,7 +91,7 @@ class KBarBuilder {
     }
 
     public String toString() {
-        String line = "# of KBar units = " + kbarSequence.size() + "\n";
+        String line = "# Number of KBar units = " + kbarSequence.size() + "\n";
         for(KBarUnit u : kbarSequence) {
             String startDateStr = formatter.format(u.startDate);
             String endDateStr = formatter.format(u.endDate);

@@ -3,7 +3,7 @@ import java.io.*;
 import java.util.*;
 import java.text.*;
 
-class DataBuilder {
+class BBandBuilder {
     private CircularFifoQueue<Datum> ring;
     private int length;
     private double upperBound, lowerBound;
@@ -11,7 +11,7 @@ class DataBuilder {
     private Vector<Datum> bbandSquence = new Vector<Datum>();
     private SimpleDateFormat formatter = new SimpleDateFormat("HHmmss");
 
-    public DataBuilder(int length, int stdMulFactor) {
+    public BBandBuilder(int length, int stdMulFactor) {
         ring = new CircularFifoQueue<Datum>(length);
         this.length = length;
         this.stdMulFactor = stdMulFactor;
@@ -56,6 +56,9 @@ class DataBuilder {
             reader = new BufferedReader(new FileReader(filename));
             // System.out.println("Input...");
             while((line=reader.readLine()) != null) {
+                if(line.startsWith("#") || line.trim().equals("")) {
+                    continue;
+                }
                 parseOneK(line);
                 // System.out.println(line);
             }
@@ -68,15 +71,17 @@ class DataBuilder {
     public void parseOneK(String rawInput) {
         // assume the fomrat is like: 134301 134302 8110 8230 8420 8220
         String[] input = rawInput.split("\\s");
-        // for(String s : input) {
-        //     System.out.println(s);
-        // }
         if(input.length != 6) {
-            throw new RuntimeException("Your raw data have problem...");
+            for(String s : input) {
+                System.out.println(s);
+            }
+            throw new RuntimeException("# Your raw data have problem...");
         }
-        Date date = null;
+        Date dateStart = null;
+        Date dateEnd = null;
         try {
-            date = formatter.parse(input[1]);
+            dateStart = formatter.parse(input[0]);
+            dateEnd = formatter.parse(input[1]);
         }
         catch(ParseException e) {
             e.printStackTrace();
@@ -85,7 +90,7 @@ class DataBuilder {
         for(int i=2; i<input.length; i++) {
             values[i-2] = Double.parseDouble(input[i]);
         }
-        Datum d = new Datum(date, values[0], values[1], values[2], values[3]);
+        Datum d = new Datum(dateStart, dateEnd, values[0], values[1], values[2], values[3]);
         bbandSquence.add(d);
 
         // need to add the datum to the FIFO queue first
@@ -110,9 +115,10 @@ class DataBuilder {
     }
 
     public String toString() {
-        String ret = "Output = [timestamp end upperBound MA lowerBound]\n";
+        String ret = "# Output = [dateStart dateEnd end upperBound MA lowerBound]\n";
         for(Datum d : bbandSquence) {
-            ret += formatter.format(d.timestamp) + " " + d.end + " " + d.upperBound + " " + d.MA + " " + d.lowerBound + "\n";
+            ret += formatter.format(d.dateStart) + " " + formatter.format(d.dateEnd)
+            + " " + d.end + " " + d.upperBound + " " + d.MA + " " + d.lowerBound + "\n";
         }
         return ret;
     }
