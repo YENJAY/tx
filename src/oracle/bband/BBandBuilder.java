@@ -115,10 +115,10 @@ class BBandBuilder {
     }
 
     public String toString() {
-        String ret = "# Output = [dateStart dateEnd end upperBound MA lowerBound]\n";
+        String ret = "# Output = [dateStart dateEnd start end upperBound MA lowerBound]\n";
         for(Datum d : bbandSquence) {
             ret += formatter.format(d.dateStart) + " " + formatter.format(d.dateEnd)
-            + " " + d.end + " " + d.upperBound + " " + d.MA + " " + d.lowerBound + "\n";
+            + " " + d.start + " " + d.end + " " + d.upperBound + " " + d.MA + " " + d.lowerBound + "\n";
         }
         return ret;
     }
