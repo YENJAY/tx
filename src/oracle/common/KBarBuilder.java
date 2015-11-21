@@ -3,13 +3,18 @@ import java.util.*;
 import java.text.*;
 import java.io.*;
 
-class KBarBuilder {
+public class KBarBuilder {
     public double high;
     public double low;
     private Vector<Unit> rawSequence = new Vector<Unit>();
     private SimpleDateFormat formatter = new SimpleDateFormat("HHmmss");
     private Vector<KBarUnit> kbarSequence = new Vector<KBarUnit>();
     private long historyTimeLength;
+
+    public KBarBuilder() {
+        this(60*1000); // in millisecond
+    }
+
     public KBarBuilder(long length) {
         historyTimeLength = length;
     }
@@ -27,10 +32,10 @@ class KBarBuilder {
         rawSequence.add(unit);
     }
 
-    public boolean consumeAndMakeKBar() {
+    public KBarUnit consumeAndMakeKBar() {
         if(rawSequence.size() <= 1) {
             System.out.println("# Too few sequence #1");
-            return false; // too few data
+            return null; // too few data
         }
         Unit lastUnit = rawSequence.lastElement();
         int i = 0;
@@ -42,7 +47,7 @@ class KBarBuilder {
         }
         if(i>0 && rawSequence.get(i-1).equals(lastUnit)) {
             System.out.println("# Too few sequence #2");
-            return false; // too few data
+            return null; // too few data
         }
         else {
             // remove those elements which are too old
@@ -64,7 +69,7 @@ class KBarBuilder {
             }
             KBarUnit kbarUnit = new KBarUnit(first.date, last.date, start, high, low, end);
             kbarSequence.add(kbarUnit);
-            return true;
+            return kbarUnit;
         }
     }
 
@@ -74,19 +79,6 @@ class KBarBuilder {
         public Unit(Date d, double v) {
             date = d;
             value = v;
-        }
-    }
-
-    private class KBarUnit {
-        public double start, high, low, end;
-        public Date startDate, endDate;
-        public KBarUnit(Date startDate, Date endDate, double start, double high, double low, double end) {
-            this.startDate = startDate;
-            this.endDate = endDate;
-            this.start = start;
-            this.high = high;
-            this.low = low;
-            this.end = end;
         }
     }
 

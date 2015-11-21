@@ -1,0 +1,2 @@
+# Output = [dateStart dateEnd start end upperBound MA lowerBound]
+

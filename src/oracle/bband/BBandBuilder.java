@@ -10,11 +10,37 @@ class BBandBuilder {
     private double stdMulFactor;
     private Vector<Datum> bbandSquence = new Vector<Datum>();
     private SimpleDateFormat formatter = new SimpleDateFormat("HHmmss");
+    private double threshold = 1;
 
     public BBandBuilder(int length, int stdMulFactor) {
         ring = new CircularFifoQueue<Datum>(length);
         this.length = length;
         this.stdMulFactor = stdMulFactor;
+    }
+
+    public BBandBuilder(int length, int stdMulFactor, int threshold) {
+        this(length, stdMulFactor);
+        this.threshold = threshold;
+    }
+
+    public int predict() {
+        int length = ring.size();
+        if(length <= 2) {
+            return 0;
+        }
+        else {
+            Datum dLeft = ring.get(length-2);
+            Datum dRight = ring.get(length-1);
+            if(dRight.start - dLeft.upperBound >= threshold) {
+                return -1;
+            }
+            else if(dRight.start - dLeft.lowerBound <= threshold) {
+                return 1;
+            }
+            else {
+                return 0;
+            }
+        }
     }
 
     public double getStd() {
