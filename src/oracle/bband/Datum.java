@@ -27,7 +27,7 @@ public class Datum {
     public String toString() {
         String dateStartStr = formatter.format(dateStart);
         String dateEndStr = formatter.format(dateEnd);
-        return "Output=[dateStart dateEnd start high low end upperBound lowerBound]\n" +
+        return "# Output=[dateStart dateEnd start high low end upperBound lowerBound]\n" +
             dateStartStr + " " + dateEndStr + " " +
             start + " " + high + " " + low + " " + end + " " + upperBound + " " + lowerBound;
     }

@@ -41,9 +41,8 @@ public class Oracle {
     }
 
     public void logfileTest(String... args) {
-        BBandBuilder builder = new BBandBuilder(22, 2);
-        builder.parseOneKFromFile(args[0]);
-        System.out.println(builder);
+        bbandBuilder.parseOneKFromFile(args[0]);
+        System.out.println(bbandBuilder);
     }
 
     public static void main(String... args) {
@@ -52,9 +51,9 @@ public class Oracle {
         }
         else {
             // for testing
-            BBandBuilder builder = new BBandBuilder(22, 2);
-            builder.parseOneKFromFile(args[0]);
-            System.out.println(builder);
+            Oracle oracle = new Oracle();
+            oracle.bbandBuilder.parseOneKFromFile(args[0]);
+            System.out.println(oracle.bbandBuilder);
             // for network streaming input test
             // String line = getNetworkInput();
             // streamingInput(line);
