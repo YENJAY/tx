@@ -11,11 +11,21 @@ class BBandBuilder {
     private Vector<Datum> bbandSquence = new Vector<Datum>();
     private SimpleDateFormat formatter = new SimpleDateFormat("HHmmss");
     private double threshold = 1;
+    private int minimalRequiredPoint = 2;
+    private int taxfee = 76;
+    private int ntdPerPoint = 50;
 
     public BBandBuilder(int length, int stdMulFactor) {
         ring = new CircularFifoQueue<Datum>(length);
         this.length = length;
         this.stdMulFactor = stdMulFactor;
+    }
+
+    public BBandBuilder(int length, int stdMulFactor, int threshold, int minimalRequiredPoint, int ntdPerPoint, int taxfee) {
+        this(length, stdMulFactor, threshold);
+        this.minimalRequiredPoint = minimalRequiredPoint;
+        this.ntdPerPoint = ntdPerPoint;
+        this.taxfee = taxfee;
     }
 
     public BBandBuilder(int length, int stdMulFactor, int threshold) {
@@ -32,12 +42,15 @@ class BBandBuilder {
             Datum dLeft = ring.get(length-2);
             Datum dRight = ring.get(length-1);
             if(dRight.start - dLeft.upperBound >= threshold) {
+                dRight.setPrediction(-1);
                 return -1;
             }
             else if(dRight.start - dLeft.lowerBound <= threshold) {
+                dRight.setPrediction(1);
                 return 1;
             }
             else {
+                dRight.setPrediction(0);
                 return 0;
             }
         }
@@ -86,6 +99,7 @@ class BBandBuilder {
                     continue;
                 }
                 parseOneK(line);
+                predict();
                 // System.out.println(line);
             }
         }
@@ -141,11 +155,29 @@ class BBandBuilder {
     }
 
     public String toString() {
-        String ret = "# Output = [dateStart dateEnd start end upperBound MA lowerBound]\n";
+        String ret = "# Output=[dateStart dateEnd start high low end upperBound lowerBound prediction earning]\n";
+        int totalProfit = 0;
+        int totalTransaction = 0;
+        Datum lastDatum = null;
         for(Datum d : bbandSquence) {
-            ret += formatter.format(d.dateStart) + " " + formatter.format(d.dateEnd)
-            + " " + d.start + " " + d.end + " " + d.upperBound + " " + d.MA + " " + d.lowerBound + "\n";
+            if(lastDatum != null) {
+                int prediction = lastDatum.getPrediction();
+                if(prediction!=0) {
+                    totalTransaction++;
+                    int earning = ((int)((d.end-d.start)) * prediction)*ntdPerPoint - taxfee;
+                    totalProfit += earning;
+                    ret += d.toString() + " " + earning + "\n";
+                }
+            }
+            else {
+                ret += d.toString() + " " + 0 + "\n";
+            }
+            lastDatum = d;
+            // ret += formatter.format(d.dateStart) + " " + formatter.format(d.dateEnd)
+            // + " " + d.start + " " + d.end + " " + d.upperBound + " " + d.MA + " " + d.lowerBound + "\n";
         }
+        ret += "Total Transaction = " + totalTransaction + "\n";
+        ret += "Final profit = " + totalProfit;
         return ret;
     }
 }

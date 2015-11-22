@@ -29,7 +29,19 @@ public class KBarBuilder {
         }
         double v = Double.parseDouble(value);
         Unit unit = new Unit(date, v);
-        rawSequence.add(unit);
+        if(rawSequence.size()==0) {
+            rawSequence.add(unit);
+        }
+        else {
+            Unit lastElement = rawSequence.lastElement();
+            if(lastElement.equals(unit)) {
+                // we don't want duplicate data
+                return;
+            }
+            else {
+                rawSequence.add(unit);
+            }
+        }
     }
 
     public KBarUnit consumeAndMakeKBar() {
@@ -82,6 +94,26 @@ public class KBarBuilder {
         public Unit(Date d, double v) {
             date = d;
             value = v;
+        }
+        public boolean equals(Object o) {
+            if(o instanceof Unit) {
+                Unit u = (Unit) o;
+                // TODO
+                // Sometimes we get many different values but at the same time, such as
+                // 0845 8386
+                // 0845 8387
+                // 0845 8370
+                // Should we process all of them or just keep one?
+                if(u.date.equals(date) && u.value == value) {
+                    return true;
+                }
+                else {
+                    return false;
+                }
+            }
+            else {
+                return false;
+            }
         }
     }
 

@@ -7,6 +7,7 @@ public class Datum {
     public double start, high, low, end;
     public double upperBound,  lowerBound;
     public double MA;
+    private int prediction;
     private SimpleDateFormat formatter = new SimpleDateFormat("HHmmss");
 
     public Datum(Date dateStart, Date dateEnd, double start, double high, double low, double end) {
@@ -24,11 +25,30 @@ public class Datum {
     public void setMA(double MA) {
         this.MA = MA;
     }
+    public void setPrediction(int i) {
+        prediction = i;
+    }
+    public int getPrediction() {
+        return prediction;
+    }
     public String toString() {
         String dateStartStr = formatter.format(dateStart);
         String dateEndStr = formatter.format(dateEnd);
-        return "# Output=[dateStart dateEnd start high low end upperBound lowerBound]\n" +
-            dateStartStr + " " + dateEndStr + " " +
-            start + " " + high + " " + low + " " + end + " " + upperBound + " " + lowerBound;
+        return dateStartStr + " " + dateEndStr + " " +
+            start + " " + high + " " + low + " " + end + " " + upperBound + " " + lowerBound + " " + prediction;
+    }
+    public boolean equals(Object o) {
+        if(o instanceof Datum) {
+            Datum d = (Datum) o;
+            if(d.dateStart == dateStart && d.dateEnd == dateEnd && d.start == start && d.high == high && d.low == low && d.end == end) {
+                    return true;
+            }
+            else {
+                return false;
+            }
+        }
+        else {
+            return false;
+        }
     }
 }

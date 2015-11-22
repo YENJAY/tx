@@ -33,7 +33,7 @@ public class Oracle {
                 for(String s : input) {
                     System.out.println(s);
                 }
-                throw new RuntimeException("Error input for building K bar...");
+                throw new RuntimeException("Error input for building bband...");
             }
             bbandBuilder.parseOneK(kbarResultStr);
             System.out.println(line + " :Guess=" + bbandBuilder.predict());
