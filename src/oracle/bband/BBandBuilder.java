@@ -10,7 +10,7 @@ class BBandBuilder {
     private double stdMulFactor;
     private Vector<Datum> bbandSquence = new Vector<Datum>();
     private SimpleDateFormat formatter = new SimpleDateFormat("HHmmss");
-    private double threshold = 1;
+    private double threshold = 6;
     private int minimalRequiredPoint = 2;
     private int taxfee = 76;
     private int ntdPerPoint = 50;
@@ -33,21 +33,20 @@ class BBandBuilder {
         this.threshold = threshold;
     }
 
-    public int predict(double newValue) {
-        if(ring.isEmpty()) {
-            return 0;
+    public int predict() {
+        Datum lastElement = ring.getTail();
+        if(ring.isEmpty() == true || lastElement == null) return 0;
+        if(lastElement.end >= lastElement.upperBound + threshold) {
+            lastElement.setPrediction(-1);
+            return -1;
+        }
+        else if(lastElement.end <= lastElement.lowerBound - threshold) {
+            lastElement.setPrediction(1);
+            return 1;
         }
         else {
-            Datum lastElement = ring.lastElement();
-            if(newValue - dLeft.upperBound >= threshold) {
-                return -1;
-            }
-            else if(newValue - dLeft.upperBound <= threshold) {
-                return 1;
-            }
-            else {
-                return 0;
-            }
+            lastElement.setPrediction(0);
+            return 0;
         }
     }
 
@@ -150,13 +149,29 @@ class BBandBuilder {
     }
 
     public String toString() {
-        String ret = "# Output=[dateStart dateEnd start high low end upperBound lowerBound]\n";
+        String ret = "# Output=[dateStart dateEnd start high low end upperBound lowerBound prediction earning]\n";
         int totalProfit = 0;
         int totalTransaction = 0;
         Datum lastDatum = null;
         for(Datum d : bbandSquence) {
-            ret += d.toString() + "\n";
+            if(lastDatum != null) {
+                int prediction = lastDatum.getPrediction();
+                if(prediction!=0) {
+                    totalTransaction++;
+                    int earning = ((int)((d.end-d.start)) * prediction)*ntdPerPoint - taxfee;
+                    totalProfit += earning;
+                    ret += d.toString() + " " + earning + "\n";
+                }
+            }
+            else {
+                ret += d.toString() + " " + 0 + "\n";
+            }
+            lastDatum = d;
+            // ret += formatter.format(d.dateStart) + " " + formatter.format(d.dateEnd)
+            // + " " + d.start + " " + d.end + " " + d.upperBound + " " + d.MA + " " + d.lowerBound + "\n";
         }
+        ret += "Total Transaction = " + totalTransaction + "\n";
+        ret += "Final profit = " + totalProfit;
         return ret;
     }
 }
