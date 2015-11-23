@@ -3,7 +3,7 @@ import java.util.*;
 import java.text.*;
 import java.io.*;
 
-public class KBarBuilder {
+public class KBarBuilder implements IDataReceiver {
     public double high;
     public double low;
     private Vector<Unit> rawSequence = new Vector<Unit>();

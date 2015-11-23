@@ -10,7 +10,7 @@ class BBandBuilder {
     private double stdMulFactor;
     private Vector<Datum> bbandSquence = new Vector<Datum>();
     private SimpleDateFormat formatter = new SimpleDateFormat("HHmmss");
-    private double threshold = 6;
+    private double threshold = 1;
     private int minimalRequiredPoint = 2;
     private int taxfee = 76;
     private int ntdPerPoint = 50;
