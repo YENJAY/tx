@@ -33,24 +33,19 @@ class BBandBuilder {
         this.threshold = threshold;
     }
 
-    public int predict() {
-        int length = ring.size();
-        if(length <= 2) {
+    public int predict(double newValue) {
+        if(ring.isEmpty()) {
             return 0;
         }
         else {
-            Datum dLeft = ring.get(length-2);
-            Datum dRight = ring.get(length-1);
-            if(dRight.start - dLeft.upperBound >= threshold) {
-                dRight.setPrediction(-1);
+            Datum lastElement = ring.lastElement();
+            if(newValue - dLeft.upperBound >= threshold) {
                 return -1;
             }
-            else if(dRight.start - dLeft.lowerBound <= threshold) {
-                dRight.setPrediction(1);
+            else if(newValue - dLeft.upperBound <= threshold) {
                 return 1;
             }
             else {
-                dRight.setPrediction(0);
                 return 0;
             }
         }
@@ -155,29 +150,13 @@ class BBandBuilder {
     }
 
     public String toString() {
-        String ret = "# Output=[dateStart dateEnd start high low end upperBound lowerBound prediction earning]\n";
+        String ret = "# Output=[dateStart dateEnd start high low end upperBound lowerBound]\n";
         int totalProfit = 0;
         int totalTransaction = 0;
         Datum lastDatum = null;
         for(Datum d : bbandSquence) {
-            if(lastDatum != null) {
-                int prediction = lastDatum.getPrediction();
-                if(prediction!=0) {
-                    totalTransaction++;
-                    int earning = ((int)((d.end-d.start)) * prediction)*ntdPerPoint - taxfee;
-                    totalProfit += earning;
-                    ret += d.toString() + " " + earning + "\n";
-                }
-            }
-            else {
-                ret += d.toString() + " " + 0 + "\n";
-            }
-            lastDatum = d;
-            // ret += formatter.format(d.dateStart) + " " + formatter.format(d.dateEnd)
-            // + " " + d.start + " " + d.end + " " + d.upperBound + " " + d.MA + " " + d.lowerBound + "\n";
+            ret += d.toString() + "\n";
         }
-        ret += "Total Transaction = " + totalTransaction + "\n";
-        ret += "Final profit = " + totalProfit;
         return ret;
     }
 }
