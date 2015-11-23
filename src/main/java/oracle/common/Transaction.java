@@ -8,8 +8,8 @@ public class Transaction {
     public int prediction;
     public double tolerance;
     public int earning;
-    public int taxfee = 76;
-    public int ntdPerPoint = 50;
+    public int taxfee = ConfigurableParameters.TAX_FEE;
+    public int ntdPerPoint = ConfigurableParameters.NTD_PER_POINT;
 
     public Transaction(double price, Date birthday, long lifecycle, int prediction, double tolerance) {
         this.price = price;

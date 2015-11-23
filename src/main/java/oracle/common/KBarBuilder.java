@@ -11,10 +11,6 @@ public class KBarBuilder implements IDataReceiver {
     private Vector<KBarUnit> kbarSequence = new Vector<KBarUnit>();
     private long historyTimeLength;
 
-    public KBarBuilder() {
-        this(60*1000); // in millisecond
-    }
-
     public KBarBuilder(long length) {
         historyTimeLength = length;
     }

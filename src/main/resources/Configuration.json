@@ -1,0 +1,12 @@
+{
+   "configuration": {
+         "BBAND_THRESHOLD": "3",
+         "KBAR_LENGTH": "60000"
+         "LOST_TOLERANCE": "10",
+         "TRANS_LIFECYCLE": "180000",
+         "BBAND_BOUND_SIZE": "8"
+         "TAX_FEE": "76"
+         "NTD_PER_POINT": "50"
+
+    }
+}

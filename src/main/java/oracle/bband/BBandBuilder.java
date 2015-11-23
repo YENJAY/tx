@@ -4,15 +4,15 @@ import java.util.*;
 import java.text.*;
 
 class BBandBuilder {
-    private CircularFifoQueue<Datum> ring;
+    private CircularFifoQueue<BBandUnit> ring;
     private int length;
     private double upperBound, lowerBound;
     private double stdMulFactor;
-    private Vector<Datum> bbandSquence = new Vector<Datum>();
+    private Vector<BBandUnit> bbandSquence = new Vector<BBandUnit>();
     private SimpleDateFormat formatter = new SimpleDateFormat("HHmmss");
 
     public BBandBuilder(int length, int stdMulFactor) {
-        ring = new CircularFifoQueue<Datum>(length);
+        ring = new CircularFifoQueue<BBandUnit>(length);
         this.length = length;
         this.stdMulFactor = stdMulFactor;
     }
@@ -24,7 +24,7 @@ class BBandBuilder {
             return Double.NaN;
         }
         else {
-            for(Datum d : ring) {
+            for(BBandUnit d : ring) {
                 sum += Math.pow((d.end - MA), 2);
             }
             return Math.sqrt(sum/length);
@@ -40,7 +40,7 @@ class BBandBuilder {
         else {
             double MA = 0;
             double sum = 0;
-            for(Datum d : ring) {
+            for(BBandUnit d : ring) {
                 sum += d.end;
             }
             MA = sum/length;
@@ -54,8 +54,8 @@ class BBandBuilder {
         if(length < 2) {
             return 0;
         }
-        Datum left = ring.get(length-2);
-        Datum right = ring.get(length-1);
+        BBandUnit left = ring.get(length-2);
+        BBandUnit right = ring.get(length-1);
         if(left.high < left.high) {
             return 1;
         }
@@ -65,7 +65,7 @@ class BBandBuilder {
         else return 0;
     }
 
-    public Datum getLastDatum() {
+    public BBandUnit getLastBBandUnit() {
         return ring.getTail();
     }
 
@@ -91,18 +91,18 @@ class BBandBuilder {
         for(int i=2; i<input.length; i++) {
             values[i-2] = Double.parseDouble(input[i]);
         }
-        Datum d = new Datum(dateStart, dateEnd, values[0], values[1], values[2], values[3]);
+        BBandUnit d = new BBandUnit(dateStart, dateEnd, values[0], values[1], values[2], values[3]);
         bbandSquence.add(d);
 
-        // need to add the datum to the FIFO queue first
+        // need to add the BBandUnitto the FIFO queue first
         if(ring.isEmpty()) {
             ring.add(d);
             return;
         }
         else {
-            Datum lastDatum = ring.getTail();
+            BBandUnit lastBBandUnit= ring.getTail();
             ring.add(d);
-            if(lastDatum == null) {
+            if(lastBBandUnit== null) {
                 // the queue is not full yet
                 return;
             }
@@ -117,7 +117,7 @@ class BBandBuilder {
 
     public String toString() {
         String ret = "# Output=[dateStart dateEnd start high low end upperBound lowerBound outOfBound]\n";
-        for(Datum d : bbandSquence) {
+        for(BBandUnit d : bbandSquence) {
             int bound = d.isOutOfBound();
             ret += d.toString() + " " + bound + "\n";
             // ret += formatter.format(d.dateStart) + " " + formatter.format(d.dateEnd)

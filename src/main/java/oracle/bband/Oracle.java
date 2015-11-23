@@ -5,17 +5,15 @@ import java.util.*;
 import java.io.*;
 
 public class Oracle {
-    private int duration = 1*60*1000;
+    private int duration = ConfigurableParameters.KBAR_LENGTH;
     private SimpleDateFormat formatter = new SimpleDateFormat("HHmmss");
     private BBandBuilder bbandBuilder = new BBandBuilder(22, 2);
     private KBarBuilder kbarBuilder = new KBarBuilder(duration); // in millisecond
     private Vector<Transaction> transactions = new Vector<Transaction>();
-    private int minimalRequiredPoint = 2;
-    private int tolerance = 10;
-    private int lifecycle = duration;
-    private int minimalBoundSize = 8;
+    private int tolerance = ConfigurableParameters.LOST_TOLERANCE;
+    private int lifecycle = ConfigurableParameters.TRANS_LIFECYCLE;
+    private int minimalBoundSize = ConfigurableParameters.BBAND_BOUND_SIZE;
     private int profit = 0;
-    private long maxLifeTime = 3*60*1000;
 
     public void streamingInput(String time, String value) {
         // build kbar unit
@@ -48,11 +46,11 @@ public class Oracle {
                 }
                 bbandBuilder.parseOneK(kbarResultStr);
 
-                Datum lastDatum = bbandBuilder.getLastDatum();
-                if(lastDatum != null && lastDatum.getBoundSize() >= minimalBoundSize) {
-                    int prediction = -1 * lastDatum.isOutOfBound();
+                BBandUnit lastBBandUnit= bbandBuilder.getLastBBandUnit();
+                if(lastBBandUnit != null && lastBBandUnit.getBoundSize() >= minimalBoundSize) {
+                    int prediction = -1 * lastBBandUnit.isOutOfBound();
                     System.out.println(kbarResultStr + " :Guess=" + prediction);
-                    Transaction trans = new Transaction(lastDatum.end, lastDatum.dateEnd, maxLifeTime, prediction, tolerance);
+                    Transaction trans = new Transaction(lastBBandUnit.end, lastBBandUnit.dateEnd, lifecycle, prediction, tolerance);
                     transactions.add(trans);
                 }
             }
@@ -135,7 +133,7 @@ public class Oracle {
 
     private int profit3 = 0;
     public void finishRemaining() {
-        double newestPrice = bbandBuilder.getLastDatum().end;
+        double newestPrice = bbandBuilder.getLastBBandUnit().end;
         for(Transaction trans : transactions) {
             profit3 = trans.offset(newestPrice);
         }
