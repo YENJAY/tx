@@ -107,8 +107,7 @@ public class Oracle {
         DataBroadcaster broadcaster = DataBroadcaster.getInstance();
         try {
             String line;
-            InputStream in = Oracle.class.getResourceAsStream("/" + args[0]);
-            reader = new BufferedReader(new InputStreamReader(in));
+            reader = new BufferedReader(new FileReader(args[0]));
             // System.out.println("Input...");
             while((line=reader.readLine()) != null) {
                 if(line.startsWith("#") || line.trim().equals("")) {
