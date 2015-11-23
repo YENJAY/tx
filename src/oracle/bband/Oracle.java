@@ -5,7 +5,7 @@ import oracle.common.*;
 public class Oracle {
     private SimpleDateFormat formatter = new SimpleDateFormat("HHmmss");
     private BBandBuilder bbandBuilder = new BBandBuilder(22, 2);
-    private KBarBuilder kbarBuilder = new KBarBuilder(60*1000); // in millisecond
+    private KBarBuilder kbarBuilder = new KBarBuilder(5*60*1000); // in millisecond
 
     public void streamingInput(String line) {
         // build kbar unit
