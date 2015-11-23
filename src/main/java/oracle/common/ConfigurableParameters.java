@@ -14,7 +14,7 @@ public class ConfigurableParameters {
     static {
         String content = "";
         try {
-            InputStream in = ConfigurableParameters.class.getResourceAsStream("Configuration.json");
+            InputStream in = ConfigurableParameters.class.getResourceAsStream("/Configuration.json");
             BufferedReader buffReader = new BufferedReader(new InputStreamReader(in));
 
             String line = "";

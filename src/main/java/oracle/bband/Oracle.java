@@ -5,14 +5,14 @@ import java.util.*;
 import java.io.*;
 
 public class Oracle {
-    private int duration = ConfigurableParameters.KBAR_LENGTH;
     private SimpleDateFormat formatter = new SimpleDateFormat("HHmmss");
     private BBandBuilder bbandBuilder = new BBandBuilder(22, 2);
-    private KBarBuilder kbarBuilder = new KBarBuilder(duration); // in millisecond
     private Vector<Transaction> transactions = new Vector<Transaction>();
+    private int duration = ConfigurableParameters.KBAR_LENGTH;
     private int tolerance = ConfigurableParameters.LOST_TOLERANCE;
     private int lifecycle = ConfigurableParameters.TRANS_LIFECYCLE;
     private int minimalBoundSize = ConfigurableParameters.BBAND_BOUND_SIZE;
+    private KBarBuilder kbarBuilder = new KBarBuilder(duration); // in millisecond
     private int profit = 0;
 
     public void streamingInput(String time, String value) {
@@ -107,7 +107,8 @@ public class Oracle {
         DataBroadcaster broadcaster = DataBroadcaster.getInstance();
         try {
             String line;
-            reader = new BufferedReader(new FileReader(args[0]));
+            InputStream in = Oracle.class.getResourceAsStream("/" + args[0]);
+            reader = new BufferedReader(new InputStreamReader(in));
             // System.out.println("Input...");
             while((line=reader.readLine()) != null) {
                 if(line.startsWith("#") || line.trim().equals("")) {
@@ -133,9 +134,12 @@ public class Oracle {
 
     private int profit3 = 0;
     public void finishRemaining() {
-        double newestPrice = bbandBuilder.getLastBBandUnit().end;
-        for(Transaction trans : transactions) {
-            profit3 = trans.offset(newestPrice);
+        BBandUnit lastBBandUnit = bbandBuilder.getLastBBandUnit();
+        if(lastBBandUnit != null) {
+            double newestPrice = lastBBandUnit.end;
+            for(Transaction trans : transactions) {
+                profit3 = trans.offset(newestPrice);
+            }
         }
     }
 
@@ -153,6 +157,9 @@ public class Oracle {
         }
         else {
             // for testing
+            for(String s : args) {
+                System.out.println(s);
+            }
             Oracle oracle = new Oracle();
             oracle.logfileTest(args[0]);
             System.out.println(oracle.bbandBuilder);
