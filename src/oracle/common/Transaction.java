@@ -1,12 +1,17 @@
 package oracle.common;
+import java.util.*;
 
-public class Transaction implements IDataReceiver {
-    private double price;
-    private double birthday;
-    private double lifecycle;
-    private int prediction;
-    private double tolerance;
-    public Transaction(double price, double birthday, double lifecycle, int prediction, double tolerance) {
+public class Transaction {
+    public double price;
+    public Date birthday;
+    public long lifecycle;
+    public int prediction;
+    public double tolerance;
+    public int earning;
+    public int taxfee = 76;
+    public int ntdPerPoint = 50;
+
+    public Transaction(double price, Date birthday, long lifecycle, int prediction, double tolerance) {
         this.price = price;
         this.birthday = birthday;
         this.lifecycle = lifecycle;
@@ -14,22 +19,8 @@ public class Transaction implements IDataReceiver {
         this.tolerance = tolerance;
     }
 
-    public void offset() {
-        DataBroadcaster.getInstance().deregister(this);
-        // offset commands
-    }
-
-    public void append(String newestTime, String newestValue) {
-        /*
-            if(newestTime - birthday >= lifecycle) {
-                offset();
-            }
-            else if( (newestValue-price)*prediction <= tolerance) {
-                offset();
-            }
-            else {
-                // still earning within 1 min
-            }
-        */
+    public int offset(double newestValue) {
+        earning = ((int)((newestValue-price)*prediction))*ntdPerPoint - taxfee;
+        return earning;
     }
 }
