@@ -14,6 +14,11 @@ public class Transaction implements IDataReceiver {
         this.tolerance = tolerance;
     }
 
+    public void offset() {
+        DataBroadcaster.getInstance().deregister(this);
+        // offset commands
+    }
+
     public void append(String newestTime, String newestValue) {
         /*
             if(newestTime - birthday >= lifecycle) {
