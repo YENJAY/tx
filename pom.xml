@@ -11,10 +11,16 @@
   <url>https://bitbucket.org/yoshihuang/tx</url>
 
   <dependencies>
-    <dependency>
-      <groupId>org.json</groupId>
-      <artifactId>json</artifactId>
-      <version>20141113</version>
-    </dependency>
+      <dependency>
+          <groupId>org.json</groupId>
+          <artifactId>json</artifactId>
+          <version>20141113</version>
+      </dependency>
   </dependencies>
+  <dependency>
+      <groupId>jfree</groupId>
+      <artifactId>jfreechart</artifactId>
+      <version>1.0.13</version>
+  </dependency>
+
 </project>
