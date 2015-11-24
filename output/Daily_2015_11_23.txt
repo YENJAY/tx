@@ -1,0 +1,102 @@
+[INFO] Scanning for projects...
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building tx 1.0-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- exec-maven-plugin:1.4.0:java (default-cli) @ tx ---
+output/Daily_2015_11_23_MTX.txt
+Configuration loaded successfully.
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+Transactions:
+084600 prediction=-1 earning=-516
+084600 prediction=-1 earning=-416
+084601 prediction=-1 earning=734
+084637 prediction=-1 earning=534
+084747 prediction=-1 earning=584
+084904 prediction=1 earning=1484
+085117 prediction=-1 earning=684
+085117 prediction=-1 earning=734
+090155 prediction=-1 earning=584
+090632 prediction=-1 earning=684
+090835 prediction=-1 earning=984
+090835 prediction=-1 earning=984
+091248 prediction=-1 earning=534
+091248 prediction=-1 earning=534
+091336 prediction=-1 earning=-416
+091352 prediction=-1 earning=584
+091501 prediction=-1 earning=734
+091558 prediction=-1 earning=534
+091857 prediction=-1 earning=584
+092038 prediction=-1 earning=734
+092527 prediction=-1 earning=634
+092813 prediction=-1 earning=134
+092813 prediction=-1 earning=134
+093036 prediction=-1 earning=734
+093412 prediction=-1 earning=834
+093412 prediction=-1 earning=834
+093712 prediction=-1 earning=934
+093713 prediction=-1 earning=884
+093903 prediction=-1 earning=434
+093948 prediction=-1 earning=934
+094231 prediction=-1 earning=234
+094501 prediction=-1 earning=684
+094854 prediction=-1 earning=634
+094902 prediction=-1 earning=634
+095833 prediction=-1 earning=784
+095833 prediction=-1 earning=784
+100655 prediction=-1 earning=884
+100808 prediction=-1 earning=934
+100931 prediction=-1 earning=1034
+101502 prediction=-1 earning=184
+101502 prediction=-1 earning=284
+102032 prediction=1 earning=-116
+102032 prediction=-1 earning=534
+102032 prediction=-1 earning=634
+102338 prediction=-1 earning=-16
+102543 prediction=-1 earning=584
+103028 prediction=-1 earning=534
+103029 prediction=-1 earning=534
+103741 prediction=-1 earning=984
+104821 prediction=-1 earning=934
+105029 prediction=-1 earning=734
+112102 prediction=-1 earning=834
+114206 prediction=-1 earning=134
+114229 prediction=-1 earning=284
+114229 prediction=-1 earning=334
+114500 prediction=-1 earning=684
+114500 prediction=-1 earning=684
+115621 prediction=-1 earning=284
+122939 prediction=-1 earning=-66
+124952 prediction=-1 earning=-516
+125014 prediction=-1 earning=-316
+133023 prediction=-1 earning=484
+133714 prediction=-1 earning=284
+Profit 0 = 35188
+Profit 1 = -2180
+Profit 2 = -116
+Profit 3 = 0
+Final profit = 32892
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 2.437 s
+[INFO] Finished at: 2015-11-25T00:42:01+08:00
+[INFO] Final Memory: 11M/155M
+[INFO] ------------------------------------------------------------------------

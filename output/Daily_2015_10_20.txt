@@ -1,0 +1,101 @@
+[INFO] Scanning for projects...
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building tx 1.0-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- exec-maven-plugin:1.4.0:java (default-cli) @ tx ---
+output/Daily_2015_10_20_MTX.txt
+Configuration loaded successfully.
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+Transactions:
+085304 prediction=1 earning=1234
+085436 prediction=1 earning=734
+085436 prediction=1 earning=734
+090230 prediction=1 earning=-66
+090359 prediction=1 earning=-1316
+090502 prediction=1 earning=-166
+090554 prediction=1 earning=1484
+090939 prediction=1 earning=-116
+093016 prediction=1 earning=384
+094301 prediction=1 earning=384
+094651 prediction=1 earning=-66
+095659 prediction=1 earning=934
+101608 prediction=1 earning=1184
+120814 prediction=1 earning=-66
+121151 prediction=1 earning=1184
+121222 prediction=1 earning=1184
+123314 prediction=1 earning=784
+134230 prediction=1 earning=-66
+Profit 0 = 8908
+Profit 1 = 0
+Profit 2 = -546
+Profit 3 = 0
+Final profit = 8362
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 1.564 s
+[INFO] Finished at: 2015-11-25T00:40:20+08:00
+[INFO] Final Memory: 10M/155M
+[INFO] ------------------------------------------------------------------------

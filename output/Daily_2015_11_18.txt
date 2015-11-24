@@ -1,0 +1,219 @@
+[INFO] Scanning for projects...
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building tx 1.0-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- exec-maven-plugin:1.4.0:java (default-cli) @ tx ---
+output/Daily_2015_11_18_MTX.txt
+Configuration loaded successfully.
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+Transactions:
+084628 prediction=1 earning=1584
+084742 prediction=1 earning=234
+084901 prediction=1 earning=-166
+084902 prediction=1 earning=934
+084925 prediction=1 earning=-216
+084945 prediction=1 earning=1284
+085026 prediction=1 earning=-266
+085131 prediction=1 earning=1434
+085942 prediction=1 earning=-66
+090308 prediction=1 earning=-266
+090311 prediction=1 earning=134
+090533 prediction=1 earning=-166
+090547 prediction=1 earning=1534
+090650 prediction=1 earning=-1366
+090700 prediction=1 earning=1234
+091450 prediction=1 earning=-66
+091616 prediction=1 earning=884
+091617 prediction=1 earning=-66
+091618 prediction=1 earning=984
+091707 prediction=1 earning=-166
+091804 prediction=1 earning=-116
+092504 prediction=1 earning=-266
+092547 prediction=1 earning=484
+092601 prediction=1 earning=484
+093024 prediction=1 earning=234
+093230 prediction=1 earning=-66
+093404 prediction=1 earning=-316
+093405 prediction=1 earning=-66
+093407 prediction=1 earning=-316
+093408 prediction=1 earning=1734
+093415 prediction=-1 earning=234
+093602 prediction=1 earning=-66
+093602 prediction=1 earning=-1266
+093603 prediction=1 earning=-316
+093612 prediction=1 earning=1834
+093823 prediction=1 earning=-66
+093932 prediction=1 earning=-316
+093941 prediction=1 earning=-1466
+094011 prediction=1 earning=-66
+094011 prediction=1 earning=-1266
+094012 prediction=1 earning=1234
+094012 prediction=1 earning=1234
+094020 prediction=1 earning=1234
+094421 prediction=1 earning=1134
+094549 prediction=1 earning=-66
+094606 prediction=1 earning=734
+094923 prediction=1 earning=184
+094948 prediction=1 earning=-66
+095101 prediction=1 earning=-1266
+095102 prediction=1 earning=1584
+095102 prediction=1 earning=1584
+095141 prediction=1 earning=634
+095302 prediction=1 earning=-66
+095412 prediction=1 earning=-466
+095529 prediction=1 earning=1834
+095529 prediction=1 earning=1784
+095652 prediction=1 earning=-66
+095714 prediction=1 earning=784
+100115 prediction=1 earning=1934
+100317 prediction=1 earning=-1316
+100423 prediction=1 earning=-66
+100437 prediction=1 earning=-366
+100521 prediction=1 earning=-316
+100550 prediction=1 earning=-66
+100551 prediction=1 earning=-316
+100552 prediction=1 earning=-66
+100613 prediction=1 earning=-366
+100619 prediction=1 earning=-1666
+100619 prediction=1 earning=-1666
+100706 prediction=1 earning=-66
+100706 prediction=1 earning=1434
+100732 prediction=-1 earning=-316
+100932 prediction=1 earning=-1316
+100942 prediction=1 earning=-1316
+101024 prediction=1 earning=2134
+101030 prediction=1 earning=-66
+101212 prediction=1 earning=-666
+101243 prediction=1 earning=-316
+101304 prediction=1 earning=-1566
+101306 prediction=1 earning=-1466
+101307 prediction=1 earning=-166
+101347 prediction=1 earning=1034
+101350 prediction=1 earning=1084
+101401 prediction=1 earning=-66
+101632 prediction=1 earning=1134
+101806 prediction=1 earning=1934
+102148 prediction=1 earning=1434
+103346 prediction=1 earning=-66
+103401 prediction=1 earning=534
+103425 prediction=1 earning=-1266
+103514 prediction=1 earning=2334
+103732 prediction=1 earning=-66
+104144 prediction=1 earning=934
+104156 prediction=1 earning=934
+104159 prediction=1 earning=934
+104731 prediction=1 earning=-66
+104731 prediction=1 earning=-66
+104819 prediction=1 earning=784
+104931 prediction=1 earning=-66
+105702 prediction=1 earning=-1416
+105719 prediction=1 earning=-1466
+105750 prediction=1 earning=1784
+105803 prediction=1 earning=-1516
+105903 prediction=1 earning=-66
+105916 prediction=1 earning=2434
+105916 prediction=1 earning=2434
+110234 prediction=1 earning=1434
+111739 prediction=1 earning=2334
+112205 prediction=1 earning=-66
+112635 prediction=1 earning=2284
+112645 prediction=1 earning=2134
+113725 prediction=1 earning=-166
+113756 prediction=1 earning=1234
+113856 prediction=1 earning=1234
+113924 prediction=1 earning=-1366
+114020 prediction=1 earning=-116
+114816 prediction=1 earning=-66
+115250 prediction=1 earning=2584
+115250 prediction=1 earning=2584
+115436 prediction=1 earning=2634
+121127 prediction=1 earning=-66
+122345 prediction=1 earning=-116
+122456 prediction=1 earning=-66
+122519 prediction=1 earning=1184
+122752 prediction=1 earning=-66
+123055 prediction=1 earning=1134
+123927 prediction=1 earning=2584
+124345 prediction=1 earning=-66
+124349 prediction=1 earning=1334
+124446 prediction=1 earning=-66
+124837 prediction=1 earning=-1366
+124837 prediction=1 earning=-1366
+124837 prediction=1 earning=-1366
+124847 prediction=1 earning=-66
+124927 prediction=1 earning=-566
+124928 prediction=1 earning=-1616
+124928 prediction=1 earning=-1616
+125005 prediction=1 earning=-66
+125006 prediction=1 earning=1434
+125032 prediction=1 earning=-316
+125040 prediction=1 earning=-66
+125042 prediction=1 earning=-16
+125231 prediction=1 earning=-66
+125231 prediction=1 earning=-316
+125239 prediction=1 earning=-166
+125343 prediction=1 earning=2384
+125737 prediction=1 earning=-66
+130021 prediction=1 earning=-166
+130031 prediction=1 earning=1234
+130039 prediction=1 earning=84
+130723 prediction=1 earning=-66
+130913 prediction=1 earning=1434
+131857 prediction=1 earning=2684
+132208 prediction=1 earning=1784
+132601 prediction=1 earning=-66
+132620 prediction=1 earning=884
+132714 prediction=1 earning=-1366
+132807 prediction=1 earning=-266
+132922 prediction=1 earning=-66
+133158 prediction=1 earning=-316
+133246 prediction=1 earning=-316
+133316 prediction=1 earning=-66
+133317 prediction=1 earning=2184
+134142 prediction=1 earning=1534
+134314 prediction=1 earning=-66
+134329 prediction=1 earning=1184
+134332 prediction=1 earning=-66
+134414 prediction=1 earning=1084
+134440 prediction=1 earning=1234
+Profit 0 = 91190
+Profit 1 = -35592
+Profit 2 = -4120
+Profit 3 = 2318
+Final profit = 53796
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 2.773 s
+[INFO] Finished at: 2015-11-25T00:41:46+08:00
+[INFO] Final Memory: 10M/220M
+[INFO] ------------------------------------------------------------------------

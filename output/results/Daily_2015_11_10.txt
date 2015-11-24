@@ -1,0 +1,85 @@
+[INFO] Scanning for projects...
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building tx 1.0-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- exec-maven-plugin:1.4.0:java (default-cli) @ tx ---
+output/Daily_2015_11_10_TX.txt
+Configuration loaded successfully.
+# Too few sequence #1
+# Too few sequence #1
+Profit 0 = -266
+Profit 0 = 118
+Profit 0 = 2
+Profit 0 = 286
+Profit 0 = 820
+Profit 0 = 1604
+Profit 0 = 1488
+Profit 0 = 1572
+Profit 0 = 2006
+Profit 0 = 2090
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+Profit 0 = 2574
+Profit 0 = 2958
+Transactions:
+084516 prediction=-1 earning=-266
+084609 prediction=-1 earning=384
+090014 prediction=1 earning=-316
+090119 prediction=-1 earning=-116
+090307 prediction=1 earning=284
+090901 prediction=1 earning=-66
+091402 prediction=-1 earning=-416
+091405 prediction=-1 earning=-366
+091740 prediction=1 earning=534
+091915 prediction=1 earning=-166
+091915 prediction=1 earning=784
+093011 prediction=1 earning=-216
+093623 prediction=-1 earning=-116
+093629 prediction=-1 earning=84
+093914 prediction=1 earning=434
+094619 prediction=-1 earning=84
+101136 prediction=1 earning=-166
+133209 prediction=1 earning=484
+133435 prediction=1 earning=384
+Profit 0 = 2958
+Profit 1 = -1098
+Profit 2 = -614
+Profit 3 = 0
+Final profit = 1246
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 1.442 s
+[INFO] Finished at: 2015-11-25T00:26:27+08:00
+[INFO] Final Memory: 10M/155M
+[INFO] ------------------------------------------------------------------------

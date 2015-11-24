@@ -1,0 +1,83 @@
+[INFO] Scanning for projects...
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building tx 1.0-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- exec-maven-plugin:1.4.0:java (default-cli) @ tx ---
+output/Daily_2015_10_22_TX.txt
+Configuration loaded successfully.
+# Too few sequence #1
+Profit 0 = 3434
+Profit 0 = 3768
+Profit 0 = 4902
+Profit 0 = 6386
+Profit 0 = 7420
+Profit 0 = 8754
+Profit 0 = 9988
+Profit 0 = 11922
+Profit 0 = 14006
+# Too few sequence #1
+Profit 0 = 14190
+Profit 0 = 14274
+Profit 0 = 15708
+Profit 0 = 16992
+Profit 0 = 18276
+Profit 0 = 18660
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+Profit 0 = 18594
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+Profit 0 = 20078
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+Transactions:
+084500 prediction=-1 earning=-316
+084500 prediction=-1 earning=-366
+084500 prediction=-1 earning=-416
+084500 prediction=-1 earning=-416
+084500 prediction=-1 earning=-616
+084500 prediction=-1 earning=-366
+084500 prediction=-1 earning=-366
+084500 prediction=-1 earning=-616
+084500 prediction=-1 earning=-816
+084500 prediction=-1 earning=3434
+084554 prediction=-1 earning=334
+084615 prediction=1 earning=1134
+085523 prediction=1 earning=1484
+085752 prediction=1 earning=-66
+085755 prediction=1 earning=1034
+090031 prediction=1 earning=1334
+090043 prediction=1 earning=1234
+090624 prediction=1 earning=1934
+090716 prediction=1 earning=2084
+092622 prediction=1 earning=-66
+092622 prediction=1 earning=184
+093241 prediction=1 earning=84
+093348 prediction=1 earning=1434
+094529 prediction=1 earning=1284
+094553 prediction=1 earning=1284
+103401 prediction=1 earning=-66
+103401 prediction=1 earning=384
+115242 prediction=1 earning=-66
+115706 prediction=1 earning=1484
+Profit 0 = 20078
+Profit 1 = -4294
+Profit 2 = -198
+Profit 3 = 0
+Final profit = 15586
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 1.345 s
+[INFO] Finished at: 2015-11-25T00:24:39+08:00
+[INFO] Final Memory: 9M/155M
+[INFO] ------------------------------------------------------------------------

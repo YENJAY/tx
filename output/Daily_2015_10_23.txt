@@ -1,0 +1,64 @@
+[INFO] Scanning for projects...
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building tx 1.0-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- exec-maven-plugin:1.4.0:java (default-cli) @ tx ---
+output/Daily_2015_10_23_MTX.txt
+Configuration loaded successfully.
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+Transactions:
+084506 prediction=-1 earning=184
+084547 prediction=1 earning=-1066
+084621 prediction=1 earning=984
+084629 prediction=1 earning=-66
+084644 prediction=1 earning=834
+084906 prediction=1 earning=-816
+084950 prediction=1 earning=1484
+085510 prediction=1 earning=-66
+090129 prediction=1 earning=-316
+090944 prediction=1 earning=-66
+091517 prediction=1 earning=1084
+091938 prediction=1 earning=1084
+091938 prediction=1 earning=1034
+092141 prediction=1 earning=-66
+094013 prediction=1 earning=-566
+094046 prediction=1 earning=984
+094056 prediction=1 earning=784
+094359 prediction=1 earning=-66
+095103 prediction=-1 earning=284
+095741 prediction=-1 earning=634
+100051 prediction=-1 earning=184
+102027 prediction=-1 earning=434
+105704 prediction=1 earning=1184
+120539 prediction=1 earning=1034
+121411 prediction=-1 earning=34
+130411 prediction=-1 earning=434
+132248 prediction=1 earning=-66
+134136 prediction=1 earning=834
+Profit 0 = 13512
+Profit 1 = -2764
+Profit 2 = -396
+Profit 3 = 0
+Final profit = 10352
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 1.346 s
+[INFO] Finished at: 2015-11-25T00:40:32+08:00
+[INFO] Final Memory: 9M/155M
+[INFO] ------------------------------------------------------------------------

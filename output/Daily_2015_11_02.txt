@@ -1,0 +1,61 @@
+[INFO] Scanning for projects...
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building tx 1.0-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- exec-maven-plugin:1.4.0:java (default-cli) @ tx ---
+output/Daily_2015_11_02_MTX.txt
+Configuration loaded successfully.
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+Transactions:
+084514 prediction=-1 earning=-316
+092246 prediction=-1 earning=534
+092349 prediction=-1 earning=1184
+092410 prediction=-1 earning=584
+092552 prediction=-1 earning=184
+093322 prediction=-1 earning=184
+094608 prediction=-1 earning=1134
+100042 prediction=-1 earning=-366
+102751 prediction=1 earning=-316
+123145 prediction=1 earning=-116
+133344 prediction=-1 earning=284
+Profit 0 = 3772
+Profit 1 = -682
+Profit 2 = -116
+Profit 3 = 0
+Final profit = 2974
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 1.383 s
+[INFO] Finished at: 2015-11-25T00:40:53+08:00
+[INFO] Final Memory: 9M/155M
+[INFO] ------------------------------------------------------------------------

@@ -78,7 +78,7 @@ public class Oracle {
             if(newestDate.getTime() - trans.birthday.getTime() >= trans.lifecycle) {
                 profit0 += trans.offset(newestValue);
                 transToRemove.add(trans);
-                System.out.println("Profit 0 = " + profit0);
+                // System.out.println("Profit 0 = " + profit0);
             }
             else if( (newestValue-trans.price)*trans.prediction <= -tolerance) {
                 profit1 += trans.offset(newestValue);

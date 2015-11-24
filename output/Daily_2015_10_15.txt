@@ -1,0 +1,151 @@
+[INFO] Scanning for projects...
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building tx 1.0-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- exec-maven-plugin:1.4.0:java (default-cli) @ tx ---
+output/Daily_2015_10_15_MTX.txt
+Configuration loaded successfully.
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+Transactions:
+084500 prediction=-1 earning=-316
+084529 prediction=1 earning=584
+084535 prediction=1 earning=-66
+084551 prediction=1 earning=684
+084553 prediction=1 earning=684
+084628 prediction=1 earning=1034
+084628 prediction=1 earning=1034
+084641 prediction=1 earning=1334
+084715 prediction=1 earning=684
+084745 prediction=1 earning=-266
+084845 prediction=1 earning=934
+084921 prediction=1 earning=884
+084928 prediction=1 earning=984
+085026 prediction=1 earning=584
+085108 prediction=1 earning=-266
+085119 prediction=1 earning=-216
+085229 prediction=1 earning=784
+085229 prediction=1 earning=784
+085719 prediction=1 earning=-66
+090409 prediction=1 earning=734
+090422 prediction=1 earning=-216
+090915 prediction=1 earning=684
+090915 prediction=1 earning=684
+091502 prediction=1 earning=-666
+091558 prediction=1 earning=-66
+091612 prediction=1 earning=634
+092428 prediction=1 earning=1484
+092509 prediction=1 earning=884
+092849 prediction=1 earning=-166
+092858 prediction=1 earning=634
+093537 prediction=1 earning=634
+093956 prediction=1 earning=-66
+094001 prediction=1 earning=784
+094002 prediction=1 earning=684
+094016 prediction=1 earning=834
+094228 prediction=1 earning=434
+094231 prediction=1 earning=234
+094510 prediction=1 earning=-316
+094519 prediction=1 earning=84
+094913 prediction=1 earning=1084
+095324 prediction=1 earning=-66
+095434 prediction=1 earning=134
+100152 prediction=1 earning=-66
+100410 prediction=1 earning=684
+100728 prediction=1 earning=-66
+100729 prediction=1 earning=534
+101016 prediction=1 earning=884
+101016 prediction=1 earning=884
+101422 prediction=1 earning=-66
+101435 prediction=1 earning=934
+101844 prediction=1 earning=684
+102524 prediction=1 earning=-66
+102524 prediction=1 earning=-416
+102525 prediction=1 earning=-216
+102525 prediction=1 earning=-566
+102527 prediction=1 earning=-316
+102529 prediction=1 earning=-66
+102529 prediction=1 earning=-416
+102530 prediction=1 earning=-366
+102645 prediction=1 earning=-66
+113456 prediction=1 earning=584
+124652 prediction=1 earning=884
+130438 prediction=1 earning=-66
+130644 prediction=1 earning=34
+131044 prediction=1 earning=684
+131419 prediction=1 earning=-66
+133007 prediction=1 earning=1984
+133325 prediction=1 earning=-116
+133330 prediction=1 earning=734
+133330 prediction=1 earning=734
+134153 prediction=1 earning=-116
+134242 prediction=1 earning=1034
+Profit 0 = 32364
+Profit 1 = -3378
+Profit 2 = -1888
+Profit 3 = 0
+Final profit = 27098
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 1.732 s
+[INFO] Finished at: 2015-11-25T00:40:09+08:00
+[INFO] Final Memory: 10M/155M
+[INFO] ------------------------------------------------------------------------

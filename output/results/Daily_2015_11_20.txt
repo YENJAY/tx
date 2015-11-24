@@ -1,0 +1,77 @@
+[INFO] Scanning for projects...
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building tx 1.0-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- exec-maven-plugin:1.4.0:java (default-cli) @ tx ---
+output/Daily_2015_11_20_TX.txt
+Configuration loaded successfully.
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+Profit 0 = 184
+Profit 0 = 1168
+Profit 0 = 2152
+Profit 0 = 4186
+Profit 0 = 4620
+Profit 0 = 5604
+Profit 0 = 6538
+Profit 0 = 7822
+Profit 0 = 9106
+# Too few sequence #1
+Profit 0 = 10590
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+Profit 0 = 11274
+Profit 0 = 11958
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+Transactions:
+084543 prediction=-1 earning=184
+084801 prediction=1 earning=984
+084801 prediction=1 earning=-166
+084807 prediction=1 earning=984
+090901 prediction=1 earning=-166
+091513 prediction=1 earning=2034
+093332 prediction=-1 earning=434
+093921 prediction=1 earning=984
+093923 prediction=1 earning=934
+101422 prediction=1 earning=-66
+102100 prediction=1 earning=1284
+102100 prediction=1 earning=1284
+104315 prediction=1 earning=-116
+104317 prediction=1 earning=1484
+123045 prediction=1 earning=684
+123056 prediction=1 earning=684
+Profit 0 = 11958
+Profit 1 = 0
+Profit 2 = -514
+Profit 3 = 0
+Final profit = 11444
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 1.869 s
+[INFO] Finished at: 2015-11-25T00:27:41+08:00
+[INFO] Final Memory: 9M/155M
+[INFO] ------------------------------------------------------------------------

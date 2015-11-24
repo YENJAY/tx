@@ -1,4 +1,13 @@
 #!/bin/sh
 # Example: mvn_run.sh 2015 11 20
-grep -a MTX input/Daily_$1_$2_$3_C.rpt | tr "," " " | awk '{print $1" "$4" "$7}' | sort -n > input/$1$2$3_MTX.txt
-mvn exec:java -Dexec.mainClass=oracle.bband.Oracle -Dexec.args=input/$1$2$3_MTX.txt | tee output/$1$2$3_BBand.txt
+for f in input/*
+do
+    str=${f:6:16}
+    echo $str
+    echo Processing MTX...
+    grep -a MTX $f | tr "," " " | awk '{print $1" "$4" "$7}' | sort -n > output/${str}_MTX.txt
+    mvn exec:java -Dexec.mainClass=oracle.bband.Oracle -Dexec.args=output/${str}_MTX.txt | tee output/${str}.txt
+    # echo Processing TX...
+	# grep -a ",TX" $f | tr "," " " | awk '{print $1" "$4" "$7}' | sort -n > output/${str}_TX.txt
+    # mvn exec:java -Dexec.mainClass=oracle.bband.Oracle -Dexec.args=output/${str}_TX.txt | tee output/results/${str}.txt
+done

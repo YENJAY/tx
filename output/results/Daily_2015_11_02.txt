@@ -1,0 +1,71 @@
+[INFO] Scanning for projects...
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building tx 1.0-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- exec-maven-plugin:1.4.0:java (default-cli) @ tx ---
+output/Daily_2015_11_02_TX.txt
+Configuration loaded successfully.
+# Too few sequence #1
+# Too few sequence #1
+Profit 0 = 34
+Profit 0 = 218
+# Too few sequence #1
+Profit 0 = 502
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+Profit 0 = 1586
+Profit 0 = 2520
+Profit 0 = 3454
+# Too few sequence #1
+# Too few sequence #1
+Profit 0 = 4538
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+Profit 0 = 5822
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+Transactions:
+084528 prediction=-1 earning=34
+084531 prediction=-1 earning=184
+094226 prediction=1 earning=284
+105844 prediction=1 earning=1084
+112752 prediction=1 earning=-66
+113052 prediction=1 earning=934
+113052 prediction=1 earning=934
+114359 prediction=1 earning=1084
+130012 prediction=1 earning=-66
+132508 prediction=1 earning=1284
+Profit 0 = 5822
+Profit 1 = 0
+Profit 2 = -132
+Profit 3 = 0
+Final profit = 5690
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 1.371 s
+[INFO] Finished at: 2015-11-25T00:25:36+08:00
+[INFO] Final Memory: 9M/155M
+[INFO] ------------------------------------------------------------------------
