@@ -5,7 +5,7 @@
          "LOST_TOLERANCE": "10",
          "TRANS_LIFECYCLE": "180000",
          "BBAND_BOUND_SIZE": "8",
-         "TAX_FEE": "76",
+         "TAX_FEE": "66",
          "NTD_PER_POINT": "50"
     }
 }
