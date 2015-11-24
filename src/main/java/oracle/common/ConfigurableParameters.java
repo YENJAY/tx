@@ -14,7 +14,7 @@ public class ConfigurableParameters {
     static {
         String content = "";
         try {
-            FileReader in = new FileReader("input/Configuration.json");
+            FileReader in = new FileReader("configs/Configuration.json");
             BufferedReader buffReader = new BufferedReader(in);
 
             String line = "";
