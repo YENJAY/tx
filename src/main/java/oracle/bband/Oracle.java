@@ -13,8 +13,7 @@ public class Oracle {
     private int lifecycle = ConfigurableParameters.TRANS_LIFECYCLE;
     private int minimalBoundSize = ConfigurableParameters.BBAND_BOUND_SIZE;
     private KBarBuilder kbarBuilder = new KBarBuilder(duration); // in millisecond
-    private int profit = 0;
-
+    private Vector<Transaction> allTransactions = new Vector<Transaction>();
     public void streamingInput(String time, String value) {
         // build kbar unit
         // String[] input = line.split("\\s");
@@ -49,9 +48,12 @@ public class Oracle {
                 BBandUnit lastBBandUnit= bbandBuilder.getLastBBandUnit();
                 if(lastBBandUnit != null && lastBBandUnit.getBoundSize() >= minimalBoundSize) {
                     int prediction = -1 * lastBBandUnit.isOutOfBound();
-                    System.out.println(kbarResultStr + " :Guess=" + prediction);
-                    Transaction trans = new Transaction(lastBBandUnit.end, lastBBandUnit.dateEnd, lifecycle, prediction, tolerance);
-                    transactions.add(trans);
+                    // System.out.println(kbarResultStr + " :Guess=" + prediction);
+                    if(prediction != 0) {
+                        Transaction trans = new Transaction(lastBBandUnit.end, lastBBandUnit.dateEnd, lifecycle, prediction, tolerance);
+                        allTransactions.add(trans);
+                        transactions.add(trans);
+                    }
                 }
             }
         }
@@ -74,20 +76,20 @@ public class Oracle {
         Vector<Transaction> transToRemove = new Vector<Transaction>();
         for(Transaction trans : transactions) {
             if(newestDate.getTime() - trans.birthday.getTime() >= trans.lifecycle) {
-                profit0 = trans.offset(newestValue);
+                profit0 += trans.offset(newestValue);
                 transToRemove.add(trans);
-                System.out.println("Profit 0 = " + profit);
+                System.out.println("Profit 0 = " + profit0);
             }
             else if( (newestValue-trans.price)*trans.prediction <= -tolerance) {
-                profit1 = trans.offset(newestValue);
-                System.out.println("Profit 1 = " + profit);
+                profit1 += trans.offset(newestValue);
+                // System.out.println("Profit 1 = " + profit);
                 transToRemove.add(trans);
             }
             else if( bbandBuilder.getLatestTrend() * trans.prediction == -1 ) {
                 wrongPrediction++;
                 if(wrongPrediction >= ConfigurableParameters.MAX_WRONG_PREDICTION) {
                     profit2 += trans.offset(newestValue);
-                    System.out.println("Profit 2 = " + profit);
+                    // System.out.println("Profit 2 = " + profit);
                     transToRemove.add(trans);
                     wrongPrediction = 0;
                 }
@@ -99,6 +101,17 @@ public class Oracle {
         }
 
         transactions.removeAll(transToRemove);
+    }
+
+    private int profit3 = 0;
+    public void finishRemaining() {
+        BBandUnit lastBBandUnit = bbandBuilder.getLastBBandUnit();
+        if(lastBBandUnit != null) {
+            double newestPrice = lastBBandUnit.end;
+            for(Transaction trans : transactions) {
+                profit3 += trans.offset(newestPrice);
+            }
+        }
     }
 
     public void logfileTest(String... args) {
@@ -131,19 +144,18 @@ public class Oracle {
         // System.out.println(bbandBuilder);
     }
 
-    private int profit3 = 0;
-    public void finishRemaining() {
-        BBandUnit lastBBandUnit = bbandBuilder.getLastBBandUnit();
-        if(lastBBandUnit != null) {
-            double newestPrice = lastBBandUnit.end;
-            for(Transaction trans : transactions) {
-                profit3 = trans.offset(newestPrice);
+    public String toString() {
+        String ret = "Transactions:\n";
+        for(Transaction trans : allTransactions) {
+            String line = trans.toString();
+            if(line.equals("")) {
+                continue;
+            }
+            else {
+                ret += line + "\n";
             }
         }
-    }
-
-    public String toString() {
-        String ret = "Profit 0 = " + profit0 + "\n";
+        ret += "Profit 0 = " + profit0 + "\n";
         ret += "Profit 1 = " + profit1 + "\n";
         ret += "Profit 2 = " + profit2 + "\n";
         ret += "Profit 3 = " + profit3 + "\n";
@@ -161,7 +173,7 @@ public class Oracle {
             }
             Oracle oracle = new Oracle();
             oracle.logfileTest(args[0]);
-            System.out.println(oracle.bbandBuilder);
+            // System.out.println(oracle.bbandBuilder);
             oracle.finishRemaining();
             System.out.println(oracle);
             // for network streaming input test
