@@ -10,6 +10,7 @@ public class ConfigurableParameters {
     public static int BBAND_BOUND_SIZE;
     public static int TAX_FEE;
     public static int NTD_PER_POINT;
+    public static int MAX_WRONG_PREDICTION;
 
     static {
         String content = "";
@@ -31,6 +32,7 @@ public class ConfigurableParameters {
             BBAND_BOUND_SIZE = Integer.parseInt(obj.getJSONObject("configuration").getString("BBAND_BOUND_SIZE"));;
             TAX_FEE = Integer.parseInt(obj.getJSONObject("configuration").getString("TAX_FEE"));;
             NTD_PER_POINT = Integer.parseInt(obj.getJSONObject("configuration").getString("NTD_PER_POINT"));;
+            MAX_WRONG_PREDICTION = Integer.parseInt(obj.getJSONObject("configuration").getString("MAX_WRONG_PREDICTION"));;
             System.out.println("Configuration loaded successfully.");
         }
         catch (IOException e) {
@@ -40,8 +42,9 @@ public class ConfigurableParameters {
             LOST_TOLERANCE = 10;
             TRANS_LIFECYCLE = 3*60*1000;
             BBAND_BOUND_SIZE = 8;
-            TAX_FEE = 76;
+            TAX_FEE = 66;
             NTD_PER_POINT = 50;
+            MAX_WRONG_PREDICTION = 2;
         }
     }
 }

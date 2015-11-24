@@ -85,7 +85,7 @@ public class Oracle {
             }
             else if( bbandBuilder.getLatestTrend() * trans.prediction == -1 ) {
                 wrongPrediction++;
-                if(wrongPrediction >= 2) {
+                if(wrongPrediction >= ConfigurableParameters.MAX_WRONG_PREDICTION) {
                     profit2 += trans.offset(newestValue);
                     System.out.println("Profit 2 = " + profit);
                     transToRemove.add(trans);
