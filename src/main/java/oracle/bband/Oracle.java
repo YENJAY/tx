@@ -145,7 +145,7 @@ public class Oracle {
     }
 
     public String toString() {
-        String ret = "Transactions:\n";
+        String ret = "# Transactions:\n";
         for(Transaction trans : allTransactions) {
             String line = trans.toString();
             if(line.equals("")) {
@@ -155,16 +155,16 @@ public class Oracle {
                 ret += line + "\n";
             }
         }
-        ret += "Profit 0: Transaction timeout\n";
-        ret += "Profit 1: Stop losing.\n";
-        ret += "Profit 2: Reach max wrong prediction limit\n";
-        ret += "Profit 3: Remaining transactions.\n";
-        ret += "-------------------------------------------------------\n";
-        ret += "Profit 0 = " + profit0 + "\n";
-        ret += "Profit 1 = " + profit1 + "\n";
-        ret += "Profit 2 = " + profit2 + "\n";
-        ret += "Profit 3 = " + profit3 + "\n";
-        return ret += "Final profit = " + (profit0 + profit1 + profit2 + profit3);
+        ret += "# Profit 0: Transaction timeout\n";
+        ret += "# Profit 1: Stop losing.\n";
+        ret += "# Profit 2: Reach max wrong prediction limit\n";
+        ret += "# Profit 3: Remaining transactions.\n";
+        ret += "# -------------------------------------------------------\n";
+        ret += "# Profit 0 = " + profit0 + "\n";
+        ret += "# Profit 1 = " + profit1 + "\n";
+        ret += "# Profit 2 = " + profit2 + "\n";
+        ret += "# Profit 3 = " + profit3 + "\n";
+        return ret += "# Final profit = " + (profit0 + profit1 + profit2 + profit3);
     }
 
     public static void main(String... args) {
@@ -184,6 +184,28 @@ public class Oracle {
             // for network streaming input test
             // String line = getNetworkInput();
             // streamingInput(line);
+            // Write out bband data points
+            try {
+                String filename = args[0].split("/")[2];
+                File outFile = new File("output/bband/" + filename);
+                PrintWriter pw = new PrintWriter(new FileWriter(outFile));
+                pw.println(oracle.bbandBuilder);
+                pw.close();
+            }
+            catch(IOException e) {
+                e.printStackTrace();
+            }
+            // Write out transaction data points
+            try {
+                String filename = args[0].split("/")[2];
+                File outFile = new File("output/transaction/" + filename);
+                PrintWriter pw = new PrintWriter(new FileWriter(outFile));
+                pw.println(oracle);
+                pw.close();
+            }
+            catch(IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 }

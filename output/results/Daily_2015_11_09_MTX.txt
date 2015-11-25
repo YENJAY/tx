@@ -1,0 +1,69 @@
+output/intermediate/Daily_2015_11_09_MTX.txt
+Configuration loaded successfully.
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Transactions:
+084502 prediction=-1 earning=1584
+084602 prediction=1 earning=-1066
+084604 prediction=1 earning=-566
+084604 prediction=1 earning=-566
+084605 prediction=1 earning=-66
+084605 prediction=1 earning=434
+084605 prediction=1 earning=434
+084610 prediction=-1 earning=1234
+084610 prediction=-1 earning=1434
+084649 prediction=1 earning=-316
+084801 prediction=-1 earning=-166
+084806 prediction=1 earning=1084
+084955 prediction=-1 earning=584
+085240 prediction=-1 earning=34
+085626 prediction=-1 earning=234
+085802 prediction=-1 earning=34
+090014 prediction=-1 earning=-316
+090142 prediction=-1 earning=684
+090150 prediction=-1 earning=784
+090314 prediction=1 earning=-216
+090900 prediction=-1 earning=434
+091153 prediction=-1 earning=634
+091347 prediction=1 earning=684
+091500 prediction=-1 earning=734
+091552 prediction=1 earning=-16
+092341 prediction=1 earning=-316
+092404 prediction=1 earning=334
+092723 prediction=1 earning=-66
+092939 prediction=1 earning=884
+095434 prediction=1 earning=-166
+095719 prediction=1 earning=-166
+100648 prediction=1 earning=134
+101407 prediction=-1 earning=434
+101951 prediction=-1 earning=134
+105539 prediction=-1 earning=-316
+105541 prediction=-1 earning=-316
+110122 prediction=1 earning=-66
+110125 prediction=1 earning=34
+110939 prediction=-1 earning=-416
+111902 prediction=-1 earning=734
+130305 prediction=-1 earning=134
+# Profit 0: Transaction timeout
+# Profit 1: Stop losing.
+# Profit 2: Reach max wrong prediction limit
+# Profit 3: Remaining transactions.
+# -------------------------------------------------------
+# Profit 0 = 13368
+# Profit 1 = -3878
+# Profit 2 = -746
+# Profit 3 = 0
+# Final profit = 8744

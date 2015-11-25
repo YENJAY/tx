@@ -5,9 +5,9 @@ do
     str=${f:6:16}
     echo $str
     echo Processing MTX...
-    grep -a MTX $f | tr "," " " | awk '{print $1" "$4" "$7}' | sort -n > output/${str}_MTX.txt
-    mvn exec:java -Dexec.mainClass=oracle.bband.Oracle -Dexec.args=output/${str}_MTX.txt | grep -v INFO | tee output/${str}.txt
+    grep -a MTX $f | tr "," " " | awk '{print $1" "$4" "$7}' | sort -n > output/intermediate/${str}_MTX.txt
+    mvn exec:java -Dexec.mainClass=oracle.bband.Oracle -Dexec.args=output/intermediate/${str}_MTX.txt | grep -v INFO | tee output/results/${str}_MTX.txt
     # echo Processing TX...
-	# grep -a ",TX" $f | tr "," " " | awk '{print $1" "$4" "$7}' | sort -n > output/${str}_TX.txt
-    # mvn exec:java -Dexec.mainClass=oracle.bband.Oracle -Dexec.args=output/${str}_TX.txt | grep -v INFO | tee output/results/${str}.txt
+	# grep -a ",TX" $f | tr "," " " | awk '{print $1" "$4" "$7}' | sort -n > output/intermediate/${str}_TX.txt
+    # mvn exec:java -Dexec.mainClass=oracle.bband.Oracle -Dexec.args=output/intermediate/${str}_TX.txt | grep -v INFO | tee output/results/${str}_TX.txt
 done

@@ -1,0 +1,51 @@
+output/intermediate/Daily_2015_11_03_MTX.txt
+Configuration loaded successfully.
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Transactions:
+084500 prediction=-1 earning=-416
+084826 prediction=-1 earning=184
+090428 prediction=1 earning=184
+090508 prediction=-1 earning=734
+091531 prediction=1 earning=384
+092157 prediction=1 earning=-66
+092226 prediction=1 earning=784
+092609 prediction=1 earning=784
+092610 prediction=1 earning=784
+092612 prediction=1 earning=784
+092723 prediction=1 earning=684
+092845 prediction=1 earning=-66
+093222 prediction=1 earning=634
+093818 prediction=1 earning=-116
+093917 prediction=1 earning=534
+094301 prediction=1 earning=534
+095221 prediction=1 earning=-66
+100051 prediction=1 earning=284
+101802 prediction=1 earning=-16
+103259 prediction=1 earning=-66
+123902 prediction=1 earning=634
+124810 prediction=1 earning=34
+# Profit 0: Transaction timeout
+# Profit 1: Stop losing.
+# Profit 2: Reach max wrong prediction limit
+# Profit 3: Remaining transactions.
+# -------------------------------------------------------
+# Profit 0 = 7944
+# Profit 1 = -416
+# Profit 2 = -380
+# Profit 3 = 0
+# Final profit = 7148

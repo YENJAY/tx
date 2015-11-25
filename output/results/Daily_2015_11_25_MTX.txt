@@ -1,0 +1,76 @@
+output/intermediate/Daily_2015_11_25_MTX.txt
+Configuration loaded successfully.
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Transactions:
+084637 prediction=-1 earning=334
+085035 prediction=-1 earning=284
+090532 prediction=-1 earning=-516
+090628 prediction=-1 earning=934
+091701 prediction=-1 earning=-316
+091701 prediction=-1 earning=534
+091701 prediction=-1 earning=584
+091911 prediction=-1 earning=334
+092139 prediction=-1 earning=584
+092415 prediction=-1 earning=1184
+092415 prediction=-1 earning=1334
+092448 prediction=-1 earning=284
+092516 prediction=-1 earning=284
+092722 prediction=-1 earning=1084
+093001 prediction=-1 earning=1184
+093035 prediction=-1 earning=1184
+093117 prediction=-1 earning=884
+093229 prediction=-1 earning=-516
+093243 prediction=-1 earning=-366
+093243 prediction=-1 earning=634
+093520 prediction=-1 earning=434
+093525 prediction=-1 earning=84
+093838 prediction=-1 earning=634
+094000 prediction=-1 earning=784
+094224 prediction=-1 earning=584
+094344 prediction=-1 earning=-366
+094436 prediction=-1 earning=-316
+095139 prediction=-1 earning=34
+095143 prediction=-1 earning=34
+095256 prediction=-1 earning=634
+095256 prediction=-1 earning=734
+095619 prediction=-1 earning=-216
+095724 prediction=-1 earning=1134
+100610 prediction=-1 earning=834
+101619 prediction=-1 earning=434
+101941 prediction=-1 earning=634
+102338 prediction=-1 earning=184
+103749 prediction=-1 earning=334
+105131 prediction=-1 earning=-566
+105131 prediction=-1 earning=-516
+105131 prediction=-1 earning=-316
+105404 prediction=-1 earning=-516
+105454 prediction=-1 earning=634
+105500 prediction=-1 earning=684
+105903 prediction=-1 earning=34
+110214 prediction=-1 earning=-166
+110344 prediction=-1 earning=684
+125328 prediction=-1 earning=234
+125348 prediction=-1 earning=384
+133109 prediction=-1 earning=34
+# Profit 0: Transaction timeout
+# Profit 1: Stop losing.
+# Profit 2: Reach max wrong prediction limit
+# Profit 3: Remaining transactions.
+# -------------------------------------------------------
+# Profit 0 = 21460
+# Profit 1 = -4310
+# Profit 2 = 0
+# Profit 3 = 0
+# Final profit = 17150

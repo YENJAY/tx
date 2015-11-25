@@ -1,0 +1,58 @@
+# Transactions:
+084520 prediction=-1 earning=334
+084537 prediction=1 earning=284
+085012 prediction=1 earning=584
+085733 prediction=-1 earning=434
+085733 prediction=-1 earning=484
+091556 prediction=-1 earning=284
+091911 prediction=-1 earning=784
+093000 prediction=-1 earning=384
+093315 prediction=-1 earning=734
+093435 prediction=-1 earning=334
+093605 prediction=-1 earning=284
+094112 prediction=1 earning=-66
+094121 prediction=-1 earning=684
+094628 prediction=-1 earning=584
+094702 prediction=-1 earning=684
+094846 prediction=1 earning=884
+095053 prediction=-1 earning=634
+095053 prediction=-1 earning=684
+095104 prediction=1 earning=834
+095419 prediction=1 earning=-66
+095505 prediction=-1 earning=634
+095546 prediction=-1 earning=734
+100118 prediction=-1 earning=934
+100600 prediction=-1 earning=484
+100602 prediction=-1 earning=634
+100655 prediction=1 earning=534
+102507 prediction=-1 earning=384
+102513 prediction=-1 earning=384
+104725 prediction=1 earning=-216
+104725 prediction=-1 earning=1234
+104909 prediction=-1 earning=434
+105050 prediction=-1 earning=534
+105326 prediction=-1 earning=534
+105555 prediction=-1 earning=584
+105744 prediction=-1 earning=484
+110215 prediction=-1 earning=584
+110702 prediction=-1 earning=134
+112133 prediction=-1 earning=84
+112249 prediction=-1 earning=434
+112304 prediction=-1 earning=434
+112502 prediction=-1 earning=434
+120213 prediction=-1 earning=284
+121814 prediction=-1 earning=334
+133106 prediction=1 earning=484
+133930 prediction=1 earning=534
+134255 prediction=-1 earning=534
+134434 prediction=-1 earning=434
+# Profit 0: Transaction timeout
+# Profit 1: Stop losing.
+# Profit 2: Reach max wrong prediction limit
+# Profit 3: Remaining transactions.
+# -------------------------------------------------------
+# Profit 0 = 22712
+# Profit 1 = 0
+# Profit 2 = -348
+# Profit 3 = 434
+# Final profit = 22798
