@@ -1,10 +1,3 @@
-[INFO] Scanning for projects...
-[INFO]                                                                         
-[INFO] ------------------------------------------------------------------------
-[INFO] Building tx 1.0-SNAPSHOT
-[INFO] ------------------------------------------------------------------------
-[INFO] 
-[INFO] --- exec-maven-plugin:1.4.0:java (default-cli) @ tx ---
 output/Daily_2015_10_22_MTX.txt
 Configuration loaded successfully.
 # Too few sequence #1
@@ -64,10 +57,3 @@ Profit 1 = -316
 Profit 2 = -446
 Profit 3 = 0
 Final profit = 20304
-[INFO] ------------------------------------------------------------------------
-[INFO] BUILD SUCCESS
-[INFO] ------------------------------------------------------------------------
-[INFO] Total time: 1.350 s
-[INFO] Finished at: 2015-11-25T00:40:28+08:00
-[INFO] Final Memory: 9M/155M
-[INFO] ------------------------------------------------------------------------
