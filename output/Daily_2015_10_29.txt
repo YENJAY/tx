@@ -71,6 +71,11 @@ Transactions:
 133930 prediction=1 earning=534
 134255 prediction=-1 earning=534
 134434 prediction=-1 earning=434
+Profit 0: Transaction timeout
+Profit 1: Stop losing.
+Profit 2: Reach max wrong prediction limit
+Profit 3: Remaining transactions.
+-------------------------------------------------------
 Profit 0 = 22712
 Profit 1 = 0
 Profit 2 = -348

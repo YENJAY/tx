@@ -22,8 +22,12 @@ Configuration loaded successfully.
 # Too few sequence #1
 Transactions:
 084500 prediction=-1 earning=-316
+084500 prediction=-1 earning=-316
 084500 prediction=-1 earning=1134
+084500 prediction=-1 earning=1134
+084501 prediction=1 earning=134
 084618 prediction=1 earning=1234
+084622 prediction=-1 earning=734
 084729 prediction=-1 earning=1984
 084834 prediction=1 earning=1234
 084834 prediction=1 earning=1234
@@ -33,27 +37,39 @@ Transactions:
 090149 prediction=1 earning=-66
 090337 prediction=1 earning=484
 090500 prediction=-1 earning=234
+090623 prediction=-1 earning=184
+090901 prediction=-1 earning=484
+091000 prediction=1 earning=184
 091316 prediction=-1 earning=784
 091527 prediction=1 earning=734
-092445 prediction=1 earning=-116
+092445 prediction=1 earning=-66
+092505 prediction=1 earning=284
 093853 prediction=-1 earning=34
 093854 prediction=-1 earning=34
-094755 prediction=1 earning=1334
+094745 prediction=1 earning=-1066
+094755 prediction=1 earning=-66
 095033 prediction=1 earning=1184
-100712 prediction=1 earning=-66
+095404 prediction=-1 earning=184
+100712 prediction=1 earning=1284
 102133 prediction=-1 earning=284
 102133 prediction=-1 earning=384
-102249 prediction=1 earning=1334
+102133 prediction=-1 earning=384
+102249 prediction=1 earning=-66
 102325 prediction=1 earning=1434
 102440 prediction=1 earning=-16
-103025 prediction=1 earning=-66
-105845 prediction=1 earning=1234
+103025 prediction=1 earning=1184
+105845 prediction=1 earning=-66
 111552 prediction=1 earning=1134
-115548 prediction=1 earning=-66
-133215 prediction=1 earning=1034
+115548 prediction=1 earning=1034
+133215 prediction=1 earning=-66
 134143 prediction=1 earning=934
-Profit 0 = 21066
-Profit 1 = -316
-Profit 2 = -446
+Profit 0: Transaction timeout
+Profit 1: Stop losing.
+Profit 2: Reach max wrong prediction limit
+Profit 3: Remaining transactions.
+-------------------------------------------------------
+Profit 0 = 23338
+Profit 1 = -1698
+Profit 2 = -462
 Profit 3 = 0
-Final profit = 20304
+Final profit = 21178

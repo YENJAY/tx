@@ -155,6 +155,11 @@ public class Oracle {
                 ret += line + "\n";
             }
         }
+        ret += "Profit 0: Transaction timeout\n";
+        ret += "Profit 1: Stop losing.\n";
+        ret += "Profit 2: Reach max wrong prediction limit\n";
+        ret += "Profit 3: Remaining transactions.\n";
+        ret += "-------------------------------------------------------\n";
         ret += "Profit 0 = " + profit0 + "\n";
         ret += "Profit 1 = " + profit1 + "\n";
         ret += "Profit 2 = " + profit2 + "\n";
