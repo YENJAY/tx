@@ -178,6 +178,7 @@ public class Oracle {
     private void saveAsJpeg(File outFile) throws IOException {
         XYSeries upperSeries = new XYSeries("Upper");
         XYSeries lowerSeries = new XYSeries("Lower");
+        XYSeries priceSeries = new XYSeries("Price");
         double max = Double.MIN_VALUE;
         double min = Double.MAX_VALUE;
         for(BBandUnit bbandUnit : bbandBuilder.getBBandSequence()) {
@@ -186,7 +187,9 @@ public class Oracle {
             if(upper != 0) {
                 String time = formatter.format(bbandUnit.dateEnd);
                 if(time.charAt(4) == '0') {
-                    upperSeries.add(Integer.parseInt(time), upper);
+                    int t = Integer.parseInt(time);
+                    upperSeries.add(t, upper);
+                    priceSeries.add(t, bbandUnit.end);
                 }
                 if(upper > max) max = upper;
                 if(upper < min) min = upper;
@@ -203,6 +206,7 @@ public class Oracle {
         }
         final XYSeriesCollection data = new XYSeriesCollection();
         data.addSeries(upperSeries);
+        data.addSeries(priceSeries);
         data.addSeries(lowerSeries);
 
         for(Transaction trans : allTransactions) {
