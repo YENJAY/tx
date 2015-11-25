@@ -115,6 +115,10 @@ class BBandBuilder {
         }
     }
 
+    public Vector<BBandUnit> getBBandSequence() {
+        return bbandSquence;
+    }
+
     public String toString() {
         String ret = "# Output=[dateStart dateEnd start high low end upperBound lowerBound outOfBound]\n";
         for(BBandUnit d : bbandSquence) {

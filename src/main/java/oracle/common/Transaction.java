@@ -5,9 +5,11 @@ import java.text.*;
 public class Transaction {
     public double price;
     public Date birthday;
+    public Date dateOffset;
     public long lifecycle;
     public int prediction;
     public double tolerance;
+    public double offsetValue;
     public int earning;
     public int taxfee = ConfigurableParameters.TAX_FEE;
     public int ntdPerPoint = ConfigurableParameters.NTD_PER_POINT;
@@ -21,14 +23,16 @@ public class Transaction {
         this.tolerance = tolerance;
     }
 
-    public int offset(double newestValue) {
+    public int offset(double newestValue, Date dateOffset) {
+        this.dateOffset = dateOffset;
+        this.offsetValue = newestValue;
         earning = ((int)((newestValue-price)*prediction))*ntdPerPoint - taxfee;
         return earning;
     }
 
     public String toString() {
         if(prediction!=0) {
-            return formatter.format(birthday) + " prediction=" + prediction + " earning=" + earning;
+            return formatter.format(birthday) + " " + formatter.format(dateOffset) + " prediction=" + prediction + " earning=" + earning;
         }
         else {
             return "";

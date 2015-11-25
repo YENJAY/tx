@@ -3,6 +3,13 @@ import java.text.*;
 import oracle.common.*;
 import java.util.*;
 import java.io.*;
+import org.jfree.ui.*;
+import org.jfree.chart.*;
+import org.jfree.data.xy.XYSeriesCollection;
+import org.jfree.chart.annotations.XYPointerAnnotation;
+import org.jfree.data.xy.XYSeries;
+import org.jfree.chart.axis.*;
+import org.jfree.chart.plot.*;
 
 public class Oracle {
     private SimpleDateFormat formatter = new SimpleDateFormat("HHmmss");
@@ -76,19 +83,19 @@ public class Oracle {
         Vector<Transaction> transToRemove = new Vector<Transaction>();
         for(Transaction trans : transactions) {
             if(newestDate.getTime() - trans.birthday.getTime() >= trans.lifecycle) {
-                profit0 += trans.offset(newestValue);
+                profit0 += trans.offset(newestValue, newestDate);
                 transToRemove.add(trans);
                 // System.out.println("Profit 0 = " + profit0);
             }
             else if( (newestValue-trans.price)*trans.prediction <= -tolerance) {
-                profit1 += trans.offset(newestValue);
+                profit1 += trans.offset(newestValue, newestDate);
                 // System.out.println("Profit 1 = " + profit);
                 transToRemove.add(trans);
             }
             else if( bbandBuilder.getLatestTrend() * trans.prediction == -1 ) {
                 wrongPrediction++;
                 if(wrongPrediction >= ConfigurableParameters.MAX_WRONG_PREDICTION) {
-                    profit2 += trans.offset(newestValue);
+                    profit2 += trans.offset(newestValue, newestDate);
                     // System.out.println("Profit 2 = " + profit);
                     transToRemove.add(trans);
                     wrongPrediction = 0;
@@ -108,8 +115,9 @@ public class Oracle {
         BBandUnit lastBBandUnit = bbandBuilder.getLastBBandUnit();
         if(lastBBandUnit != null) {
             double newestPrice = lastBBandUnit.end;
+            Date newestDate = lastBBandUnit.dateEnd;
             for(Transaction trans : transactions) {
-                profit3 += trans.offset(newestPrice);
+                profit3 += trans.offset(newestPrice, newestDate);
             }
         }
     }
@@ -167,6 +175,68 @@ public class Oracle {
         return ret += "# Final profit = " + (profit0 + profit1 + profit2 + profit3);
     }
 
+    private void saveAsJpeg(File outFile) throws IOException {
+        XYSeries upperSeries = new XYSeries("Upper");
+        XYSeries lowerSeries = new XYSeries("Lower");
+        double max = Double.MIN_VALUE;
+        double min = Double.MAX_VALUE;
+        for(BBandUnit bbandUnit : bbandBuilder.getBBandSequence()) {
+            double upper = bbandUnit.upperBound;
+            double lower = bbandUnit.lowerBound;
+            if(upper != 0) {
+                String time = formatter.format(bbandUnit.dateEnd);
+                if(time.charAt(4) == '0') {
+                    upperSeries.add(Integer.parseInt(time), upper);
+                }
+                if(upper > max) max = upper;
+                if(upper < min) min = upper;
+            }
+            if(lower != 0) {
+                String time = formatter.format(bbandUnit.dateEnd);
+                if(time.charAt(4) == '0') {
+                    lowerSeries.add(Integer.parseInt(time), lower);
+                }
+                if(lower > max) max = lower;
+                if(lower < min) min = lower;
+            }
+
+        }
+        final XYSeriesCollection data = new XYSeriesCollection();
+        data.addSeries(upperSeries);
+        data.addSeries(lowerSeries);
+
+        for(Transaction trans : allTransactions) {
+            XYSeries transSeries = new XYSeries(formatter.format(trans.birthday));
+            int t1 = Integer.parseInt(formatter.format(trans.birthday));
+            int t2 = Integer.parseInt(formatter.format(trans.dateOffset));
+            transSeries.add(t1, trans.price);
+            transSeries.add(t2, trans.offsetValue);
+            data.addSeries(transSeries);
+        }
+
+        final JFreeChart chart = ChartFactory.createXYLineChart(
+            "Oracle",
+            "Time",
+            "Point",
+            data,
+            PlotOrientation.VERTICAL,
+            true,
+            true,
+            false
+        );
+        XYPlot plot = (XYPlot) chart.getXYPlot();
+        final NumberAxis rangeAxis = (NumberAxis) plot.getRangeAxis();
+        rangeAxis.setRange(min-20, max+20);
+        rangeAxis.setTickUnit(new NumberTickUnit(10));
+        final NumberAxis domainAxis = (NumberAxis) plot.getDomainAxis();
+        // domainAxis.setTickUnit(new NumberTickUnit(10));
+        domainAxis.setVerticalTickLabels(true);
+        int width = 4096; /* Width of the image */
+        int height = 2160; /* Height of the image */
+        ChartUtilities.saveChartAsJPEG(outFile, 1.0f, chart, width, height);
+    }
+
+
     public static void main(String... args) {
         if(args.length == 0) {
             System.out.println("append the input file after the command, please.");
@@ -206,6 +276,16 @@ public class Oracle {
             catch(IOException e) {
                 e.printStackTrace();
             }
+            // Write out graph
+            try {
+                String filename = args[0].split("/")[2].split("\\.")[0];
+                File outFile = new File("output/chart/" + filename + ".jpg");
+                oracle.saveAsJpeg(outFile);
+            }
+            catch(IOException e) {
+                e.printStackTrace();
+            }
+
         }
     }
 }
