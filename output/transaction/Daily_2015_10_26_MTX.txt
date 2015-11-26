@@ -1,9 +1,9 @@
 # Transactions:
 084756 084809 prediction=1 8714.0->8710.0 earning=-266
-084809 084909 prediction=1 8710.0->8729.0 earning=884
+084809 084914 prediction=1 8710.0->8729.0 earning=884
 090358 090358 prediction=1 8710.0->8710.0 earning=-66
-093302 093402 prediction=-1 8733.0->8728.0 earning=184
-095039 095139 prediction=1 8724.0->8737.0 earning=584
+093302 093408 prediction=-1 8733.0->8728.0 earning=184
+095039 095314 prediction=1 8724.0->8737.0 earning=584
 124253 124253 prediction=1 8715.0->8715.0 earning=-66
 # Profit 0: Transaction timeout
 # Profit 1: Stop losing.

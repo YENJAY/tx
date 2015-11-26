@@ -41,12 +41,12 @@ Configuration loaded successfully.
 # Too few sequence #1
 # Too few sequence #1
 # Transactions:
-093715 093815 prediction=1 8701.0->8708.0 earning=284
-100427 100527 prediction=-1 8707.0->8690.0 earning=784
-100819 100919 prediction=-1 8700.0->8689.0 earning=484
-102748 102848 prediction=-1 8685.0->8674.0 earning=484
+093715 093837 prediction=1 8701.0->8708.0 earning=284
+100427 100540 prediction=-1 8707.0->8690.0 earning=784
+100819 101002 prediction=-1 8700.0->8689.0 earning=484
+102748 103030 prediction=-1 8685.0->8674.0 earning=484
 103548 103548 prediction=1 8660.0->8660.0 earning=-66
-133631 133731 prediction=1 8683.0->8697.0 earning=634
+133631 133803 prediction=1 8683.0->8697.0 earning=634
 # Profit 0: Transaction timeout
 # Profit 1: Stop losing.
 # Profit 2: Reach max wrong prediction limit

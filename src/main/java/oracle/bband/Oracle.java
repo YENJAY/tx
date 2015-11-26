@@ -84,8 +84,8 @@ public class Oracle {
         Vector<Transaction> transToRemove = new Vector<Transaction>();
         for(Transaction trans : transactions) {
             if(newestDate.getTime() - trans.birthday.getTime() >= trans.lifecycle) {
-                Date oneMinuteLater = new Date(trans.birthday.getTime() + trans.lifecycle);
-                profit0 += trans.offset(newestValue, oneMinuteLater);
+                // Date oneMinuteLater = new Date(trans.birthday.getTime() + trans.lifecycle);
+                profit0 += trans.offset(newestValue, newestDate);
                 transToRemove.add(trans);
                 // System.out.println("Profit 0 = " + profit0);
             }

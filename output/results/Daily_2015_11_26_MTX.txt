@@ -14,14 +14,14 @@ Configuration loaded successfully.
 # Too few sequence #1
 # Transactions:
 084501 084502 prediction=-1 8421.0->8426.0 earning=-316
-084642 084742 prediction=-1 8440.0->8430.0 earning=434
-085309 085409 prediction=-1 8449.0->8440.0 earning=384
+084642 084744 prediction=-1 8440.0->8430.0 earning=434
+085309 085411 prediction=-1 8449.0->8440.0 earning=384
 085717 085817 prediction=-1 8448.0->8441.0 earning=284
-085835 085935 prediction=-1 8454.0->8451.0 earning=84
-085906 090006 prediction=-1 8455.0->8436.0 earning=884
+085835 085937 prediction=-1 8454.0->8451.0 earning=84
+085906 090008 prediction=-1 8455.0->8436.0 earning=884
 090413 090501 prediction=-1 8481.0->8486.0 earning=-316
-090508 090608 prediction=1 8489.0->8493.0 earning=134
-090510 090610 prediction=1 8489.0->8493.0 earning=134
+090508 090611 prediction=1 8489.0->8493.0 earning=134
+090510 090611 prediction=1 8489.0->8493.0 earning=134
 092049 092050 prediction=1 8512.0->8511.0 earning=-116
 092049 092051 prediction=1 8512.0->8509.0 earning=-216
 093110 093111 prediction=1 8491.0->8475.0 earning=-866
@@ -31,7 +31,7 @@ Configuration loaded successfully.
 093112 093212 prediction=1 8463.0->8483.0 earning=934
 093112 093212 prediction=1 8463.0->8483.0 earning=934
 093112 093212 prediction=1 8463.0->8483.0 earning=934
-132212 132312 prediction=1 8464.0->8502.0 earning=1834
+132212 132316 prediction=1 8464.0->8502.0 earning=1834
 # Profit 0: Transaction timeout
 # Profit 1: Stop losing.
 # Profit 2: Reach max wrong prediction limit
