@@ -10,6 +10,7 @@ import org.jfree.chart.annotations.XYPointerAnnotation;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.chart.axis.*;
 import org.jfree.chart.plot.*;
+import java.awt.BasicStroke;
 
 public class Oracle {
     private SimpleDateFormat formatter = new SimpleDateFormat("HHmmss");
@@ -83,7 +84,8 @@ public class Oracle {
         Vector<Transaction> transToRemove = new Vector<Transaction>();
         for(Transaction trans : transactions) {
             if(newestDate.getTime() - trans.birthday.getTime() >= trans.lifecycle) {
-                profit0 += trans.offset(newestValue, newestDate);
+                Date oneMinuteLater = new Date(trans.birthday.getTime() + trans.lifecycle);
+                profit0 += trans.offset(newestValue, oneMinuteLater);
                 transToRemove.add(trans);
                 // System.out.println("Profit 0 = " + profit0);
             }
@@ -176,67 +178,69 @@ public class Oracle {
     }
 
     private void saveAsJpeg(File outFile) throws IOException {
-        XYSeries upperSeries = new XYSeries("Upper");
-        XYSeries lowerSeries = new XYSeries("Lower");
+        final XYSeriesCollection data = new XYSeriesCollection();
+
         XYSeries priceSeries = new XYSeries("Price");
         double max = Double.MIN_VALUE;
         double min = Double.MAX_VALUE;
         for(BBandUnit bbandUnit : bbandBuilder.getBBandSequence()) {
             double upper = bbandUnit.upperBound;
             double lower = bbandUnit.lowerBound;
+            long t1 = bbandUnit.dateStart.getTime();
+            long t2 = bbandUnit.dateEnd.getTime();
+
+            priceSeries.add(t1, bbandUnit.start);
+            priceSeries.add(t2, bbandUnit.end);
+
             if(upper != 0) {
-                String time = formatter.format(bbandUnit.dateEnd);
-                if(time.charAt(4) == '0') {
-                    int t = Integer.parseInt(time);
-                    upperSeries.add(t, upper);
-                    priceSeries.add(t, bbandUnit.end);
-                }
+                XYSeries upperSeries = new XYSeries("Upper");
+                data.addSeries(upperSeries);
+                upperSeries.add(t1, upper);
+                upperSeries.add(t2, upper);
+
                 if(upper > max) max = upper;
                 if(upper < min) min = upper;
             }
             if(lower != 0) {
-                String time = formatter.format(bbandUnit.dateEnd);
-                if(time.charAt(4) == '0') {
-                    lowerSeries.add(Integer.parseInt(time), lower);
-                }
+                XYSeries lowerSeries = new XYSeries("Lower");
+
+                lowerSeries.add(t1, lower);
+                lowerSeries.add(t2, lower);
+                data.addSeries(lowerSeries);
+
                 if(lower > max) max = lower;
                 if(lower < min) min = lower;
             }
 
         }
-        final XYSeriesCollection data = new XYSeriesCollection();
-        data.addSeries(upperSeries);
+
         data.addSeries(priceSeries);
-        data.addSeries(lowerSeries);
 
         for(Transaction trans : allTransactions) {
             XYSeries transSeries = new XYSeries(formatter.format(trans.birthday));
-            int t1 = Integer.parseInt(formatter.format(trans.birthday));
-            int t2 = Integer.parseInt(formatter.format(trans.dateOffset));
+            long t1 = trans.birthday.getTime();
+            long t2 = trans.dateOffset.getTime();
             transSeries.add(t1, trans.price);
             transSeries.add(t2, trans.offsetValue);
             data.addSeries(transSeries);
         }
 
-        final JFreeChart chart = ChartFactory.createXYLineChart(
-            "Oracle",
-            "Time",
-            "Point",
-            data,
-            PlotOrientation.VERTICAL,
-            true,
-            true,
-            false
-        );
+        final JFreeChart chart = ChartFactory.createXYLineChart("Oracle", "Time", "Point", data,
+            PlotOrientation.VERTICAL, false, true, false);
         XYPlot plot = (XYPlot) chart.getXYPlot();
+
+        int seriesCount = plot.getSeriesCount();
+        for (int i = 0; i < seriesCount; i++) {
+            plot.getRenderer().setSeriesStroke(i, new BasicStroke(3));
+        }
         final NumberAxis rangeAxis = (NumberAxis) plot.getRangeAxis();
         rangeAxis.setRange(min-20, max+20);
         rangeAxis.setTickUnit(new NumberTickUnit(10));
         final NumberAxis domainAxis = (NumberAxis) plot.getDomainAxis();
         // domainAxis.setTickUnit(new NumberTickUnit(10));
         domainAxis.setVerticalTickLabels(true);
-        int width = 4096; /* Width of the image */
-        int height = 2160; /* Height of the image */
+        int width = 1920*10; /* Width of the image */
+        int height = 1080; /* Height of the image */
         ChartUtilities.saveChartAsJPEG(outFile, 1.0f, chart, width, height);
     }
 

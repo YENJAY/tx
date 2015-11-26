@@ -13,44 +13,42 @@ Configuration loaded successfully.
 # Too few sequence #1
 # Too few sequence #1
 # Transactions:
-084556 prediction=-1 earning=384
-085035 prediction=1 earning=1334
-085035 prediction=1 earning=-116
-085035 prediction=1 earning=1334
-090335 prediction=-1 earning=-316
-090351 prediction=-1 earning=334
-090353 prediction=1 earning=2284
-090541 prediction=-1 earning=-316
-092803 prediction=-1 earning=634
-093147 prediction=1 earning=-66
-093417 prediction=1 earning=1034
-093712 prediction=1 earning=1284
-094628 prediction=-1 earning=834
-095752 prediction=-1 earning=184
-100203 prediction=1 earning=-66
-100322 prediction=1 earning=2134
-102021 prediction=-1 earning=684
-102153 prediction=1 earning=1784
-103033 prediction=-1 earning=684
-104302 prediction=-1 earning=584
-104555 prediction=-1 earning=684
-105130 prediction=-1 earning=984
-105731 prediction=1 earning=-66
-113127 prediction=1 earning=1084
-115454 prediction=-1 earning=84
-122054 prediction=-1 earning=634
-125738 prediction=-1 earning=684
-131745 prediction=-1 earning=-16
-131849 prediction=-1 earning=-516
-131935 prediction=-1 earning=784
-133636 prediction=-1 earning=834
+084556 084656 prediction=-1 8445.0->8436.0 earning=384
+085035 085057 prediction=1 8402.0->8401.0 earning=-116
+085035 085135 prediction=1 8402.0->8430.0 earning=1334
+085035 085057 prediction=1 8402.0->8401.0 earning=-116
+090335 090351 prediction=-1 8450.0->8455.0 earning=-316
+090351 090451 prediction=-1 8455.0->8447.0 earning=334
+090353 090453 prediction=1 8400.0->8447.0 earning=2284
+090541 090552 prediction=-1 8458.0->8463.0 earning=-316
+092803 092903 prediction=-1 8473.0->8459.0 earning=634
+093417 093417 prediction=1 8444.0->8444.0 earning=-66
+093712 093812 prediction=1 8442.0->8469.0 earning=1284
+094628 094728 prediction=-1 8460.0->8442.0 earning=834
+100203 100203 prediction=1 8406.0->8406.0 earning=-66
+100322 100422 prediction=1 8412.0->8456.0 earning=2134
+102021 102121 prediction=-1 8439.0->8424.0 earning=684
+102153 102153 prediction=1 8385.0->8385.0 earning=-66
+103033 103133 prediction=-1 8442.0->8427.0 earning=684
+104302 104402 prediction=-1 8417.0->8404.0 earning=584
+104555 104655 prediction=-1 8428.0->8413.0 earning=684
+105130 105230 prediction=-1 8432.0->8411.0 earning=984
+105731 105831 prediction=1 8397.0->8419.0 earning=1034
+113127 113127 prediction=1 8401.0->8401.0 earning=-66
+115454 115554 prediction=-1 8439.0->8436.0 earning=84
+122054 122154 prediction=-1 8447.0->8433.0 earning=634
+125738 125838 prediction=-1 8433.0->8418.0 earning=684
+131745 131845 prediction=-1 8444.0->8443.0 earning=-16
+131849 131935 prediction=-1 8443.0->8452.0 earning=-516
+131935 132035 prediction=-1 8452.0->8435.0 earning=784
+133636 133736 prediction=-1 8457.0->8439.0 earning=834
 # Profit 0: Transaction timeout
 # Profit 1: Stop losing.
 # Profit 2: Reach max wrong prediction limit
 # Profit 3: Remaining transactions.
 # -------------------------------------------------------
-# Profit 0 = 21266
+# Profit 0 = 16880
 # Profit 1 = -1148
-# Profit 2 = -314
+# Profit 2 = -496
 # Profit 3 = 0
-# Final profit = 19804
+# Final profit = 15236

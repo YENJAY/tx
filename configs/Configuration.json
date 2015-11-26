@@ -4,9 +4,9 @@
          "KBAR_LENGTH": "60000",
          "LOST_TOLERANCE": "5",
          "TRANS_LIFECYCLE": "60000",
-         "BBAND_BOUND_SIZE": "8",
+         "BBAND_BOUND_SIZE": "10",
          "TAX_FEE": "66",
          "NTD_PER_POINT": "50",
-         "MAX_WRONG_PREDICTION": "3"
+         "MAX_WRONG_PREDICTION": "2"
     }
 }
