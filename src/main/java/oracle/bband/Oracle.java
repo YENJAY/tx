@@ -185,11 +185,12 @@ public class Oracle {
         XYSeries lowerSeries = new XYSeries("Lower");
         double max = Double.MIN_VALUE;
         double min = Double.MAX_VALUE;
+        long initTime = bbandBuilder.getBBandSequence().get(0).dateStart.getTime();
         for(BBandUnit bbandUnit : bbandBuilder.getBBandSequence()) {
             double upper = bbandUnit.upperBound;
             double lower = bbandUnit.lowerBound;
-            long t1 = bbandUnit.dateStart.getTime();
-            long t2 = bbandUnit.dateEnd.getTime();
+            long t1 = (bbandUnit.dateStart.getTime() - initTime)/1000;
+            long t2 = (bbandUnit.dateEnd.getTime() - initTime)/1000;
 
             // priceSeries.add(t1, bbandUnit.start);
             priceSeries.add(t2, bbandUnit.end);
@@ -218,8 +219,8 @@ public class Oracle {
 
         for(Transaction trans : allTransactions) {
             XYSeries transSeries = new XYSeries(formatter.format(trans.birthday));
-            long t1 = trans.birthday.getTime();
-            long t2 = trans.dateOffset.getTime();
+            long t1 = (trans.birthday.getTime() - initTime)/1000;
+            long t2 = (trans.dateOffset.getTime() - initTime)/1000;
             transSeries.add(t1, trans.price);
             transSeries.add(t2, trans.offsetValue);
             data.addSeries(transSeries);
@@ -227,8 +228,9 @@ public class Oracle {
 
         final JFreeChart chart = ChartFactory.createXYLineChart("Oracle", "Time", "Point", data,
             PlotOrientation.VERTICAL, false, true, false);
+        chart.setAntiAlias(false);
         XYPlot plot = (XYPlot) chart.getXYPlot();
-
+        plot.setBackgroundPaint(java.awt.Color.BLACK);
         int seriesCount = plot.getSeriesCount();
         for (int i = 0; i < seriesCount; i++) {
             plot.getRenderer().setSeriesStroke(i, new BasicStroke(3));
@@ -237,7 +239,8 @@ public class Oracle {
         rangeAxis.setRange(min-20, max+20);
         rangeAxis.setTickUnit(new NumberTickUnit(10));
         final NumberAxis domainAxis = (NumberAxis) plot.getDomainAxis();
-        // domainAxis.setTickUnit(new NumberTickUnit(10));
+        domainAxis.setTickUnit(new NumberTickUnit(60));
+        domainAxis.setRange(0, 17940);
         domainAxis.setVerticalTickLabels(true);
         int width = 1280*10; /* Width of the image */
         int height = 720; /* Height of the image */
