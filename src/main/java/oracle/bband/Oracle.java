@@ -181,6 +181,8 @@ public class Oracle {
         final XYSeriesCollection data = new XYSeriesCollection();
 
         XYSeries priceSeries = new XYSeries("Price");
+        XYSeries upperSeries = new XYSeries("Upper");
+        XYSeries lowerSeries = new XYSeries("Lower");
         double max = Double.MIN_VALUE;
         double min = Double.MAX_VALUE;
         for(BBandUnit bbandUnit : bbandBuilder.getBBandSequence()) {
@@ -189,22 +191,20 @@ public class Oracle {
             long t1 = bbandUnit.dateStart.getTime();
             long t2 = bbandUnit.dateEnd.getTime();
 
-            priceSeries.add(t1, bbandUnit.start);
+            // priceSeries.add(t1, bbandUnit.start);
             priceSeries.add(t2, bbandUnit.end);
 
             if(upper != 0) {
-                XYSeries upperSeries = new XYSeries("Upper");
                 data.addSeries(upperSeries);
-                upperSeries.add(t1, upper);
+                // upperSeries.add(t1, upper);
                 upperSeries.add(t2, upper);
 
                 if(upper > max) max = upper;
                 if(upper < min) min = upper;
             }
             if(lower != 0) {
-                XYSeries lowerSeries = new XYSeries("Lower");
 
-                lowerSeries.add(t1, lower);
+                // lowerSeries.add(t1, lower);
                 lowerSeries.add(t2, lower);
                 data.addSeries(lowerSeries);
 
@@ -239,8 +239,8 @@ public class Oracle {
         final NumberAxis domainAxis = (NumberAxis) plot.getDomainAxis();
         // domainAxis.setTickUnit(new NumberTickUnit(10));
         domainAxis.setVerticalTickLabels(true);
-        int width = 1920*10; /* Width of the image */
-        int height = 1080; /* Height of the image */
+        int width = 1280*10; /* Width of the image */
+        int height = 720; /* Height of the image */
         ChartUtilities.saveChartAsJPEG(outFile, 1.0f, chart, width, height);
     }
 
