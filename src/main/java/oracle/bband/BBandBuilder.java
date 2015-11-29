@@ -56,7 +56,11 @@ class BBandBuilder {
         }
         BBandUnit left = ring.get(length-2);
         BBandUnit right = ring.get(length-1);
-        if(left.high < left.high) {
+        if(left.dateStart.equals(right.dateStart) && left.dateEnd.equals(right.dateEnd)) {
+            // time is too close. no way to predict the trend
+            return 0;
+        }
+        else if(left.high < left.high) {
             return 1;
         }
         else if(left.low > right.low) {

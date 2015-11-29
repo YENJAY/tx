@@ -1,6 +1,8 @@
 output/intermediate/Daily_2015_11_09_MTX.txt
 Configuration loaded successfully.
 # Too few sequence #1
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
 # Too few sequence #1
 # Too few sequence #1
 # Too few sequence #1
@@ -24,8 +26,6 @@ Configuration loaded successfully.
 084605 084705 prediction=1 8613.0->8623.0 earning=434
 084605 084705 prediction=1 8613.0->8623.0 earning=434
 084610 084710 prediction=-1 8648.0->8622.0 earning=1234
-084610 084710 prediction=-1 8652.0->8622.0 earning=1434
-084649 084713 prediction=1 8624.0->8619.0 earning=-316
 084801 084902 prediction=-1 8612.0->8614.0 earning=-166
 084806 084806 prediction=1 8589.0->8589.0 earning=-66
 084955 085109 prediction=-1 8629.0->8616.0 earning=584
@@ -61,8 +61,8 @@ Configuration loaded successfully.
 # Profit 2: Reach max wrong prediction limit
 # Profit 3: Remaining transactions.
 # -------------------------------------------------------
-# Profit 0 = 12432
-# Profit 1 = -3312
+# Profit 0 = 10998
+# Profit 1 = -2996
 # Profit 2 = -1160
 # Profit 3 = 0
-# Final profit = 7960
+# Final profit = 6842

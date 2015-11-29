@@ -58,9 +58,14 @@ public class Oracle {
                     int prediction = -1 * lastBBandUnit.isOutOfBound();
                     // System.out.println(kbarResultStr + " :Guess=" + prediction);
                     if(prediction != 0) {
-                        Transaction trans = new Transaction(lastBBandUnit.end, lastBBandUnit.dateEnd, lifecycle, prediction, tolerance);
-                        allTransactions.add(trans);
-                        transactions.add(trans);
+                        if(transactions.size() < ConfigurableParameters.MAX_CONCURRENT_TRANSACTION) {
+                            Transaction trans = new Transaction(lastBBandUnit.end, lastBBandUnit.dateEnd, lifecycle, prediction, tolerance);
+                            allTransactions.add(trans);
+                            transactions.add(trans);
+                        }
+                        else {
+                            System.out.println("# Maximum number of concurrent transactions has reached.");
+                        }
                     }
                 }
             }

@@ -44,11 +44,7 @@
 095521 095531 prediction=-1 8396.0->8401.0 earning=-316
 095529 095634 prediction=1 8350.0->8390.0 earning=1934
 095530 095634 prediction=1 8351.0->8390.0 earning=1884
-095530 095634 prediction=1 8351.0->8390.0 earning=1884
-095531 095634 prediction=1 8359.0->8390.0 earning=1484
-095531 095634 prediction=1 8359.0->8390.0 earning=1484
 095534 095634 prediction=1 8356.0->8390.0 earning=1634
-095546 095646 prediction=1 8356.0->8388.0 earning=1534
 095647 095747 prediction=1 8360.0->8389.0 earning=1384
 095826 095938 prediction=-1 8405.0->8388.0 earning=784
 095826 095938 prediction=-1 8405.0->8388.0 earning=784
@@ -117,8 +113,8 @@
 # Profit 2: Reach max wrong prediction limit
 # Profit 3: Remaining transactions.
 # -------------------------------------------------------
-# Profit 0 = 85904
+# Profit 0 = 79518
 # Profit 1 = -5810
 # Profit 2 = -1602
 # Profit 3 = 0
-# Final profit = 78492
+# Final profit = 72106

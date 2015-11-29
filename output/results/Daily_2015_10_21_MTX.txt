@@ -25,6 +25,7 @@ Configuration loaded successfully.
 # Too few sequence #1
 # Too few sequence #1
 # Too few sequence #1
+# Maximum number of concurrent transactions has reached.
 # Too few sequence #1
 # Too few sequence #1
 # Too few sequence #1
@@ -75,9 +76,8 @@ Configuration loaded successfully.
 103002 103111 prediction=1 8612.0->8620.0 earning=334
 103003 103111 prediction=1 8613.0->8620.0 earning=284
 103025 103126 prediction=1 8612.0->8622.0 earning=434
-103043 103134 prediction=1 8615.0->8612.0 earning=-216
-103134 103239 prediction=1 8612.0->8612.0 earning=-66
-103942 103942 prediction=1 8603.0->8603.0 earning=-66
+103134 103134 prediction=1 8612.0->8612.0 earning=-66
+103942 103948 prediction=1 8603.0->8602.0 earning=-116
 103942 104042 prediction=1 8603.0->8598.0 earning=-316
 104132 104132 prediction=1 8582.0->8582.0 earning=-66
 104501 104502 prediction=1 8593.0->8591.0 earning=-166
@@ -127,8 +127,8 @@ Configuration loaded successfully.
 # Profit 2: Reach max wrong prediction limit
 # Profit 3: Remaining transactions.
 # -------------------------------------------------------
-# Profit 0 = 28632
+# Profit 0 = 28698
 # Profit 1 = -632
-# Profit 2 = -2630
+# Profit 2 = -2530
 # Profit 3 = 1184
-# Final profit = 26554
+# Final profit = 26720

@@ -13,7 +13,6 @@
 092554 092655 prediction=1 8780.0->8803.0 earning=1084
 092555 092655 prediction=1 8779.0->8803.0 earning=1134
 092556 092700 prediction=1 8779.0->8801.0 earning=1034
-092556 092700 prediction=1 8779.0->8801.0 earning=1034
 092713 092808 prediction=1 8803.0->8789.0 earning=-766
 092720 092808 prediction=1 8808.0->8789.0 earning=-1016
 092802 092808 prediction=1 8805.0->8789.0 earning=-866
@@ -68,8 +67,8 @@
 # Profit 2: Reach max wrong prediction limit
 # Profit 3: Remaining transactions.
 # -------------------------------------------------------
-# Profit 0 = 42460
+# Profit 0 = 41426
 # Profit 1 = -3164
 # Profit 2 = -1620
 # Profit 3 = 0
-# Final profit = 37676
+# Final profit = 36642
