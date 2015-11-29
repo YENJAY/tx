@@ -11,7 +11,7 @@ public class Transaction {
     public double tolerance;
     public double offsetValue;
     public int earning;
-    public int wrongPrediction;
+    public int b2bWrongPrediction;
     public int taxfee = ConfigurableParameters.TAX_FEE;
     public int ntdPerPoint = ConfigurableParameters.NTD_PER_POINT;
     private SimpleDateFormat formatter = new SimpleDateFormat("HHmmss");

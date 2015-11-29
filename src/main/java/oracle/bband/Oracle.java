@@ -99,18 +99,18 @@ public class Oracle {
                 transToRemove.add(trans);
             }
             else if( bbandBuilder.getLatestTrend() * trans.prediction == -1 ) {
-                trans.wrongPrediction++;
-                if(trans.wrongPrediction >= ConfigurableParameters.MAX_WRONG_PREDICTION) {
+                trans.b2bWrongPrediction++;
+                if(trans.b2bWrongPrediction >= ConfigurableParameters.MAX_B2B_WRONG_PREDICTION) {
                     profit2 += trans.offset(newestValue, newestDate);
                     // System.out.println("Profit 2 = " + profit);
                     transToRemove.add(trans);
-                    // trans.wrongPrediction = 0;
+                    // trans.b2bWrongPrediction = 0;
                 }
             }
             else {
                 // still earning within 1 min
                 // reset wrong prediction
-                trans.wrongPrediction = 0;
+                trans.b2bWrongPrediction = 0;
             }
             // System.out.println(profit);
         }

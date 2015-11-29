@@ -10,7 +10,7 @@ public class ConfigurableParameters {
     public static int BBAND_BOUND_SIZE;
     public static int TAX_FEE;
     public static int NTD_PER_POINT;
-    public static int MAX_WRONG_PREDICTION;
+    public static int MAX_B2B_WRONG_PREDICTION;
     public static int MAX_CONCURRENT_TRANSACTION;
     static {
         String content = "";
@@ -32,7 +32,7 @@ public class ConfigurableParameters {
             BBAND_BOUND_SIZE = Integer.parseInt(obj.getJSONObject("configuration").getString("BBAND_BOUND_SIZE"));;
             TAX_FEE = Integer.parseInt(obj.getJSONObject("configuration").getString("TAX_FEE"));;
             NTD_PER_POINT = Integer.parseInt(obj.getJSONObject("configuration").getString("NTD_PER_POINT"));;
-            MAX_WRONG_PREDICTION = Integer.parseInt(obj.getJSONObject("configuration").getString("MAX_WRONG_PREDICTION"));;
+            MAX_B2B_WRONG_PREDICTION = Integer.parseInt(obj.getJSONObject("configuration").getString("MAX_B2B_WRONG_PREDICTION"));;
             MAX_CONCURRENT_TRANSACTION = Integer.parseInt(obj.getJSONObject("configuration").getString("MAX_CONCURRENT_TRANSACTION"));;
             System.out.println("Configuration loaded successfully.");
         }
@@ -45,7 +45,7 @@ public class ConfigurableParameters {
             BBAND_BOUND_SIZE = 8;
             TAX_FEE = 66;
             NTD_PER_POINT = 50;
-            MAX_WRONG_PREDICTION = 2;
+            MAX_B2B_WRONG_PREDICTION = 2;
             MAX_CONCURRENT_TRANSACTION = 4;
         }
     }
