@@ -45,15 +45,15 @@ Configuration loaded successfully.
 100427 100540 prediction=-1 8707.0->8690.0 earning=784
 100819 101002 prediction=-1 8700.0->8689.0 earning=484
 102748 103030 prediction=-1 8685.0->8674.0 earning=484
-103548 103548 prediction=1 8660.0->8660.0 earning=-66
+103548 103758 prediction=1 8660.0->8674.0 earning=634
 133631 133803 prediction=1 8683.0->8697.0 earning=634
 # Profit 0: Transaction timeout
 # Profit 1: Stop losing.
 # Profit 2: Reach max wrong prediction limit
 # Profit 3: Remaining transactions.
 # -------------------------------------------------------
-# Profit 0 = 2670
+# Profit 0 = 3304
 # Profit 1 = 0
-# Profit 2 = -66
+# Profit 2 = 0
 # Profit 3 = 0
-# Final profit = 2604
+# Final profit = 3304

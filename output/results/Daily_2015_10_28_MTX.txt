@@ -31,11 +31,11 @@ Configuration loaded successfully.
 104723 104833 prediction=-1 8736.0->8647.0 earning=4384
 104723 104833 prediction=-1 8736.0->8647.0 earning=4384
 105244 105353 prediction=-1 8660.0->8660.0 earning=-66
-111329 111329 prediction=1 8630.0->8630.0 earning=-66
+111329 111725 prediction=1 8630.0->8641.0 earning=484
 112332 112447 prediction=-1 8648.0->8648.0 earning=-66
 112332 112447 prediction=-1 8649.0->8648.0 earning=-16
 113109 113308 prediction=1 8614.0->8623.0 earning=384
-113455 113455 prediction=1 8604.0->8604.0 earning=-66
+113455 113601 prediction=1 8604.0->8633.0 earning=1384
 130644 130806 prediction=-1 8647.0->8641.0 earning=234
 134158 134308 prediction=-1 8656.0->8644.0 earning=534
 134448 134458 prediction=-1 8648.0->8645.0 earning=84
@@ -44,8 +44,8 @@ Configuration loaded successfully.
 # Profit 2: Reach max wrong prediction limit
 # Profit 3: Remaining transactions.
 # -------------------------------------------------------
-# Profit 0 = 14212
+# Profit 0 = 16080
 # Profit 1 = -366
-# Profit 2 = -132
+# Profit 2 = 0
 # Profit 3 = 84
-# Final profit = 13798
+# Final profit = 15798

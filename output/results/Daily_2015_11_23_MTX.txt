@@ -59,7 +59,7 @@ Configuration loaded successfully.
 100931 101038 prediction=-1 8436.0->8414.0 earning=1034
 101502 101616 prediction=-1 8432.0->8427.0 earning=184
 101502 101616 prediction=-1 8434.0->8427.0 earning=284
-102032 102032 prediction=1 8409.0->8409.0 earning=-66
+102032 102149 prediction=1 8409.0->8413.0 earning=134
 102032 102149 prediction=-1 8425.0->8413.0 earning=534
 102032 102149 prediction=-1 8427.0->8413.0 earning=634
 102338 102440 prediction=-1 8435.0->8434.0 earning=-16
@@ -85,8 +85,8 @@ Configuration loaded successfully.
 # Profit 2: Reach max wrong prediction limit
 # Profit 3: Remaining transactions.
 # -------------------------------------------------------
-# Profit 0 = 35188
+# Profit 0 = 35322
 # Profit 1 = -1864
-# Profit 2 = -66
+# Profit 2 = 0
 # Profit 3 = 0
-# Final profit = 33258
+# Final profit = 33458
