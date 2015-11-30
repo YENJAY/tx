@@ -171,6 +171,7 @@ public class Oracle {
                 ret += line + "\n";
             }
         }
+        ret += "# Total number of transactions = " + allTransactions.size() + "\n";
         ret += "# Profit 0: Transaction timeout\n";
         ret += "# Profit 1: Stop losing.\n";
         ret += "# Profit 2: Reach max wrong prediction limit\n";
