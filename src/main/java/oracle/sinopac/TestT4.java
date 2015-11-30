@@ -19,10 +19,17 @@ public class TestT4 {
         return m;
     }
 
-    public static String toJavaString(WTypes.BSTR bstr) {
+    public static String toJString(Pointer pointer) {
+        byte[] array = new byte[256];
+        int i = 0;
+        byte c = '\0';
+        while( (c = pointer.getByte(i)) != '\0' ) {
+            array[i] = c;
+            i++;
+        }
         String s = null;
         try {
-            s = new String(bstr.getValue().getBytes("Unicode"), "UTF8");
+            s = new String(array, "Big5");
         }
         catch(UnsupportedEncodingException e) {
             e.printStackTrace();
@@ -40,15 +47,20 @@ public class TestT4 {
         Pointer pId = toNativeAscii(id);
         Pointer pPassword = toNativeAscii(password);
         Pointer pEmpty = toNativeAscii("");
-        WTypes.BSTR ret = t4.init_t4(pId, pPassword, pEmpty);
-        System.out.println(toJavaString(ret));
-        System.out.println(toJavaString(t4.show_list()));
-        System.out.println(toJavaString(t4.show_ip()));
-        System.out.println(toJavaString(t4.show_version()));
-        System.out.println(toJavaString(t4.fo_unsettled_qry(toNativeAscii("0000"), toNativeAscii("0004"), toNativeAscii("0000"),
+        System.out.println(toJString(t4.init_t4(pId, pPassword, pEmpty)));
+        System.out.println(toJString(t4.show_list()));
+        System.out.println(toJString(t4.show_ip()));
+        System.out.println(toJString(t4.show_version()));
+        System.out.println(toJString(t4.fo_unsettled_qry(toNativeAscii("0000"), toNativeAscii("0004"), toNativeAscii("0000"),
             toNativeAscii("0000"), toNativeAscii("0000"), toNativeAscii(""), toNativeAscii(branch), toNativeAscii(id), toNativeAscii("1"), toNativeAscii("0"), toNativeAscii("1"))));
         while(true) {
-            System.out.println(toJavaString(t4.get_response_log()));
+            if(t4.check_response_buffer() == 0) {
+                Thread.sleep(1000);
+                continue;
+            }
+            else {
+                System.out.println(toJString(t4.get_response_log()));
+            }
         }
     }
 }
