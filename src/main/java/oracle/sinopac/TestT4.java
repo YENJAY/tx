@@ -14,7 +14,8 @@ public class TestT4 {
     //     }
     // }
 
-    private static String libPath = System.getProperty("user.dir")+"\\libs\\Sinopac\\t4.dll";
+    private static String workingDirectory = System.getProperty("user.dir");
+    private static String libPath = workingDirectory +"\\libs\\Sinopac\\t4.dll";
     private static IT4 t4 = (IT4) Native.loadLibrary(libPath, IT4.class);;
 
     public static Pointer toNativeAscii(String myString) {
@@ -85,12 +86,13 @@ public class TestT4 {
         Pointer pAccount = toNativeAscii(account);
         Pointer pLibPath = toNativeAscii(libPath);
         Pointer pBranch = toNativeAscii(branch);
+        Pointer pWorkingDirectory = toNativeAscii(workingDirectory);
         System.out.println(toJString(t4.init_t4(pId, pPassword, pEmpty)));
         System.out.println(toJString(t4.show_list()));
         System.out.println(toJString(t4.show_ip()));
         System.out.println(toJString(t4.show_version()));
 
-        String ret = toJString(t4.add_acc_ca(pBranch, pAccount, pId, toNativeAscii(libPath), pPassword));
+        String ret = toJString(t4.add_acc_ca(pBranch, pAccount, pId, pWorkingDirectory, pId));
         System.out.println(ret);
         // ret = toJString(t4.verify_ca_pass(pBranch, pAccount));
         // System.out.println(ret);
