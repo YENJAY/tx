@@ -8,6 +8,6 @@
          "TAX_FEE": "66",
          "NTD_PER_POINT": "50",
          "MAX_CONCURRENT_TRANSACTION": "4",
-         "B2B_MAX_WRONG_PREDICTION": "2"
+         "MAX_B2B_WRONG_PREDICTION": "2"
     }
 }
