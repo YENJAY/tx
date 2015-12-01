@@ -5,6 +5,7 @@
 102748 103030 prediction=-1 8685.0->8674.0 earning=484
 103548 103758 prediction=1 8660.0->8674.0 earning=634
 133631 133803 prediction=1 8683.0->8697.0 earning=634
+# Total number of transactions = 6
 # Profit 0: Transaction timeout
 # Profit 1: Stop losing.
 # Profit 2: Reach max wrong prediction limit

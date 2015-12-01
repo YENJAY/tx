@@ -23,7 +23,7 @@ public class ConfigurableParameters {
                 // i just like to add newline to make it beautiful when printing it out.
                 content += line + "\n";
             }
-
+            buffReader.close();
             JSONObject obj = new JSONObject(content);
             BBAND_THRESHOLD = Integer.parseInt(obj.getJSONObject("configuration").getString("BBAND_THRESHOLD"));
             KBAR_LENGTH = Integer.parseInt(obj.getJSONObject("configuration").getString("KBAR_LENGTH"));;

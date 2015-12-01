@@ -151,6 +151,7 @@ public class KBarBuilder implements IDataReceiver {
                 //     }
                 // }
             }
+            reader.close();
             System.out.println(builder);
         }
         catch(IOException e) {

@@ -1,0 +1,1162 @@
+output/intermediate/Daily_2015_08_26_MTX.txt
+Configuration loaded successfully.
+# Too few sequence #1
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Transactions:
+084500 084500 prediction=-1 7518.0->7523.0 earning=-316
+084500 084500 prediction=-1 7542.0->7548.0 earning=-366
+084500 084500 prediction=-1 7548.0->7600.0 earning=-2666
+084500 084500 prediction=-1 7550.0->7600.0 earning=-2566
+084500 084500 prediction=-1 7552.0->7600.0 earning=-2466
+084500 084600 prediction=-1 7600.0->7533.0 earning=3284
+084507 084513 prediction=1 7533.0->7524.0 earning=-516
+084511 084513 prediction=1 7530.0->7524.0 earning=-366
+084513 084522 prediction=1 7524.0->7517.0 earning=-416
+084514 084522 prediction=1 7524.0->7517.0 earning=-416
+084518 084527 prediction=1 7520.0->7513.0 earning=-416
+084526 084527 prediction=1 7523.0->7513.0 earning=-566
+084527 084548 prediction=1 7513.0->7485.0 earning=-1466
+084528 084548 prediction=1 7512.0->7485.0 earning=-1416
+084534 084548 prediction=1 7510.0->7485.0 earning=-1316
+084559 084602 prediction=1 7532.0->7522.0 earning=-566
+084602 084621 prediction=1 7522.0->7516.0 earning=-366
+084607 084621 prediction=1 7522.0->7516.0 earning=-366
+084614 084621 prediction=1 7528.0->7516.0 earning=-666
+084615 084621 prediction=1 7525.0->7516.0 earning=-516
+084622 084634 prediction=1 7518.0->7492.0 earning=-1366
+084626 084726 prediction=-1 7551.0->7526.0 earning=1184
+084634 084734 prediction=1 7492.0->7529.0 earning=1784
+084640 084712 prediction=1 7514.0->7506.0 earning=-466
+084648 084711 prediction=1 7520.0->7510.0 earning=-566
+084712 084746 prediction=1 7506.0->7460.0 earning=-2366
+084720 084729 prediction=1 7517.0->7512.0 earning=-316
+084729 084741 prediction=1 7512.0->7506.0 earning=-366
+084735 084736 prediction=1 7517.0->7509.0 earning=-466
+084736 084746 prediction=1 7509.0->7460.0 earning=-2516
+084741 084746 prediction=1 7506.0->7460.0 earning=-2366
+084746 084846 prediction=1 7460.0->7510.0 earning=2434
+084753 084755 prediction=1 7501.0->7465.0 earning=-1866
+084755 084802 prediction=1 7465.0->7460.0 earning=-316
+084757 084857 prediction=-1 7572.0->7509.0 earning=3084
+084802 084902 prediction=1 7460.0->7509.0 earning=2384
+084802 084810 prediction=1 7475.0->7460.0 earning=-816
+084810 084910 prediction=1 7475.0->7515.0 earning=1934
+084849 084859 prediction=1 7500.0->7490.0 earning=-566
+084859 084929 prediction=1 7490.0->7455.0 earning=-1816
+084900 084929 prediction=1 7490.0->7455.0 earning=-1816
+084907 084929 prediction=1 7493.0->7455.0 earning=-1966
+084913 084917 prediction=1 7503.0->7497.0 earning=-366
+084923 085023 prediction=-1 7555.0->7524.0 earning=1484
+084929 085029 prediction=1 7460.0->7529.0 earning=3384
+084934 085004 prediction=1 7503.0->7473.0 earning=-1566
+084939 085030 prediction=-1 7551.0->7572.0 earning=-1116
+085011 085018 prediction=1 7505.0->7477.0 earning=-1466
+085028 085128 prediction=1 7460.0->7524.0 earning=3134
+085028 085059 prediction=1 7475.0->7466.0 earning=-516
+085030 085101 prediction=-1 7572.0->7660.0 earning=-4466
+085059 085159 prediction=1 7466.0->7513.0 earning=2284
+085059 085156 prediction=1 7487.0->7474.0 earning=-716
+085111 085156 prediction=1 7501.0->7474.0 earning=-1416
+085133 085156 prediction=1 7502.0->7474.0 earning=-1466
+085209 085209 prediction=-1 7530.0->7562.0 earning=-1666
+085209 085309 prediction=-1 7562.0->7506.0 earning=2734
+085217 085235 prediction=1 7502.0->7474.0 earning=-1466
+085218 085235 prediction=1 7500.0->7474.0 earning=-1366
+085229 085235 prediction=1 7502.0->7474.0 earning=-1466
+085239 085339 prediction=1 7451.0->7508.0 earning=2784
+085239 085259 prediction=1 7466.0->7451.0 earning=-816
+085247 085249 prediction=-1 7520.0->7530.0 earning=-566
+085252 085259 prediction=1 7493.0->7451.0 earning=-2166
+085305 085353 prediction=1 7492.0->7474.0 earning=-966
+085307 085353 prediction=1 7492.0->7474.0 earning=-966
+085314 085353 prediction=1 7495.0->7474.0 earning=-1116
+085343 085353 prediction=1 7499.0->7474.0 earning=-1316
+085400 085414 prediction=1 7494.0->7487.0 earning=-416
+085409 085414 prediction=1 7498.0->7487.0 earning=-616
+085414 085415 prediction=1 7487.0->7451.0 earning=-1866
+085415 085515 prediction=1 7451.0->7504.0 earning=2584
+085415 085436 prediction=1 7466.0->7450.0 earning=-866
+085422 085436 prediction=1 7494.0->7450.0 earning=-2266
+085424 085436 prediction=1 7495.0->7450.0 earning=-2316
+085436 085525 prediction=1 7465.0->7458.0 earning=-416
+085452 085456 prediction=1 7496.0->7487.0 earning=-516
+085456 085525 prediction=1 7487.0->7458.0 earning=-1516
+085503 085525 prediction=1 7486.0->7458.0 earning=-1466
+085524 085525 prediction=1 7492.0->7458.0 earning=-1766
+085534 085634 prediction=1 7496.0->7515.0 earning=884
+085538 085638 prediction=1 7497.0->7513.0 earning=734
+085548 085648 prediction=1 7497.0->7512.0 earning=684
+085609 085630 prediction=1 7502.0->7497.0 earning=-316
+085650 085750 prediction=1 7492.0->7507.0 earning=684
+085654 085754 prediction=1 7490.0->7508.0 earning=834
+085659 085759 prediction=1 7492.0->7509.0 earning=784
+085702 085802 prediction=1 7488.0->7508.0 earning=934
+085752 085804 prediction=1 7488.0->7454.0 earning=-1766
+085804 085904 prediction=1 7454.0->7495.0 earning=1984
+085804 085832 prediction=1 7469.0->7450.0 earning=-1016
+085817 085832 prediction=1 7492.0->7450.0 earning=-2166
+085818 085832 prediction=1 7491.0->7450.0 earning=-2116
+085846 085911 prediction=1 7494.0->7488.0 earning=-366
+085851 085911 prediction=1 7495.0->7488.0 earning=-416
+085859 085928 prediction=1 7492.0->7486.0 earning=-366
+085911 085935 prediction=1 7488.0->7448.0 earning=-2066
+085928 085935 prediction=1 7486.0->7448.0 earning=-1966
+085935 090035 prediction=1 7448.0->7440.0 earning=-466
+085942 085942 prediction=-1 7566.0->7582.0 earning=-866
+085942 085943 prediction=-1 7582.0->7600.0 earning=-966
+085943 090043 prediction=-1 7600.0->7491.0 earning=5384
+090002 090102 prediction=-1 7590.0->7481.0 earning=5384
+090010 090030 prediction=1 7492.0->7483.0 earning=-516
+090032 090033 prediction=1 7480.0->7458.0 earning=-1166
+090035 090039 prediction=1 7440.0->7430.0 earning=-566
+090035 090039 prediction=1 7453.0->7430.0 earning=-1216
+090041 090046 prediction=1 7473.0->7450.0 earning=-1216
+090045 090046 prediction=1 7479.0->7450.0 earning=-1516
+090046 090058 prediction=1 7450.0->7425.0 earning=-1316
+090047 090052 prediction=-1 7519.0->7565.0 earning=-2366
+090048 090052 prediction=1 7466.0->7460.0 earning=-366
+090052 090152 prediction=-1 7565.0->7470.0 earning=4684
+090057 090058 prediction=1 7466.0->7425.0 earning=-2116
+090058 090110 prediction=1 7440.0->7417.0 earning=-1216
+090059 090110 prediction=1 7457.0->7417.0 earning=-2066
+090103 090110 prediction=1 7467.0->7417.0 earning=-2566
+090119 090219 prediction=-1 7555.0->7475.0 earning=3934
+090128 090131 prediction=1 7464.0->7416.0 earning=-2466
+090129 090131 prediction=1 7461.0->7416.0 earning=-2316
+090131 090231 prediction=1 7431.0->7465.0 earning=1634
+090131 090231 prediction=-1 7552.0->7465.0 earning=4284
+090157 090242 prediction=1 7451.0->7446.0 earning=-316
+090226 090242 prediction=1 7451.0->7446.0 earning=-316
+090232 090244 prediction=1 7447.0->7440.0 earning=-416
+090236 090244 prediction=1 7447.0->7440.0 earning=-416
+090244 090245 prediction=1 7440.0->7401.0 earning=-2016
+090245 090318 prediction=1 7401.0->7380.0 earning=-1116
+090245 090301 prediction=1 7416.0->7400.0 earning=-866
+090245 090245 prediction=-1 7501.0->7550.0 earning=-2516
+090245 090345 prediction=-1 7550.0->7450.0 earning=4934
+090249 090249 prediction=-1 7471.0->7500.0 earning=-1516
+090255 090355 prediction=-1 7550.0->7430.0 earning=5934
+090301 090309 prediction=1 7415.0->7410.0 earning=-316
+090311 090317 prediction=1 7405.0->7400.0 earning=-316
+090318 090418 prediction=1 7380.0->7444.0 earning=3134
+090318 090347 prediction=1 7395.0->7385.0 earning=-566
+090347 090447 prediction=1 7385.0->7453.0 earning=3334
+090347 090447 prediction=-1 7550.0->7453.0 earning=4784
+090402 090403 prediction=1 7424.0->7418.0 earning=-366
+090404 090420 prediction=1 7420.0->7390.0 earning=-1566
+090420 090520 prediction=1 7390.0->7457.0 earning=3284
+090420 090433 prediction=1 7405.0->7391.0 earning=-766
+090444 090544 prediction=1 7393.0->7456.0 earning=3084
+090453 090454 prediction=1 7445.0->7440.0 earning=-316
+090453 090553 prediction=-1 7550.0->7458.0 earning=4534
+090501 090511 prediction=1 7439.0->7434.0 earning=-316
+090514 090524 prediction=1 7436.0->7390.0 earning=-2366
+090524 090624 prediction=1 7390.0->7456.0 earning=3234
+090539 090550 prediction=1 7436.0->7431.0 earning=-316
+090550 090613 prediction=1 7431.0->7415.0 earning=-866
+090550 090613 prediction=1 7432.0->7415.0 earning=-916
+090600 090613 prediction=1 7443.0->7415.0 earning=-1466
+090625 090637 prediction=-1 7475.0->7526.0 earning=-2616
+090631 090637 prediction=1 7443.0->7395.0 earning=-2466
+090636 090637 prediction=1 7444.0->7395.0 earning=-2516
+090637 090737 prediction=1 7395.0->7473.0 earning=3834
+090637 090704 prediction=1 7410.0->7395.0 earning=-816
+090637 090720 prediction=-1 7526.0->7564.0 earning=-1966
+090646 090653 prediction=1 7447.0->7441.0 earning=-366
+090658 090704 prediction=1 7444.0->7395.0 earning=-2516
+090704 090804 prediction=1 7401.0->7473.0 earning=3534
+090714 090731 prediction=1 7420.0->7412.0 earning=-466
+090721 090816 prediction=1 7416.0->7409.0 earning=-416
+090731 090757 prediction=1 7427.0->7416.0 earning=-616
+090741 090743 prediction=1 7464.0->7430.0 earning=-1766
+090745 090745 prediction=-1 7594.0->7632.0 earning=-1966
+090745 090845 prediction=-1 7633.0->7453.0 earning=8934
+090757 090816 prediction=1 7431.0->7409.0 earning=-1166
+090805 090814 prediction=1 7454.0->7445.0 earning=-516
+090814 090816 prediction=1 7446.0->7409.0 earning=-1916
+090816 090840 prediction=1 7424.0->7395.0 earning=-1516
+090819 090820 prediction=1 7442.0->7437.0 earning=-316
+090820 090840 prediction=1 7437.0->7395.0 earning=-2166
+090820 090920 prediction=-1 7564.0->7459.0 earning=5184
+090843 090844 prediction=1 7438.0->7430.0 earning=-466
+090843 090844 prediction=1 7440.0->7430.0 earning=-566
+090846 090905 prediction=1 7390.0->7381.0 earning=-516
+090846 090857 prediction=-1 7523.0->7558.0 earning=-1816
+090853 090854 prediction=1 7440.0->7425.0 earning=-816
+090857 090958 prediction=-1 7558.0->7461.0 earning=4784
+090904 090905 prediction=1 7430.0->7381.0 earning=-2516
+090909 090936 prediction=1 7433.0->7404.0 earning=-1516
+090917 091017 prediction=-1 7528.0->7469.0 earning=2884
+090921 090931 prediction=1 7448.0->7442.0 earning=-366
+090931 091031 prediction=-1 7520.0->7453.0 earning=3284
+090939 091039 prediction=-1 7520.0->7474.0 earning=2234
+091002 091003 prediction=1 7409.0->7391.0 earning=-966
+091005 091105 prediction=1 7410.0->7463.0 earning=2584
+091019 091024 prediction=1 7451.0->7422.0 earning=-1516
+091029 091110 prediction=1 7456.0->7422.0 earning=-1766
+091038 091110 prediction=1 7460.0->7422.0 earning=-1966
+091043 091110 prediction=1 7461.0->7422.0 earning=-2016
+091110 091210 prediction=1 7422.0->7478.0 earning=2734
+091112 091212 prediction=-1 7545.0->7481.0 earning=3134
+091119 091129 prediction=1 7465.0->7455.0 earning=-566
+091129 091214 prediction=1 7455.0->7412.0 earning=-2216
+091129 091214 prediction=1 7463.0->7412.0 earning=-2616
+091214 091314 prediction=1 7412.0->7492.0 earning=3934
+091219 091225 prediction=1 7470.0->7418.0 earning=-2666
+091223 091225 prediction=1 7469.0->7418.0 earning=-2616
+091225 091325 prediction=1 7418.0->7490.0 earning=3534
+091230 091259 prediction=-1 7526.0->7597.0 earning=-3616
+091236 091312 prediction=1 7476.0->7428.0 earning=-2466
+091303 091312 prediction=1 7481.0->7428.0 earning=-2716
+091318 091337 prediction=1 7478.0->7420.0 earning=-2966
+091337 091437 prediction=1 7420.0->7435.0 earning=684
+091345 091358 prediction=1 7471.0->7452.0 earning=-1016
+091358 091417 prediction=1 7452.0->7431.0 earning=-1116
+091359 091414 prediction=1 7490.0->7485.0 earning=-316
+091359 091414 prediction=1 7491.0->7485.0 earning=-366
+091417 091446 prediction=1 7431.0->7426.0 earning=-316
+091423 091424 prediction=1 7488.0->7435.0 earning=-2716
+091424 091446 prediction=1 7435.0->7426.0 earning=-516
+091428 091437 prediction=1 7452.0->7435.0 earning=-916
+091440 091540 prediction=-1 7576.0->7503.0 earning=3584
+091445 091446 prediction=1 7480.0->7426.0 earning=-2766
+091453 091528 prediction=-1 7526.0->7576.0 earning=-2566
+091455 091555 prediction=1 7434.0->7504.0 earning=3434
+091521 091532 prediction=1 7486.0->7479.0 earning=-416
+091547 091552 prediction=1 7480.0->7434.0 earning=-2366
+091548 091602 prediction=-1 7591.0->7621.0 earning=-1566
+091552 091652 prediction=1 7434.0->7511.0 earning=3784
+091600 091700 prediction=1 7440.0->7503.0 earning=3084
+091601 091701 prediction=1 7440.0->7449.0 earning=384
+091602 091702 prediction=-1 7622.0->7519.0 earning=5084
+091653 091753 prediction=-1 7607.0->7523.0 earning=4134
+091701 091801 prediction=1 7449.0->7526.0 earning=3784
+091701 091801 prediction=1 7469.0->7526.0 earning=2784
+091709 091742 prediction=1 7499.0->7479.0 earning=-1066
+091751 091804 prediction=1 7508.0->7479.0 earning=-1516
+091804 091806 prediction=1 7479.0->7466.0 earning=-716
+091806 091829 prediction=1 7466.0->7459.0 earning=-416
+091811 091828 prediction=-1 7624.0->7629.0 earning=-316
+091818 091819 prediction=1 7511.0->7504.0 earning=-416
+091819 091829 prediction=1 7504.0->7459.0 earning=-2316
+091823 091829 prediction=1 7505.0->7459.0 earning=-2366
+091829 091929 prediction=1 7459.0->7514.0 earning=2684
+091835 091837 prediction=1 7510.0->7500.0 earning=-566
+091837 091842 prediction=1 7500.0->7495.0 earning=-316
+091838 091850 prediction=1 7497.0->7490.0 earning=-416
+091841 091850 prediction=1 7497.0->7490.0 earning=-416
+091850 091950 prediction=1 7490.0->7511.0 earning=984
+091903 092003 prediction=1 7491.0->7511.0 earning=934
+091914 091923 prediction=1 7494.0->7487.0 earning=-416
+091925 091959 prediction=1 7494.0->7489.0 earning=-316
+091931 092031 prediction=1 7490.0->7511.0 earning=984
+091953 091959 prediction=1 7496.0->7489.0 earning=-416
+092009 092035 prediction=1 7496.0->7440.0 earning=-2866
+092021 092035 prediction=1 7494.0->7440.0 earning=-2766
+092021 092021 prediction=-1 7616.0->7621.0 earning=-316
+092035 092135 prediction=1 7440.0->7517.0 earning=3784
+092041 092100 prediction=1 7500.0->7478.0 earning=-1166
+092042 092100 prediction=1 7496.0->7478.0 earning=-966
+092054 092100 prediction=1 7500.0->7478.0 earning=-1166
+092100 092112 prediction=-1 7624.0->7630.0 earning=-366
+092101 092201 prediction=1 7460.0->7510.0 earning=2434
+092101 092112 prediction=-1 7623.0->7630.0 earning=-416
+092115 092203 prediction=1 7462.0->7440.0 earning=-1166
+092115 092215 prediction=-1 7626.0->7503.0 earning=6084
+092144 092147 prediction=1 7502.0->7496.0 earning=-366
+092151 092203 prediction=1 7490.0->7440.0 earning=-2566
+092203 092219 prediction=1 7440.0->7431.0 earning=-516
+092207 092219 prediction=1 7452.0->7431.0 earning=-1116
+092209 092308 prediction=-1 7550.0->7601.0 earning=-2616
+092219 092314 prediction=1 7431.0->7424.0 earning=-416
+092220 092314 prediction=1 7453.0->7424.0 earning=-1516
+092225 092244 prediction=1 7480.0->7468.0 earning=-666
+092255 092314 prediction=1 7450.0->7424.0 earning=-1366
+092314 092414 prediction=1 7424.0->7507.0 earning=4084
+092321 092421 prediction=1 7475.0->7522.0 earning=2284
+092322 092422 prediction=1 7474.0->7517.0 earning=2084
+092338 092438 prediction=1 7494.0->7518.0 earning=1134
+092418 092436 prediction=1 7507.0->7493.0 earning=-766
+092422 092436 prediction=1 7517.0->7493.0 earning=-1266
+092436 092523 prediction=1 7493.0->7434.0 earning=-3016
+092506 092522 prediction=-1 7539.0->7601.0 earning=-3166
+092522 092622 prediction=-1 7601.0->7509.0 earning=4534
+092523 092623 prediction=1 7434.0->7510.0 earning=3734
+092530 092550 prediction=1 7460.0->7450.0 earning=-566
+092538 092550 prediction=1 7495.0->7450.0 earning=-2316
+092551 092557 prediction=1 7455.0->7450.0 earning=-316
+092553 092557 prediction=1 7478.0->7450.0 earning=-1466
+092603 092703 prediction=1 7447.0->7519.0 earning=3534
+092619 092643 prediction=1 7495.0->7488.0 earning=-416
+092643 092717 prediction=1 7488.0->7457.0 earning=-1616
+092650 092717 prediction=1 7502.0->7457.0 earning=-2316
+092709 092717 prediction=1 7505.0->7457.0 earning=-2466
+092711 092717 prediction=1 7504.0->7457.0 earning=-2416
+092717 092817 prediction=-1 7632.0->7534.0 earning=4834
+092721 092724 prediction=1 7516.0->7456.0 earning=-3066
+092724 092824 prediction=1 7456.0->7535.0 earning=3884
+092732 092745 prediction=1 7504.0->7478.0 earning=-1366
+092732 092745 prediction=1 7505.0->7478.0 earning=-1416
+092749 092849 prediction=1 7460.0->7533.0 earning=3584
+092753 092759 prediction=1 7518.0->7475.0 earning=-2216
+092800 092803 prediction=1 7536.0->7523.0 earning=-716
+092806 092808 prediction=1 7522.0->7517.0 earning=-316
+092819 092829 prediction=1 7520.0->7510.0 earning=-566
+092829 092901 prediction=1 7510.0->7460.0 earning=-2566
+092835 092854 prediction=1 7520.0->7512.0 earning=-466
+092854 092901 prediction=1 7512.0->7460.0 earning=-2666
+092857 092957 prediction=-1 7608.0->7537.0 earning=3484
+092901 092909 prediction=1 7460.0->7448.0 earning=-666
+092904 093004 prediction=-1 7573.0->7535.0 earning=1834
+092909 093009 prediction=1 7448.0->7520.0 earning=3534
+092927 092951 prediction=1 7517.0->7488.0 earning=-1516
+093009 093028 prediction=1 7520.0->7512.0 earning=-466
+093010 093108 prediction=-1 7607.0->7622.0 earning=-816
+093010 093108 prediction=-1 7608.0->7622.0 earning=-766
+093025 093108 prediction=-1 7573.0->7622.0 earning=-2516
+093041 093044 prediction=1 7520.0->7511.0 earning=-516
+093049 093057 prediction=1 7520.0->7515.0 earning=-316
+093058 093113 prediction=1 7509.0->7466.0 earning=-2216
+093111 093141 prediction=-1 7625.0->7639.0 earning=-766
+093113 093213 prediction=1 7466.0->7553.0 earning=4284
+093118 093206 prediction=1 7521.0->7499.0 earning=-1166
+093119 093136 prediction=1 7525.0->7520.0 earning=-316
+093140 093141 prediction=1 7530.0->7524.0 earning=-366
+093141 093224 prediction=-1 7639.0->7649.0 earning=-566
+093144 093224 prediction=-1 7640.0->7649.0 earning=-516
+093209 093309 prediction=1 7480.0->7559.0 earning=3884
+093216 093236 prediction=1 7532.0->7489.0 earning=-2216
+093228 093230 prediction=1 7548.0->7542.0 earning=-366
+093228 093328 prediction=-1 7657.0->7565.0 earning=4534
+093233 093234 prediction=1 7541.0->7534.0 earning=-416
+093236 093336 prediction=1 7489.0->7544.0 earning=2684
+093242 093243 prediction=1 7540.0->7513.0 earning=-1416
+093255 093312 prediction=1 7548.0->7537.0 earning=-616
+093312 093333 prediction=1 7537.0->7515.0 earning=-1166
+093319 093333 prediction=1 7546.0->7515.0 earning=-1616
+093333 093402 prediction=1 7515.0->7498.0 earning=-916
+093336 093350 prediction=1 7544.0->7513.0 earning=-1616
+093336 093436 prediction=-1 7659.0->7558.0 earning=4984
+093338 093438 prediction=-1 7620.0->7557.0 earning=3084
+093350 093402 prediction=1 7514.0->7498.0 earning=-866
+093413 093427 prediction=1 7550.0->7510.0 earning=-2066
+093422 093427 prediction=1 7548.0->7510.0 earning=-1966
+093433 093435 prediction=1 7510.0->7489.0 earning=-1116
+093435 093523 prediction=1 7489.0->7484.0 earning=-316
+093439 093539 prediction=-1 7656.0->7541.0 earning=5684
+093451 093503 prediction=1 7530.0->7485.0 earning=-2316
+093501 093503 prediction=1 7538.0->7485.0 earning=-2716
+093523 093623 prediction=1 7484.0->7529.0 earning=2184
+093546 093612 prediction=1 7523.0->7510.0 earning=-716
+093546 093612 prediction=1 7524.0->7510.0 earning=-766
+093553 093653 prediction=-1 7637.0->7530.0 earning=5284
+093612 093644 prediction=1 7517.0->7507.0 earning=-566
+093617 093644 prediction=1 7516.0->7507.0 earning=-516
+093624 093644 prediction=1 7513.0->7507.0 earning=-366
+093656 093658 prediction=1 7480.0->7456.0 earning=-1266
+093658 093758 prediction=1 7456.0->7480.0 earning=1134
+093658 093718 prediction=-1 7573.0->7620.0 earning=-2416
+093700 093718 prediction=-1 7573.0->7620.0 earning=-2416
+093706 093719 prediction=1 7507.0->7500.0 earning=-416
+093722 093747 prediction=1 7492.0->7485.0 earning=-416
+093728 093734 prediction=1 7502.0->7490.0 earning=-666
+093732 093734 prediction=1 7502.0->7490.0 earning=-666
+093738 093739 prediction=1 7495.0->7488.0 earning=-416
+093739 093758 prediction=1 7488.0->7480.0 earning=-466
+093740 093840 prediction=-1 7610.0->7512.0 earning=4834
+093755 093758 prediction=1 7490.0->7480.0 earning=-566
+093800 093823 prediction=1 7455.0->7450.0 earning=-316
+093807 093818 prediction=1 7493.0->7480.0 earning=-716
+093807 093818 prediction=1 7494.0->7480.0 earning=-766
+093822 093823 prediction=1 7488.0->7450.0 earning=-1966
+093823 093855 prediction=1 7450.0->7427.0 earning=-1216
+093825 093855 prediction=1 7481.0->7427.0 earning=-2766
+093825 093826 prediction=-1 7602.0->7614.0 earning=-666
+093835 093855 prediction=1 7482.0->7427.0 earning=-2816
+093844 093855 prediction=1 7491.0->7427.0 earning=-3266
+093913 093916 prediction=1 7488.0->7451.0 earning=-1916
+093914 093916 prediction=1 7485.0->7451.0 earning=-1766
+093916 094016 prediction=1 7451.0->7511.0 earning=2934
+093919 094019 prediction=1 7450.0->7512.0 earning=3034
+093929 093955 prediction=1 7488.0->7452.0 earning=-1866
+093938 093955 prediction=1 7487.0->7452.0 earning=-1816
+094003 094103 prediction=1 7482.0->7520.0 earning=1834
+094024 094114 prediction=1 7499.0->7494.0 earning=-316
+094030 094114 prediction=1 7500.0->7494.0 earning=-366
+094031 094114 prediction=1 7500.0->7494.0 earning=-366
+094106 094114 prediction=1 7500.0->7494.0 earning=-366
+094120 094154 prediction=1 7490.0->7442.0 earning=-2466
+094128 094228 prediction=-1 7596.0->7496.0 earning=4934
+094142 094154 prediction=1 7488.0->7442.0 earning=-2366
+094154 094251 prediction=1 7442.0->7432.0 earning=-566
+094157 094251 prediction=1 7438.0->7432.0 earning=-366
+094206 094209 prediction=1 7503.0->7462.0 earning=-2116
+094228 094235 prediction=1 7496.0->7480.0 earning=-866
+094235 094236 prediction=1 7480.0->7452.0 earning=-1466
+094236 094251 prediction=1 7452.0->7432.0 earning=-1066
+094245 094251 prediction=1 7454.0->7432.0 earning=-1166
+094302 094322 prediction=1 7486.0->7430.0 earning=-2866
+094311 094322 prediction=1 7492.0->7430.0 earning=-3166
+094322 094422 prediction=1 7430.0->7518.0 earning=4334
+094333 094335 prediction=1 7490.0->7485.0 earning=-316
+094335 094435 prediction=1 7485.0->7519.0 earning=1634
+094344 094444 prediction=-1 7617.0->7518.0 earning=4884
+094359 094459 prediction=1 7497.0->7523.0 earning=1234
+094500 094524 prediction=1 7496.0->7465.0 earning=-1616
+094522 094524 prediction=1 7505.0->7465.0 earning=-2066
+094524 094539 prediction=1 7465.0->7456.0 earning=-516

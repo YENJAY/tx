@@ -3,6 +3,12 @@ Configuration loaded successfully.
 # Too few sequence #1
 # Too few sequence #1
 # Too few sequence #1
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
 # Too few sequence #1
 # Too few sequence #1
 # Too few sequence #1
@@ -16,21 +22,15 @@ Configuration loaded successfully.
 # Too few sequence #1
 # Transactions:
 084506 084609 prediction=-1 8745.0->8740.0 earning=184
-084547 084621 prediction=1 8734.0->8714.0 earning=-1066
 084621 084725 prediction=1 8714.0->8735.0 earning=984
-084629 084732 prediction=1 8713.0->8735.0 earning=1034
-084644 084749 prediction=1 8714.0->8732.0 earning=834
 084906 084950 prediction=1 8720.0->8705.0 earning=-816
-084950 085056 prediction=1 8705.0->8736.0 earning=1484
 085510 085614 prediction=1 8715.0->8737.0 earning=1034
 090129 090148 prediction=1 8736.0->8732.0 earning=-266
 090944 091044 prediction=1 8704.0->8733.0 earning=1384
 091517 091626 prediction=1 8691.0->8714.0 earning=1084
 091938 092048 prediction=1 8688.0->8711.0 earning=1084
-091938 092048 prediction=1 8689.0->8711.0 earning=1034
 092141 092249 prediction=1 8696.0->8715.0 earning=884
 094013 094046 prediction=1 8676.0->8666.0 earning=-566
-094046 094153 prediction=1 8666.0->8687.0 earning=984
 094056 094201 prediction=1 8666.0->8683.0 earning=784
 094359 094524 prediction=1 8670.0->8687.0 earning=784
 095103 095208 prediction=-1 8696.0->8689.0 earning=284
@@ -42,13 +42,14 @@ Configuration loaded successfully.
 130411 130517 prediction=-1 8689.0->8679.0 earning=434
 132248 132438 prediction=1 8658.0->8677.0 earning=884
 134136 134244 prediction=1 8672.0->8690.0 earning=834
+# Total number of transactions = 21
 # Profit 0: Transaction timeout
 # Profit 1: Stop losing.
 # Profit 2: Reach max wrong prediction limit
 # Profit 3: Remaining transactions.
 # -------------------------------------------------------
-# Profit 0 = 19482
-# Profit 1 = -2448
+# Profit 0 = 14112
+# Profit 1 = -1382
 # Profit 2 = -266
 # Profit 3 = 0
-# Final profit = 16768
+# Final profit = 12464

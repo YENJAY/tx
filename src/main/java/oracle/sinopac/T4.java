@@ -62,6 +62,7 @@ public class T4 {
             password = br.readLine();
             branch = br.readLine();
             account = br.readLine();
+            br.close();
         }
         catch(IOException e) {
             e.printStackTrace();

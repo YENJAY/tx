@@ -1,6 +1,44 @@
 output/intermediate/Daily_2015_11_04_MTX.txt
 Configuration loaded successfully.
 # Too few sequence #1
+# Maximum number of concurrent transactions has reached.
+# Too few sequence #1
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Maximum number of concurrent transactions has reached.
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Maximum number of concurrent transactions has reached.
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
+# Too few sequence #1
 # Too few sequence #1
 # Maximum number of concurrent transactions has reached.
 # Too few sequence #1
@@ -19,91 +57,54 @@ Configuration loaded successfully.
 # Too few sequence #1
 # Too few sequence #1
 # Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
+# Maximum number of concurrent transactions has reached.
 # Too few sequence #1
 # Too few sequence #1
 # Too few sequence #1
 # Transactions:
 084633 084735 prediction=1 8763.0->8783.0 earning=934
 085606 085711 prediction=1 8771.0->8766.0 earning=-316
-085711 085843 prediction=1 8766.0->8780.0 earning=634
 090038 090132 prediction=1 8767.0->8762.0 earning=-316
-090132 090250 prediction=1 8762.0->8783.0 earning=984
 090358 090418 prediction=1 8776.0->8771.0 earning=-316
 090923 091025 prediction=1 8742.0->8763.0 earning=984
-091021 091121 prediction=1 8748.0->8771.0 earning=1084
 091822 091935 prediction=1 8756.0->8773.0 earning=784
 092013 092015 prediction=1 8761.0->8760.0 earning=-116
 092554 092655 prediction=1 8776.0->8803.0 earning=1284
-092554 092655 prediction=1 8780.0->8803.0 earning=1084
-092555 092655 prediction=1 8779.0->8803.0 earning=1134
-092556 092700 prediction=1 8779.0->8801.0 earning=1034
 092713 092808 prediction=1 8803.0->8789.0 earning=-766
-092720 092808 prediction=1 8808.0->8789.0 earning=-1016
-092802 092808 prediction=1 8805.0->8789.0 earning=-866
-092808 092916 prediction=1 8789.0->8807.0 earning=834
 092823 092924 prediction=1 8795.0->8808.0 earning=584
 093246 093400 prediction=1 8800.0->8827.0 earning=1284
-093256 093400 prediction=1 8800.0->8827.0 earning=1284
 093407 093437 prediction=1 8807.0->8798.0 earning=-516
-093407 093437 prediction=1 8807.0->8798.0 earning=-516
-093437 093537 prediction=1 8798.0->8834.0 earning=1734
 093504 093605 prediction=1 8809.0->8841.0 earning=1534
-093538 093650 prediction=1 8811.0->8841.0 earning=1434
-093552 093655 prediction=-1 8843.0->8840.0 earning=84
 093732 093836 prediction=1 8818.0->8845.0 earning=1284
-093741 093844 prediction=-1 8852.0->8845.0 earning=284
-093758 093901 prediction=1 8834.0->8848.0 earning=634
 094435 094441 prediction=1 8830.0->8828.0 earning=-166
-094440 094441 prediction=1 8829.0->8828.0 earning=-116
-094441 094542 prediction=1 8828.0->8860.0 earning=1534
 094500 094600 prediction=-1 8874.0->8862.0 earning=534
 094716 094816 prediction=1 8843.0->8864.0 earning=984
 095012 095114 prediction=1 8843.0->8884.0 earning=1984
-095018 095123 prediction=1 8845.0->8886.0 earning=1984
 095129 095232 prediction=1 8848.0->8890.0 earning=2034
-095129 095232 prediction=1 8851.0->8890.0 earning=1884
-095156 095303 prediction=-1 8904.0->8885.0 earning=884
-095210 095310 prediction=1 8854.0->8886.0 earning=1534
 095239 095348 prediction=1 8855.0->8876.0 earning=984
-095348 095453 prediction=1 8876.0->8878.0 earning=34
 095723 095745 prediction=1 8874.0->8872.0 earning=-166
 095754 095756 prediction=1 8840.0->8838.0 earning=-166
-095756 095900 prediction=1 8838.0->8873.0 earning=1684
 100028 100139 prediction=1 8841.0->8879.0 earning=1834
 101229 101331 prediction=-1 8876.0->8875.0 earning=-16
 101333 101434 prediction=1 8846.0->8874.0 earning=1334
-101333 101434 prediction=1 8847.0->8874.0 earning=1284
 101608 101734 prediction=1 8843.0->8872.0 earning=1384
 102456 102622 prediction=1 8848.0->8875.0 earning=1284
 103316 103420 prediction=1 8840.0->8873.0 earning=1584
 103606 103706 prediction=1 8840.0->8868.0 earning=1334
 104932 105034 prediction=1 8842.0->8877.0 earning=1684
-104932 105034 prediction=1 8843.0->8877.0 earning=1634
 110538 110640 prediction=1 8846.0->8872.0 earning=1234
-110558 110659 prediction=1 8850.0->8874.0 earning=1134
 120330 120615 prediction=1 8858.0->8881.0 earning=1084
 120902 121058 prediction=1 8863.0->8869.0 earning=234
 125144 125306 prediction=1 8858.0->8886.0 earning=1334
-125144 125306 prediction=1 8865.0->8886.0 earning=984
 133919 134031 prediction=-1 8888.0->8888.0 earning=-66
+# Total number of transactions = 35
 # Profit 0: Transaction timeout
 # Profit 1: Stop losing.
 # Profit 2: Reach max wrong prediction limit
 # Profit 3: Remaining transactions.
 # -------------------------------------------------------
-# Profit 0 = 55934
-# Profit 1 = -4312
-# Profit 2 = -730
+# Profit 0 = 29118
+# Profit 1 = -1914
+# Profit 2 = -614
 # Profit 3 = 0
-# Final profit = 50892
+# Final profit = 26590

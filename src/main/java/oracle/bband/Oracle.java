@@ -153,6 +153,7 @@ public class Oracle {
                 decide(input[1], input[2]);
                 // System.out.println(line);
             }
+            reader.close();
         }
         catch(IOException e) {
             e.printStackTrace();
