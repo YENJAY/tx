@@ -1,2 +1,2 @@
 #!/bin/sh
-mvn exec:java -Dexec.mainClass=oracle.sinopac.TestT4
+mvn exec:java -Dexec.mainClass=oracle.sinopac.T4

@@ -13,6 +13,6 @@ public interface IT4 extends StdCallLibrary {
     public abstract Pointer get_response_log();
     public abstract int check_response_buffer();
     public abstract Pointer add_acc_ca(Pointer branch, Pointer account, Pointer id, Pointer caPath, Pointer password);
-    public abstract Pointer verify_ca_pass(Pointer branch, Pointer account); 
+    public abstract Pointer verify_ca_pass(Pointer branch, Pointer account);
 
 }
