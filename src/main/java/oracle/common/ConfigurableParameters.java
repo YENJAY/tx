@@ -12,6 +12,7 @@ public class ConfigurableParameters {
     public static int NTD_PER_POINT;
     public static int MAX_B2B_WRONG_PREDICTION;
     public static int MAX_CONCURRENT_TRANSACTION;
+    public static int NUM_TRY_TO_ORDER;
     static {
         String content = "";
         try {
@@ -26,14 +27,15 @@ public class ConfigurableParameters {
             buffReader.close();
             JSONObject obj = new JSONObject(content);
             BBAND_THRESHOLD = Integer.parseInt(obj.getJSONObject("configuration").getString("BBAND_THRESHOLD"));
-            KBAR_LENGTH = Integer.parseInt(obj.getJSONObject("configuration").getString("KBAR_LENGTH"));;
-            LOST_TOLERANCE = Integer.parseInt(obj.getJSONObject("configuration").getString("LOST_TOLERANCE"));;
-            TRANS_LIFECYCLE = Integer.parseInt(obj.getJSONObject("configuration").getString("TRANS_LIFECYCLE"));;
-            BBAND_BOUND_SIZE = Integer.parseInt(obj.getJSONObject("configuration").getString("BBAND_BOUND_SIZE"));;
-            TAX_FEE = Integer.parseInt(obj.getJSONObject("configuration").getString("TAX_FEE"));;
-            NTD_PER_POINT = Integer.parseInt(obj.getJSONObject("configuration").getString("NTD_PER_POINT"));;
-            MAX_B2B_WRONG_PREDICTION = Integer.parseInt(obj.getJSONObject("configuration").getString("MAX_B2B_WRONG_PREDICTION"));;
-            MAX_CONCURRENT_TRANSACTION = Integer.parseInt(obj.getJSONObject("configuration").getString("MAX_CONCURRENT_TRANSACTION"));;
+            KBAR_LENGTH = Integer.parseInt(obj.getJSONObject("configuration").getString("KBAR_LENGTH"));
+            LOST_TOLERANCE = Integer.parseInt(obj.getJSONObject("configuration").getString("LOST_TOLERANCE"));
+            TRANS_LIFECYCLE = Integer.parseInt(obj.getJSONObject("configuration").getString("TRANS_LIFECYCLE"));
+            BBAND_BOUND_SIZE = Integer.parseInt(obj.getJSONObject("configuration").getString("BBAND_BOUND_SIZE"));
+            TAX_FEE = Integer.parseInt(obj.getJSONObject("configuration").getString("TAX_FEE"));
+            NTD_PER_POINT = Integer.parseInt(obj.getJSONObject("configuration").getString("NTD_PER_POINT"));
+            MAX_B2B_WRONG_PREDICTION = Integer.parseInt(obj.getJSONObject("configuration").getString("MAX_B2B_WRONG_PREDICTION"));
+            MAX_CONCURRENT_TRANSACTION = Integer.parseInt(obj.getJSONObject("configuration").getString("MAX_CONCURRENT_TRANSACTION"));
+            NUM_TRY_TO_ORDER = Integer.parseInt(obj.getJSONObject("configuration").getString("NUM_TRY_TO_ORDER"));
             System.out.println("Configuration loaded successfully.");
         }
         catch (IOException e) {
@@ -47,6 +49,7 @@ public class ConfigurableParameters {
             NTD_PER_POINT = 50;
             MAX_B2B_WRONG_PREDICTION = 2;
             MAX_CONCURRENT_TRANSACTION = 4;
+            NUM_TRY_TO_ORDER = 5;
         }
     }
 }

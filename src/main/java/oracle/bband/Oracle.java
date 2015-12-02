@@ -60,8 +60,13 @@ public class Oracle {
                     if(prediction != 0) {
                         if(transactions.size() < ConfigurableParameters.MAX_CONCURRENT_TRANSACTION) {
                             Transaction trans = new Transaction(lastBBandUnit.end, lastBBandUnit.dateEnd, lifecycle, prediction, tolerance);
-                            allTransactions.add(trans);
-                            transactions.add(trans);
+                            if(trans.order() == true) {
+                                allTransactions.add(trans);
+                                transactions.add(trans);
+                            }
+                            else {
+                                // bypass this chance
+                            }
                         }
                         else {
                             // System.out.println("# Maximum number of concurrent transactions has reached.");
