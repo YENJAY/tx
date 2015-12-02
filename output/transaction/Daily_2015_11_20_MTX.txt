@@ -1,37 +1,32 @@
 # Transactions:
-084556 084700 prediction=-1 8445.0->8436.0 earning=384
+084606 084612 prediction=-1 8435.0->8441.0 earning=-366
 085035 085153 prediction=1 8402.0->8430.0 earning=1334
-090335 090351 prediction=-1 8450.0->8455.0 earning=-316
 090353 090501 prediction=1 8400.0->8447.0 earning=2284
-090541 090552 prediction=-1 8458.0->8463.0 earning=-316
-092803 092905 prediction=-1 8473.0->8459.0 earning=634
+092804 092905 prediction=-1 8466.0->8459.0 earning=284
 093417 093524 prediction=1 8444.0->8466.0 earning=1034
 093712 093813 prediction=1 8442.0->8469.0 earning=1284
-094628 094813 prediction=-1 8460.0->8442.0 earning=834
+094508 094622 prediction=-1 8454.0->8444.0 earning=434
 100203 100311 prediction=1 8406.0->8457.0 earning=2484
 100322 100500 prediction=1 8412.0->8456.0 earning=2134
-102021 102137 prediction=-1 8439.0->8424.0 earning=684
+102026 102031 prediction=-1 8434.0->8439.0 earning=-316
 102153 102253 prediction=1 8385.0->8422.0 earning=1784
-103033 103139 prediction=-1 8442.0->8427.0 earning=684
-104302 104412 prediction=-1 8417.0->8404.0 earning=584
 104555 104740 prediction=-1 8428.0->8413.0 earning=684
-105130 105527 prediction=-1 8432.0->8411.0 earning=984
 105731 105901 prediction=1 8397.0->8419.0 earning=1034
+110009 110120 prediction=-1 8435.0->8423.0 earning=534
+111854 112011 prediction=-1 8429.0->8421.0 earning=334
 113127 113500 prediction=1 8401.0->8424.0 earning=1084
-115454 115607 prediction=-1 8439.0->8436.0 earning=84
 122054 122259 prediction=-1 8447.0->8433.0 earning=634
-125738 130013 prediction=-1 8433.0->8418.0 earning=684
 131745 131849 prediction=-1 8444.0->8443.0 earning=-16
 131935 132039 prediction=-1 8452.0->8435.0 earning=784
 133636 133738 prediction=-1 8457.0->8439.0 earning=834
-# Total number of transactions = 25
+# Total number of transactions = 20
 # Profit 0: Transaction timeout
 # Profit 1: Stop losing.
 # Profit 2: Reach max wrong prediction limit
 # Profit 3: Remaining transactions.
 # -------------------------------------------------------
-# Profit 0 = 22932
-# Profit 1 = -632
+# Profit 0 = 18962
+# Profit 1 = -682
 # Profit 2 = 0
 # Profit 3 = 0
-# Final profit = 22300
+# Final profit = 18280

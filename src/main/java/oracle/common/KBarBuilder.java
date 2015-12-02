@@ -30,8 +30,9 @@ public class KBarBuilder implements IDataReceiver {
         }
         else {
             Unit lastElement = rawSequence.lastElement();
-            if(lastElement.equals(unit)) {
-                // we don't want duplicate data
+            // if(lastElement.equals(unit)) {
+            if(unit.date.getTime() - lastElement.date.getTime() < 1000) {
+                // we don't want too many data. Only >= 1 sec is required.
                 return;
             }
             else {
@@ -42,7 +43,7 @@ public class KBarBuilder implements IDataReceiver {
 
     public KBarUnit consumeAndMakeKBar() {
         if(rawSequence.size() <= 1) {
-            System.out.println("# Too few sequence #1");
+            // System.out.println("# Too few sequence #1");
             return null; // too few data
         }
         Unit lastUnit = rawSequence.lastElement();
@@ -54,7 +55,7 @@ public class KBarBuilder implements IDataReceiver {
             }
         }
         if(i>0 && rawSequence.get(i-1).equals(lastUnit)) {
-            System.out.println("# Too few sequence #2");
+            // System.out.println("# Too few sequence #2");
             return null; // too few data
         }
         else {

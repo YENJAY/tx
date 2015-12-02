@@ -6,15 +6,14 @@
 090923 091025 prediction=1 8742.0->8763.0 earning=984
 091822 091935 prediction=1 8756.0->8773.0 earning=784
 092013 092015 prediction=1 8761.0->8760.0 earning=-116
-092554 092655 prediction=1 8776.0->8803.0 earning=1284
-092713 092808 prediction=1 8803.0->8789.0 earning=-766
-092823 092924 prediction=1 8795.0->8808.0 earning=584
+092557 092700 prediction=-1 8804.0->8801.0 earning=84
+092705 092713 prediction=-1 8812.0->8818.0 earning=-366
+092720 092808 prediction=1 8808.0->8789.0 earning=-1016
 093246 093400 prediction=1 8800.0->8827.0 earning=1284
 093407 093437 prediction=1 8807.0->8798.0 earning=-516
 093504 093605 prediction=1 8809.0->8841.0 earning=1534
 093732 093836 prediction=1 8818.0->8845.0 earning=1284
 094435 094441 prediction=1 8830.0->8828.0 earning=-166
-094500 094600 prediction=-1 8874.0->8862.0 earning=534
 094716 094816 prediction=1 8843.0->8864.0 earning=984
 095012 095114 prediction=1 8843.0->8884.0 earning=1984
 095129 095232 prediction=1 8848.0->8890.0 earning=2034
@@ -22,7 +21,6 @@
 095723 095745 prediction=1 8874.0->8872.0 earning=-166
 095754 095756 prediction=1 8840.0->8838.0 earning=-166
 100028 100139 prediction=1 8841.0->8879.0 earning=1834
-101229 101331 prediction=-1 8876.0->8875.0 earning=-16
 101333 101434 prediction=1 8846.0->8874.0 earning=1334
 101608 101734 prediction=1 8843.0->8872.0 earning=1384
 102456 102622 prediction=1 8848.0->8875.0 earning=1284
@@ -34,14 +32,14 @@
 120902 121058 prediction=1 8863.0->8869.0 earning=234
 125144 125306 prediction=1 8858.0->8886.0 earning=1334
 133919 134031 prediction=-1 8888.0->8888.0 earning=-66
-# Total number of transactions = 35
+# Total number of transactions = 33
 # Profit 0: Transaction timeout
 # Profit 1: Stop losing.
 # Profit 2: Reach max wrong prediction limit
 # Profit 3: Remaining transactions.
 # -------------------------------------------------------
-# Profit 0 = 29118
-# Profit 1 = -1914
+# Profit 0 = 26816
+# Profit 1 = -2530
 # Profit 2 = -614
 # Profit 3 = 0
-# Final profit = 26590
+# Final profit = 23672

@@ -64,7 +64,7 @@ public class Oracle {
                             transactions.add(trans);
                         }
                         else {
-                            System.out.println("# Maximum number of concurrent transactions has reached.");
+                            // System.out.println("# Maximum number of concurrent transactions has reached.");
                         }
                     }
                 }

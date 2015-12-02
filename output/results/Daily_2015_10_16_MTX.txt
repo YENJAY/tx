@@ -1,90 +1,7 @@
 output/intermediate/Daily_2015_10_16_MTX.txt
 Configuration loaded successfully.
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Maximum number of concurrent transactions has reached.
-# Maximum number of concurrent transactions has reached.
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Maximum number of concurrent transactions has reached.
-# Maximum number of concurrent transactions has reached.
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Maximum number of concurrent transactions has reached.
-# Maximum number of concurrent transactions has reached.
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Maximum number of concurrent transactions has reached.
-# Maximum number of concurrent transactions has reached.
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
 # Transactions:
+084510 084519 prediction=-1 8595.0->8604.0 earning=-516
 084814 084917 prediction=1 8596.0->8609.0 earning=584
 085629 085730 prediction=1 8592.0->8609.0 earning=784
 090051 090059 prediction=1 8610.0->8604.0 earning=-366
@@ -111,14 +28,14 @@ Configuration loaded successfully.
 120520 120648 prediction=1 8580.0->8580.0 earning=-66
 133333 133455 prediction=1 8591.0->8604.0 earning=584
 133843 133943 prediction=1 8588.0->8608.0 earning=934
-# Total number of transactions = 26
+# Total number of transactions = 27
 # Profit 0: Transaction timeout
 # Profit 1: Stop losing.
 # Profit 2: Reach max wrong prediction limit
 # Profit 3: Remaining transactions.
 # -------------------------------------------------------
 # Profit 0 = 11732
-# Profit 1 = -1082
+# Profit 1 = -1598
 # Profit 2 = -116
 # Profit 3 = 0
-# Final profit = 10534
+# Final profit = 10018

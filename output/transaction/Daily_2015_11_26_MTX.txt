@@ -1,24 +1,28 @@
 # Transactions:
-084501 084502 prediction=-1 8421.0->8426.0 earning=-316
+084504 084557 prediction=-1 8427.0->8432.0 earning=-316
 084642 084744 prediction=-1 8440.0->8430.0 earning=434
+084949 085101 prediction=-1 8445.0->8443.0 earning=34
 085309 085411 prediction=-1 8449.0->8440.0 earning=384
 085717 085817 prediction=-1 8448.0->8441.0 earning=284
 085835 085937 prediction=-1 8454.0->8451.0 earning=84
-090413 090501 prediction=-1 8481.0->8486.0 earning=-316
-090508 090611 prediction=1 8489.0->8493.0 earning=134
+090443 090501 prediction=-1 8480.0->8485.0 earning=-316
+090504 090505 prediction=-1 8491.0->8496.0 earning=-316
+091503 091503 prediction=-1 8501.0->8506.0 earning=-316
+091504 091511 prediction=-1 8508.0->8514.0 earning=-366
 092049 092154 prediction=1 8512.0->8511.0 earning=-116
 093110 093111 prediction=1 8491.0->8475.0 earning=-866
-093111 093112 prediction=1 8477.0->8463.0 earning=-766
+093111 093112 prediction=1 8475.0->8463.0 earning=-666
 093112 093212 prediction=1 8463.0->8483.0 earning=934
+105834 105943 prediction=-1 8507.0->8505.0 earning=34
 132212 132316 prediction=1 8464.0->8502.0 earning=1834
-# Total number of transactions = 12
+# Total number of transactions = 16
 # Profit 0: Transaction timeout
 # Profit 1: Stop losing.
 # Profit 2: Reach max wrong prediction limit
 # Profit 3: Remaining transactions.
 # -------------------------------------------------------
-# Profit 0 = 3972
-# Profit 1 = -2264
+# Profit 0 = 3906
+# Profit 1 = -3162
 # Profit 2 = 0
 # Profit 3 = 0
-# Final profit = 1708
+# Final profit = 744

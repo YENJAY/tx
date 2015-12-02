@@ -1,0 +1,28 @@
+output/intermediate/Daily_2015_12_02_MTX.txt
+Configuration loaded successfully.
+# Transactions:
+084547 084647 prediction=-1 8439.0->8424.0 earning=684
+091312 091412 prediction=-1 8462.0->8454.0 earning=334
+092321 092422 prediction=-1 8461.0->8468.0 earning=-416
+093549 093649 prediction=-1 8492.0->8486.0 earning=234
+094159 094259 prediction=-1 8499.0->8496.0 earning=84
+095555 095606 prediction=-1 8502.0->8507.0 earning=-316
+104832 104834 prediction=1 8464.0->8459.0 earning=-316
+104841 104947 prediction=-1 8468.0->8454.0 earning=634
+110530 110644 prediction=-1 8453.0->8437.0 earning=734
+110957 111101 prediction=-1 8430.0->8433.0 earning=-216
+111254 111359 prediction=-1 8449.0->8429.0 earning=934
+122002 122301 prediction=-1 8466.0->8453.0 earning=584
+122322 122440 prediction=-1 8466.0->8445.0 earning=984
+122603 122711 prediction=-1 8459.0->8447.0 earning=534
+# Total number of transactions = 14
+# Profit 0: Transaction timeout
+# Profit 1: Stop losing.
+# Profit 2: Reach max wrong prediction limit
+# Profit 3: Remaining transactions.
+# -------------------------------------------------------
+# Profit 0 = 5108
+# Profit 1 = -632
+# Profit 2 = 0
+# Profit 3 = 0
+# Final profit = 4476

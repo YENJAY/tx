@@ -1,40 +1,21 @@
 output/intermediate/Daily_2015_10_23_MTX.txt
 Configuration loaded successfully.
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Maximum number of concurrent transactions has reached.
-# Maximum number of concurrent transactions has reached.
-# Maximum number of concurrent transactions has reached.
-# Maximum number of concurrent transactions has reached.
-# Maximum number of concurrent transactions has reached.
-# Maximum number of concurrent transactions has reached.
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
 # Transactions:
-084506 084609 prediction=-1 8745.0->8740.0 earning=184
-084621 084725 prediction=1 8714.0->8735.0 earning=984
+084524 084625 prediction=-1 8742.0->8739.0 earning=84
+084629 084732 prediction=1 8713.0->8735.0 earning=1034
 084906 084950 prediction=1 8720.0->8705.0 earning=-816
 085510 085614 prediction=1 8715.0->8737.0 earning=1034
 090129 090148 prediction=1 8736.0->8732.0 earning=-266
+090528 090632 prediction=1 8710.0->8721.0 earning=484
 090944 091044 prediction=1 8704.0->8733.0 earning=1384
 091517 091626 prediction=1 8691.0->8714.0 earning=1084
 091938 092048 prediction=1 8688.0->8711.0 earning=1084
 092141 092249 prediction=1 8696.0->8715.0 earning=884
 094013 094046 prediction=1 8676.0->8666.0 earning=-566
-094056 094201 prediction=1 8666.0->8683.0 earning=784
+094046 094153 prediction=1 8666.0->8687.0 earning=984
 094359 094524 prediction=1 8670.0->8687.0 earning=784
 095103 095208 prediction=-1 8696.0->8689.0 earning=284
-095741 095841 prediction=-1 8702.0->8688.0 earning=634
+095748 095850 prediction=-1 8703.0->8688.0 earning=684
 100051 100210 prediction=-1 8706.0->8701.0 earning=184
 102027 102134 prediction=-1 8716.0->8706.0 earning=434
 105704 105918 prediction=1 8666.0->8691.0 earning=1184
@@ -42,14 +23,14 @@ Configuration loaded successfully.
 130411 130517 prediction=-1 8689.0->8679.0 earning=434
 132248 132438 prediction=1 8658.0->8677.0 earning=884
 134136 134244 prediction=1 8672.0->8690.0 earning=834
-# Total number of transactions = 21
+# Total number of transactions = 22
 # Profit 0: Transaction timeout
 # Profit 1: Stop losing.
 # Profit 2: Reach max wrong prediction limit
 # Profit 3: Remaining transactions.
 # -------------------------------------------------------
-# Profit 0 = 14112
+# Profit 0 = 14796
 # Profit 1 = -1382
 # Profit 2 = -266
 # Profit 3 = 0
-# Final profit = 12464
+# Final profit = 13148

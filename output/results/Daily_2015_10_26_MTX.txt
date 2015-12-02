@@ -1,18 +1,5 @@
 output/intermediate/Daily_2015_10_26_MTX.txt
 Configuration loaded successfully.
-# Too few sequence #1
-# Maximum number of concurrent transactions has reached.
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
 # Transactions:
 084756 084914 prediction=1 8714.0->8729.0 earning=684
 090358 090458 prediction=1 8710.0->8725.0 earning=684

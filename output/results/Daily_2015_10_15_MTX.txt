@@ -1,142 +1,54 @@
 output/intermediate/Daily_2015_10_15_MTX.txt
 Configuration loaded successfully.
-# Too few sequence #1
-# Maximum number of concurrent transactions has reached.
-# Maximum number of concurrent transactions has reached.
-# Maximum number of concurrent transactions has reached.
-# Maximum number of concurrent transactions has reached.
-# Maximum number of concurrent transactions has reached.
-# Maximum number of concurrent transactions has reached.
-# Maximum number of concurrent transactions has reached.
-# Maximum number of concurrent transactions has reached.
-# Maximum number of concurrent transactions has reached.
-# Maximum number of concurrent transactions has reached.
-# Maximum number of concurrent transactions has reached.
-# Maximum number of concurrent transactions has reached.
-# Maximum number of concurrent transactions has reached.
-# Maximum number of concurrent transactions has reached.
-# Maximum number of concurrent transactions has reached.
-# Maximum number of concurrent transactions has reached.
-# Maximum number of concurrent transactions has reached.
-# Maximum number of concurrent transactions has reached.
-# Maximum number of concurrent transactions has reached.
-# Maximum number of concurrent transactions has reached.
-# Maximum number of concurrent transactions has reached.
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Maximum number of concurrent transactions has reached.
-# Maximum number of concurrent transactions has reached.
-# Maximum number of concurrent transactions has reached.
-# Maximum number of concurrent transactions has reached.
-# Maximum number of concurrent transactions has reached.
-# Maximum number of concurrent transactions has reached.
-# Maximum number of concurrent transactions has reached.
-# Maximum number of concurrent transactions has reached.
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Too few sequence #1
-# Maximum number of concurrent transactions has reached.
-# Maximum number of concurrent transactions has reached.
-# Maximum number of concurrent transactions has reached.
 # Transactions:
+084503 084504 prediction=-1 8572.0->8577.0 earning=-316
 084529 084632 prediction=1 8565.0->8578.0 earning=584
-084641 084741 prediction=1 8562.0->8590.0 earning=1334
-084745 084845 prediction=1 8575.0->8571.0 earning=-266
-084921 085022 prediction=1 8575.0->8594.0 earning=884
+084715 084815 prediction=1 8572.0->8587.0 earning=684
+084845 084946 prediction=1 8571.0->8591.0 earning=934
 085026 085126 prediction=1 8579.0->8592.0 earning=584
 085229 085329 prediction=1 8574.0->8591.0 earning=784
 085719 085820 prediction=1 8582.0->8596.0 earning=634
 090409 090511 prediction=1 8597.0->8613.0 earning=734
 090915 091023 prediction=1 8584.0->8599.0 earning=684
+091431 091431 prediction=-1 8617.0->8622.0 earning=-316
+091432 091433 prediction=-1 8627.0->8632.0 earning=-316
 091502 091558 prediction=1 8622.0->8610.0 earning=-666
-091612 091713 prediction=1 8610.0->8624.0 earning=634
+091558 091707 prediction=1 8610.0->8625.0 earning=684
 092428 092539 prediction=1 8613.0->8644.0 earning=1484
 092849 092858 prediction=1 8638.0->8623.0 earning=-816
 093537 093649 prediction=1 8625.0->8639.0 earning=634
 093956 094106 prediction=1 8640.0->8659.0 earning=884
 094228 094330 prediction=1 8648.0->8658.0 earning=434
-094510 094519 prediction=1 8661.0->8656.0 earning=-316
 094913 095021 prediction=1 8636.0->8659.0 earning=1084
 095324 095425 prediction=1 8645.0->8654.0 earning=384
 095434 095614 prediction=1 8646.0->8650.0 earning=134
 100152 100339 prediction=1 8635.0->8650.0 earning=684
 100410 100454 prediction=1 8630.0->8628.0 earning=-166
 100728 100729 prediction=1 8638.0->8636.0 earning=-166
+100729 100906 prediction=1 8636.0->8648.0 earning=534
 101016 101156 prediction=1 8635.0->8654.0 earning=884
 101422 101532 prediction=1 8632.0->8649.0 earning=784
 101844 101945 prediction=1 8640.0->8655.0 earning=684
 102524 102526 prediction=1 8621.0->8614.0 earning=-416
 102527 102528 prediction=1 8607.0->8602.0 earning=-316
 102529 102532 prediction=1 8593.0->8586.0 earning=-416
+102535 102608 prediction=-1 8606.0->8611.0 earning=-316
 102645 102749 prediction=1 8599.0->8613.0 earning=634
 113456 113747 prediction=1 8617.0->8630.0 earning=584
-124652 124905 prediction=1 8609.0->8628.0 earning=884
 130438 130545 prediction=1 8605.0->8618.0 earning=584
 130644 130748 prediction=1 8602.0->8604.0 earning=34
-131044 131219 prediction=1 8602.0->8617.0 earning=684
 131419 131533 prediction=1 8571.0->8617.0 earning=2234
 133007 133113 prediction=1 8570.0->8611.0 earning=1984
 133325 133528 prediction=1 8593.0->8608.0 earning=684
 134153 134258 prediction=1 8590.0->8599.0 earning=384
-# Total number of transactions = 39
+# Total number of transactions = 40
 # Profit 0: Transaction timeout
 # Profit 1: Stop losing.
 # Profit 2: Reach max wrong prediction limit
 # Profit 3: Remaining transactions.
 # -------------------------------------------------------
-# Profit 0 = 23354
-# Profit 1 = -2946
+# Profit 0 = 22036
+# Profit 1 = -3894
 # Profit 2 = -332
 # Profit 3 = 0
-# Final profit = 20076
+# Final profit = 17810
