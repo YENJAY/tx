@@ -101,21 +101,19 @@ public class T4 {
         );
     }
 
-    private static Vector vectorize(Pointer p) {
-        String[] rets = toJString(p).split("\\s");
-        Vector<String> results = new Vector<String>();
-        for(String s : rets) {
-            if(s.isEmpty()==false) {
-                results.add(s);
-            }
+    public static double getCurrentPrice() {
+        String s = queryUnsettled();
+        if(s.length() < 208) {
+            return -1;
         }
-        return results;
+        String price = s.substring(48, 64);
+        return Double.parseDouble(price);
     }
 
-    public static Vector queryUnsettled() {
+    public static String queryUnsettled() {
         Pointer pBranch = toNativeAscii(branch);
         Pointer pAccount = toNativeAscii(account);
-        return vectorize(
+        return toJString(
             t4.fo_unsettled_qry(
                 toNativeAscii("0000"),
                 toNativeAscii("0004"),
@@ -227,11 +225,22 @@ public class T4 {
     public static void main(String[] args) throws Exception {
         String ret1 = addAccCA();
         String ret2 = verifyCAPass();
-        Vector<String> ret3 = queryUnsettled();
-        System.out.println(ret1);
-        System.out.println(ret2);
-        for(String s : ret3) {
-            System.out.println(s);
+        // Vector<String> ret3 = queryUnsettled();
+        // System.out.println(ret1);
+        // System.out.println(ret2);
+        // for(String s : ret3) {
+        //     System.out.println(s);
+        // }
+        while(true) {
+            double price = getCurrentPrice();
+            if(price == -1) {
+                System.out.println("There is no header...");
+            }
+            else {
+                System.out.println("Current price = " + price);
+            }
+            Thread.sleep(1000);
         }
+
     }
 }
