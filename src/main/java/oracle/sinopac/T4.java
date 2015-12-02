@@ -97,13 +97,25 @@ public class T4 {
             toNativeAscii(id),
             toNativeAscii(workingDirectory),
             toNativeAscii(id)
-            ));
+            )
+        );
+    }
+
+    private static Vector vectorize(Pointer p) {
+        String[] rets = toJString(p);
+        Vector<String> results = new Vector<String>();
+        for(String s : rets) {
+            if(s.isEmpty()==false) {
+                results.add(s);
+            }
+        }
+        return results;
     }
 
     public static Vector queryUnsettled() {
         Pointer pBranch = toNativeAscii(branch);
         Pointer pAccount = toNativeAscii(account);
-        String[] rets = toJString(
+        return vectorize(
             t4.fo_unsettled_qry(
                 toNativeAscii("0000"),
                 toNativeAscii("0004"),
@@ -116,14 +128,88 @@ public class T4 {
                 toNativeAscii("1"),
                 toNativeAscii("0"),
                 toNativeAscii("1")
-            )).split("\\s");
-        Vector<String> results = new Vector<String>();
-        for(String s : rets) {
-            if(s.isEmpty()==false) {
-                results.add(s);
-            }
+            )
+        );
+    }
+
+    public static boolean buyMTXFutureTicket(String price, String amount) {
+        String ret = toJString(
+            t4.future_order(
+                toNativeAscii("B"),
+                toNativeAscii(branch),
+                toNativeAscii(account),
+                toNativeAscii("MTX"),
+                toNativeAscii("amount"),
+                toNativeAscii("MKT"),
+                toNativeAscii("ROD"),
+                toNativeAscii("0")
+            )
+        );
+        ret = ret.substring(120, 124);
+        if(ret.equals("00  ") || ret.equals("0000")) {
+            return true;
         }
-        return results;
+        else {
+            false;
+        }
+    }
+
+    public static boolean cancelFutureTicket(String orderSequence, String orderNum) {
+        String ret = toJString(
+            t4.future_cancel(
+                toNativeAscii(branch),
+                toNativeAscii(account),
+                toNativeAscii("MTXFL5"),
+                toNativeAscii(orderSequence),
+                toNativeAscii(orderNum),
+                toNativeAscii(" "),
+                toNativeAscii("N")
+            )
+        );
+        ret = ret.substring(120, 124);
+        if(ret.equals("00  ") || ret.equals("0000")) {
+            return true;
+        }
+        else {
+            false;
+        }
+    }
+
+    public static boolean changeFutureTicketPrice(String orderSequence, String orderNum, String newPrice) {
+        String ret = toJString(
+            t4.future_change(
+                toNativeAscii(orderSequence),
+                toNativeAscii(orderNum),
+                toNativeAscii(branch),
+                toNativeAscii(account),
+                toNativeAscii("MTXFL5"),
+                toNativeAscii(newPrice),
+                toNativeAscii("N")
+            )
+        );
+        ret = ret.substring(120, 124);
+        if(ret.equals("00  ") || ret.equals("0000")) {
+            return true;
+        }
+        else {
+            false;
+        }
+    }
+
+
+    public static String offsetMTXFuture(String price, String amount) {
+        return toJString(
+            t4.future_order(
+                toNativeAscii("S"),
+                toNativeAscii(branch),
+                toNativeAscii(account),
+                toNativeAscii("MTX"),
+                toNativeAscii("amount"),
+                toNativeAscii("MKT"),
+                toNativeAscii("ROD"),
+                toNativeAscii("1")
+            )
+        );
     }
 
     public static void main(String[] args) throws Exception {
