@@ -106,7 +106,7 @@ class BBandBuilder {
         else {
             BBandUnit lastBBandUnit= ring.getTail();
             ring.add(d);
-            if(lastBBandUnit== null) {
+            if(lastBBandUnit == null) {
                 // the queue is not full yet
                 return;
             }
@@ -121,6 +121,17 @@ class BBandBuilder {
 
     public Vector<BBandUnit> getBBandSequence() {
         return bbandSquence;
+    }
+
+    public String toRingString() {
+        String ret = "# Output=[dateStart dateEnd start high low end upperBound lowerBound outOfBound]\n";
+        for(BBandUnit d : ring) {
+            int bound = d.isOutOfBound();
+            ret += d.toString() + " " + bound + "\n";
+            // ret += formatter.format(d.dateStart) + " " + formatter.format(d.dateEnd)
+            // + " " + d.start + " " + d.end + " " + d.upperBound + " " + d.MA + " " + d.lowerBound + "\n";
+        }
+        return ret;
     }
 
     public String toString() {

@@ -55,7 +55,7 @@ public class Oracle {
                 }
                 bbandBuilder.parseOneK(kbarResultStr);
 
-                System.out.println(bbandBuilder);
+                System.out.println(bbandBuilder.toRingString());
                 BBandUnit lastBBandUnit = bbandBuilder.getLastBBandUnit();
                 if(lastBBandUnit != null && lastBBandUnit.getBoundSize() >= minimalBoundSize) {
                     int prediction = -1 * lastBBandUnit.isOutOfBound();
