@@ -41,20 +41,7 @@ public class ConfigurableParameters {
             System.out.println("Configuration loaded successfully.");
         }
         catch (IOException e) {
-            System.err.println("I cannot find the configuration file. I'll use default values instead.");
-            BBAND_THRESHOLD = 3;
-            KBAR_LENGTH = 1*60*1000;
-            LOST_TOLERANCE = 10;
-            TRANS_LIFECYCLE = 3*60*1000;
-            BBAND_BOUND_SIZE = 8;
-            TAX_FEE = 66;
-            NTD_PER_POINT = 50;
-            MAX_B2B_WRONG_PREDICTION = 2;
-            MAX_CONCURRENT_TRANSACTION = 4;
-            NUM_TRY_TO_ORDER = 5;
-            if(COMMODITY == null) {
-                throw new RuntimeException("No commodity name given...");
-            }
+            throw new RuntimeException("I cannot find the configuration file. ");
         }
     }
 }
