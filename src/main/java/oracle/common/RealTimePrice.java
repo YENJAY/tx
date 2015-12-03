@@ -9,7 +9,7 @@ public class RealTimePrice {
     private static String capitalTX = "https://www.capitalfutures.com.tw/quotations/default.asp?xy=1&xt=1&StockCode=TX00";
     private static Pattern p = Pattern.compile("([0-9]+\\.[0-9]*)");
 
-    public static PriceStruct getMTXPrice() {
+    public static double getMTXPrice() {
         try {
             URLConnection connection = new URL(capitalMTX).openConnection();
             connection.setRequestProperty("Accept-Charset", "Big5");
@@ -19,23 +19,20 @@ public class RealTimePrice {
             while( (line=response.readLine()) != null) {
                 content += line;
             }
-            int start = content.indexOf("買　進");
-            int end = content.indexOf("賣　出");
-            String subcontent = content.substring(start, end+100);
+            int start = content.indexOf("成交價");
+            String subcontent = content.substring(start, start+150);
             Matcher m = p.matcher(subcontent);
             String ret = "";
             if(m.find()) {
-                double buy = Double.parseDouble(m.group(0));
-                double sell = Double.parseDouble(m.group(1));
-    			return new PriceStruct(buy, sell);
-    		}
+                return Double.parseDouble(m.group(0));
+            }
             else {
-                return null;
+                return -1;
             }
         }
         catch(IOException e) {
             System.out.println("Failed to get prices from capital website.");
-            return null;
+            return -1;
         }
     }
 

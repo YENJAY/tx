@@ -166,6 +166,31 @@ public class Oracle {
         // System.out.println(bbandBuilder);
     }
 
+    public void onlineTest() {
+        while(true) {
+            double price = RealTimePrice.getMTXPrice();
+            if(price != -1) {
+                String timeStamp = new SimpleDateFormat("yyyyMMdd HHmmss").format(Calendar.getInstance().getTime());
+                String line = timeStamp + " " + price;
+                String[] input = line.split("\\s");
+                if(input.length != 3) {
+                    for(String s : input) {
+                        System.out.println(s);
+                    }
+                    throw new RuntimeException("Error input for building K bar...");
+                }
+                streamingInput(input[1], input[2]);
+                decide(input[1], input[2]);
+            }
+            try {
+                Thread.sleep(1000);
+            }
+            catch(InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
     public String toString() {
         String ret = "# Transactions:\n";
         for(Transaction trans : allTransactions) {
@@ -260,8 +285,7 @@ public class Oracle {
         ChartUtilities.saveChartAsJPEG(outFile, 1.0f, chart, width, height);
     }
 
-
-    public static void main(String... args) {
+    private void fileTest(String... args) {
         if(args.length == 0) {
             System.out.println("append the input file after the command, please.");
         }
@@ -311,5 +335,10 @@ public class Oracle {
             }
 
         }
+    }
+
+    public static void main(String... args) {
+        Oracle oracle = new Oracle();
+        oracle.onlineTest();
     }
 }
