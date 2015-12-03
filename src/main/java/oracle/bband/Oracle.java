@@ -175,39 +175,60 @@ public class Oracle {
 
     public void onlineTest() {
         long timeShifting = 0;
-        while(true) {
-            long t1 = System.currentTimeMillis();
-            double price = -1;
-            if(ConfigurableParameters.COMMODITY.contains("MTX")) {
-                price = RealTimePrice.getMTXPrice();
-            }
-            else if(ConfigurableParameters.COMMODITY.contains("TX")) {
-                price = RealTimePrice.getTXPrice();
-            }
-            timeShifting = System.currentTimeMillis() - t1;
+        Date deadline = null;
+        Date today = new Date();
+        SimpleDateFormat yyyyMMdd = new SimpleDateFormat("yyyyMMdd");
+        SimpleDateFormat yyyyMMddHHmmss = new SimpleDateFormat("yyyyMMddHHmmss");
+        try {
+            String datePrefix = yyyyMMdd.format(today);
+            deadline = yyyyMMddHHmmss.parse(datePrefix + ConfigurableParameters.TRANSACTION_DEADLINE);
+            System.out.println("Deadline of Transaction: " + deadline);
+        }
+        catch(ParseException e) {
+            e.printStackTrace();
+        }
+        try {
+            while(true) {
+                long t1 = System.currentTimeMillis();
+                double price = -1;
+                if(ConfigurableParameters.COMMODITY.contains("MTX")) {
+                    price = RealTimePrice.getMTXPrice();
+                }
+                else if(ConfigurableParameters.COMMODITY.contains("TX")) {
+                    price = RealTimePrice.getTXPrice();
+                }
+                timeShifting = System.currentTimeMillis() - t1;
 
-            if(price != -1) {
-                String timeStamp = new SimpleDateFormat("yyyyMMdd HHmmss").format(Calendar.getInstance().getTime());
-                String line = timeStamp + " " + price;
-                System.out.println("# " + line);
-                String[] input = line.split("\\s");
-                if(input.length != 3) {
-                    for(String s : input) {
-                        System.out.println(s);
+                if(price != -1) {
+                    String timeStamp = new SimpleDateFormat("yyyyMMdd HHmmss").format(Calendar.getInstance().getTime());
+                    String line = timeStamp + " " + price;
+                    System.out.println("# " + line);
+                    String[] input = line.split("\\s");
+                    if(input.length != 3) {
+                        for(String s : input) {
+                            System.out.println(s);
+                        }
+                        throw new RuntimeException("Error input for building K bar...");
                     }
-                    throw new RuntimeException("Error input for building K bar...");
+                    streamingInput(input[1], input[2]);
+                    decideOffsetting(input[1], input[2]);
                 }
-                streamingInput(input[1], input[2]);
-                decideOffsetting(input[1], input[2]);
+                if(timeShifting < 1000) {
+                    try {
+                        Thread.sleep(1000 - timeShifting);
+                    }
+                    catch(InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+                Date now = new Date();
+                if(now.after(deadline)) {
+                    break;
+                }
             }
-            if(timeShifting < 1000) {
-                try {
-                    Thread.sleep(1000 - timeShifting);
-                }
-                catch(InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
+        }
+        finally {
+            saveResults();
         }
     }
 
@@ -305,57 +326,96 @@ public class Oracle {
         ChartUtilities.saveChartAsJPEG(outFile, 1.0f, chart, width, height);
     }
 
-    private void fileTest(String... args) {
-        if(args.length == 0) {
-            System.out.println("append the input file after the command, please.");
+    private void saveResults() {
+        finishRemaining();
+        System.out.println(this);
+        // for network streaming input test
+        // String line = getNetworkInput();
+        // streamingInput(line);
+        // Write out bband data points
+        Date today = new Date();
+        String filename = formatter.format(today);
+        try {
+            File outFile = new File("output/bband/" + filename);
+            PrintWriter pw = new PrintWriter(new FileWriter(outFile));
+            pw.println(bbandBuilder);
+            pw.close();
         }
-        else {
-            // for testing
-            for(String s : args) {
-                System.out.println(s);
-            }
-            Oracle oracle = new Oracle();
-            oracle.logfileTest(args[0]);
-            // System.out.println(oracle.bbandBuilder);
-            oracle.finishRemaining();
-            System.out.println(oracle);
-            // for network streaming input test
-            // String line = getNetworkInput();
-            // streamingInput(line);
-            // Write out bband data points
-            try {
-                String filename = args[0].split("/")[2];
-                File outFile = new File("output/bband/" + filename);
-                PrintWriter pw = new PrintWriter(new FileWriter(outFile));
-                pw.println(oracle.bbandBuilder);
-                pw.close();
-            }
-            catch(IOException e) {
-                e.printStackTrace();
-            }
-            // Write out transaction data points
-            try {
-                String filename = args[0].split("/")[2];
-                File outFile = new File("output/transaction/" + filename);
-                PrintWriter pw = new PrintWriter(new FileWriter(outFile));
-                pw.println(oracle);
-                pw.close();
-            }
-            catch(IOException e) {
-                e.printStackTrace();
-            }
-            // Write out graph
-            try {
-                String filename = args[0].split("/")[2].split("\\.")[0];
-                File outFile = new File("output/chart/" + filename + ".jpg");
-                oracle.saveAsJpeg(outFile);
-            }
-            catch(IOException e) {
-                e.printStackTrace();
-            }
+        catch(IOException e) {
+            e.printStackTrace();
+        }
+        // Write out transaction data points
+        try {
+            File outFile = new File("output/transaction/" + filename);
+            PrintWriter pw = new PrintWriter(new FileWriter(outFile));
+            pw.println(this);
+            pw.close();
+        }
+        catch(IOException e) {
+            e.printStackTrace();
+        }
+        // Write out graph
+        try {
+            File outFile = new File("output/chart/" + filename + ".jpg");
+            saveAsJpeg(outFile);
+        }
+        catch(IOException e) {
+            e.printStackTrace();
+        }
 
-        }
     }
+
+    // private void fileTest(String... args) {
+    //     if(args.length == 0) {
+    //         System.out.println("append the input file after the command, please.");
+    //     }
+    //     else {
+    //         // for testing
+    //         for(String s : args) {
+    //             System.out.println(s);
+    //         }
+    //
+    //         logfileTest(args[0]);
+    //         // System.out.println(bbandBuilder);
+    //         finishRemaining();
+    //         System.out.println(this);
+    //         // for network streaming input test
+    //         // String line = getNetworkInput();
+    //         // streamingInput(line);
+    //         // Write out bband data points
+    //         try {
+    //             String filename = args[0].split("/")[2];
+    //             File outFile = new File("output/bband/" + filename);
+    //             PrintWriter pw = new PrintWriter(new FileWriter(outFile));
+    //             pw.println(bbandBuilder);
+    //             pw.close();
+    //         }
+    //         catch(IOException e) {
+    //             e.printStackTrace();
+    //         }
+    //         // Write out transaction data points
+    //         try {
+    //             String filename = args[0].split("/")[2];
+    //             File outFile = new File("output/transaction/" + filename);
+    //             PrintWriter pw = new PrintWriter(new FileWriter(outFile));
+    //             pw.println(this);
+    //             pw.close();
+    //         }
+    //         catch(IOException e) {
+    //             e.printStackTrace();
+    //         }
+    //         // Write out graph
+    //         try {
+    //             String filename = args[0].split("/")[2].split("\\.")[0];
+    //             File outFile = new File("output/chart/" + filename + ".jpg");
+    //             saveAsJpeg(outFile);
+    //         }
+    //         catch(IOException e) {
+    //             e.printStackTrace();
+    //         }
+    //
+    //     }
+    // }
 
     public static void main(String... args) {
         Oracle oracle = new Oracle();
