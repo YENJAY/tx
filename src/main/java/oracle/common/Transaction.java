@@ -71,7 +71,7 @@ public class Transaction {
             }
             else {
                 try {
-                    Thread.sleep(1000); // wait for 1 sec and then try to buy ticket again
+                    Thread.sleep(500); // wait for 0.1 sec and then try to buy ticket again
                 }
                 catch(InterruptedException e) {
                     e.printStackTrace();
