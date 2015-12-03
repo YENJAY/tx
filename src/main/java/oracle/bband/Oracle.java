@@ -193,11 +193,13 @@ public class Oracle {
                 streamingInput(input[1], input[2]);
                 decideOffsetting(input[1], input[2]);
             }
-            try {
-                Thread.sleep(1000 - timeShifting);
-            }
-            catch(InterruptedException e) {
-                e.printStackTrace();
+            if(timeShifting < 1000) {
+                try {
+                    Thread.sleep(1000 - timeShifting);
+                }
+                catch(InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
