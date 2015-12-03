@@ -6,7 +6,7 @@ import oracle.common.*;
 public class BBandUnit{
     Date dateStart, dateEnd;
     public double start, high, low, end;
-    public double upperBound,  lowerBound;
+    public double upperBound = Double.MAX_VALUE,  lowerBound = Double.MIN_VALUE;
     public double MA;
     // private int prediction;
     private SimpleDateFormat formatter = new SimpleDateFormat("HHmmss");
