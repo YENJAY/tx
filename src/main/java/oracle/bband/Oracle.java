@@ -22,6 +22,7 @@ public class Oracle {
     private int minimalBoundSize = ConfigurableParameters.BBAND_BOUND_SIZE;
     private KBarBuilder kbarBuilder = new KBarBuilder(duration); // in millisecond
     private Vector<Transaction> allTransactions = new Vector<Transaction>();
+
     public void streamingInput(String time, String value) {
         // build kbar unit
         // String[] input = line.split("\\s");
@@ -56,11 +57,13 @@ public class Oracle {
                 BBandUnit lastBBandUnit= bbandBuilder.getLastBBandUnit();
                 if(lastBBandUnit != null && lastBBandUnit.getBoundSize() >= minimalBoundSize) {
                     int prediction = -1 * lastBBandUnit.isOutOfBound();
-                    // System.out.println(kbarResultStr + " :Guess=" + prediction);
                     if(prediction != 0) {
                         if(transactions.size() < ConfigurableParameters.MAX_CONCURRENT_TRANSACTION) {
+                            System.out.println(bbandBuilder);
+                            System.out.println(kbarResultStr + " :Guess=" + prediction);
                             Transaction trans = new Transaction(lastBBandUnit.end, lastBBandUnit.dateEnd, lifecycle, prediction, tolerance);
                             if(trans.order() == true) {
+                                System.out.println("New transaction: " + trans);
                                 allTransactions.add(trans);
                                 transactions.add(trans);
                             }
@@ -81,7 +84,7 @@ public class Oracle {
     private int profit0 = 0;
     private int profit1 = 0;
     private int profit2 = 0;
-    public void decide(String newestTime, String newestValueStr) {
+    public void decideOffsetting(String newestTime, String newestValueStr) {
         double newestValue = Double.parseDouble(newestValueStr);
         Date newestDate = null;
         try {
@@ -96,18 +99,21 @@ public class Oracle {
                 // Date oneMinuteLater = new Date(trans.birthday.getTime() + trans.lifecycle);
                 profit0 += trans.offset(newestValue, newestDate);
                 transToRemove.add(trans);
-                // System.out.println("Profit 0 = " + profit0);
+                System.out.println("Offseted transaction: " + trans);
+                System.out.println("Profit 0 = " + profit0);
             }
             else if( (newestValue-trans.price)*trans.prediction <= -tolerance) {
                 profit1 += trans.offset(newestValue, newestDate);
-                // System.out.println("Profit 1 = " + profit);
+                System.out.println("Offseted transaction: " + trans);
+                System.out.println("Profit 1 = " + profit1);
                 transToRemove.add(trans);
             }
             else if( bbandBuilder.getLatestTrend() * trans.prediction == -1 ) {
                 trans.b2bWrongPrediction++;
                 if(trans.b2bWrongPrediction >= ConfigurableParameters.MAX_B2B_WRONG_PREDICTION) {
                     profit2 += trans.offset(newestValue, newestDate);
-                    // System.out.println("Profit 2 = " + profit);
+                    System.out.println("Offseted transaction: " + trans);
+                    System.out.println("Profit 2 = " + profit2);
                     transToRemove.add(trans);
                     // trans.b2bWrongPrediction = 0;
                 }
@@ -119,18 +125,20 @@ public class Oracle {
             }
             // System.out.println(profit);
         }
-
         transactions.removeAll(transToRemove);
     }
 
     private int profit3 = 0;
     public void finishRemaining() {
         BBandUnit lastBBandUnit = bbandBuilder.getLastBBandUnit();
+        System.out.println("Finish remaining:");
         if(lastBBandUnit != null) {
             double newestPrice = lastBBandUnit.end;
             Date newestDate = lastBBandUnit.dateEnd;
             for(Transaction trans : transactions) {
                 profit3 += trans.offset(newestPrice, newestDate);
+                System.out.println("Offseted transaction: " + trans);
+                System.out.println("Profit 3 = " + profit3);
             }
         }
     }
@@ -155,7 +163,7 @@ public class Oracle {
                     throw new RuntimeException("Error input for building K bar...");
                 }
                 streamingInput(input[1], input[2]);
-                decide(input[1], input[2]);
+                decideOffsetting(input[1], input[2]);
                 // System.out.println(line);
             }
             reader.close();
@@ -163,15 +171,18 @@ public class Oracle {
         catch(IOException e) {
             e.printStackTrace();
         }
-        // System.out.println(bbandBuilder);
     }
 
     public void onlineTest() {
+        long timeShifting = 0;
         while(true) {
+            long t1 = System.currentTimeMillis();
             double price = RealTimePrice.getMTXPrice();
+            timeShifting = System.currentTimeMillis() - t1;
             if(price != -1) {
                 String timeStamp = new SimpleDateFormat("yyyyMMdd HHmmss").format(Calendar.getInstance().getTime());
                 String line = timeStamp + " " + price;
+                System.out.println("# " + line);
                 String[] input = line.split("\\s");
                 if(input.length != 3) {
                     for(String s : input) {
@@ -180,10 +191,10 @@ public class Oracle {
                     throw new RuntimeException("Error input for building K bar...");
                 }
                 streamingInput(input[1], input[2]);
-                decide(input[1], input[2]);
+                decideOffsetting(input[1], input[2]);
             }
             try {
-                Thread.sleep(1000);
+                Thread.sleep(1000 - timeShifting);
             }
             catch(InterruptedException e) {
                 e.printStackTrace();
