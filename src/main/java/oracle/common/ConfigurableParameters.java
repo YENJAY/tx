@@ -13,6 +13,7 @@ public class ConfigurableParameters {
     public static int MAX_B2B_WRONG_PREDICTION;
     public static int MAX_CONCURRENT_TRANSACTION;
     public static int NUM_TRY_TO_ORDER;
+    public static String COMMODITY;
     static {
         String content = "";
         try {
@@ -36,6 +37,7 @@ public class ConfigurableParameters {
             MAX_B2B_WRONG_PREDICTION = Integer.parseInt(obj.getJSONObject("configuration").getString("MAX_B2B_WRONG_PREDICTION"));
             MAX_CONCURRENT_TRANSACTION = Integer.parseInt(obj.getJSONObject("configuration").getString("MAX_CONCURRENT_TRANSACTION"));
             NUM_TRY_TO_ORDER = Integer.parseInt(obj.getJSONObject("configuration").getString("NUM_TRY_TO_ORDER"));
+            COMMODITY = obj.getJSONObject("configuration").getString("NUM_TRY_TO_ORDER");
             System.out.println("Configuration loaded successfully.");
         }
         catch (IOException e) {
@@ -50,6 +52,9 @@ public class ConfigurableParameters {
             MAX_B2B_WRONG_PREDICTION = 2;
             MAX_CONCURRENT_TRANSACTION = 4;
             NUM_TRY_TO_ORDER = 5;
+            if(COMMODITY == null) {
+                throw new RuntimeException("No commodity name given...");
+            }
         }
     }
 }

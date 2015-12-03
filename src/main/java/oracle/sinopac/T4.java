@@ -3,6 +3,7 @@ import com.sun.jna.*;
 import com.sun.jna.platform.win32.*;
 import java.io.*;
 import java.util.*;
+import oracle.common.*;
 
 public class T4 {
     // static {
@@ -137,7 +138,7 @@ public class T4 {
                 toNativeAscii(branch),
                 toNativeAscii(account),
                 toNativeAscii(price),
-                toNativeAscii("MTXFL5"),
+                toNativeAscii(ConfigurableParameters.COMMODITY),
                 toNativeAscii("amount"),
                 toNativeAscii("MKT"),
                 toNativeAscii("ROD"),
@@ -161,7 +162,7 @@ public class T4 {
             t4.future_cancel(
                 toNativeAscii(branch),
                 toNativeAscii(account),
-                toNativeAscii("MTXFL5"),
+                toNativeAscii(ConfigurableParameters.COMMODITY),
                 toNativeAscii(orderSequence),
                 toNativeAscii(orderNum),
                 toNativeAscii(" "),
@@ -184,7 +185,7 @@ public class T4 {
                 toNativeAscii(orderNum),
                 toNativeAscii(branch),
                 toNativeAscii(account),
-                toNativeAscii("MTXFL5"),
+                toNativeAscii(ConfigurableParameters.COMMODITY),
                 toNativeAscii(newPrice),
                 toNativeAscii("N")
             )
@@ -205,7 +206,7 @@ public class T4 {
                 toNativeAscii(buyOrSell),
                 toNativeAscii(branch),
                 toNativeAscii(account),
-                toNativeAscii("MTXFL5"),
+                toNativeAscii(ConfigurableParameters.COMMODITY),
                 toNativeAscii(price),
                 toNativeAscii("amount"),
                 toNativeAscii("MKT"),
