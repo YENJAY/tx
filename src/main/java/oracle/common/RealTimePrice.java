@@ -31,7 +31,6 @@ public class RealTimePrice {
             int start = content.indexOf("¦¨¥æ»ù");
             String subcontent = content.substring(start, start+150);
             Matcher m = p.matcher(subcontent);
-            String ret = "";
             if(m.find()) {
                 return Double.parseDouble(m.group(0));
             }
@@ -40,7 +39,7 @@ public class RealTimePrice {
             }
         }
         catch(IOException e) {
-            System.out.println("Failed to get prices from capital website.");
+            System.out.println("Failed to get price from capital website.");
             return -1;
         }
     }
