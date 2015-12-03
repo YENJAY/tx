@@ -1,50 +1,46 @@
 package oracle.common;
-import java.io.IOException;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.*;
-import org.apache.http.client.methods.*;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
+import java.io.*;
+import java.net.*;
+import java.util.regex.*;
 
 public class RealTimePrice {
 
     private static String capitalMTX = "https://www.capitalfutures.com.tw/quotations/default.asp?xy=1&xt=2&StockCode=MTX00";
     private static String capitalTX = "https://www.capitalfutures.com.tw/quotations/default.asp?xy=1&xt=1&StockCode=TX00";
+    private static Pattern p = Pattern.compile("([0-9]+\\.[0-9]*)");
 
-    public static String getMTXPriceToBuy() {
-        HttpClient client = new HttpClient();
-        GetMethod method = new GetMethod(capitalMTX);
-        method.getParams().setContentCharset("Big5");
-        method.getParams().setParameter(HttpMethodParams.RETRY_HANDLER, new DefaultHttpMethodRetryHandler(3, false));
+    public static PriceStruct getMTXPrice() {
         try {
-            int statusCode = client.executeMethod(method);
-            // if(statusCode != HttpStatus.SC_OK) {
-            //     System.err.println("Method failed: " + method.getStatusLine());
-            // }
-            byte[] responseBody = method.getResponseBody();
-            return new String(responseBody);
+            URLConnection connection = new URL(capitalMTX).openConnection();
+            connection.setRequestProperty("Accept-Charset", "Big5");
+            BufferedReader response = new BufferedReader(new InputStreamReader(connection.getInputStream(), "Big5"));
+            String line = "";
+            String content = "";
+            while( (line=response.readLine()) != null) {
+                content += line;
+            }
+            int start = content.indexOf("¶R¡@¶i");
+            int end = content.indexOf("½æ¡@¥X");
+            String subcontent = content.substring(start, end+100);
+            Matcher m = p.matcher(subcontent);
+            String ret = "";
+            if(m.find()) {
+                double buy = Double.parseDouble(m.group(0));
+                double sell = Double.parseDouble(m.group(1));
+    			return new PriceStruct(buy, sell);
+    		}
+            else {
+                return null;
+            }
         }
-        catch (HttpException e) {
-            System.err.println("Fatal protocol violation: " + e.getMessage());
-            e.printStackTrace();
+        catch(IOException e) {
+            System.out.println("Failed to get prices from capital website.");
+            return null;
         }
-        catch (IOException e) {
-            System.err.println("Fatal transport error: " + e.getMessage());
-            e.printStackTrace();
-        }
-        finally {
-            // Release the connection.
-            method.releaseConnection();
-        }
-        return null;
-    }
-
-    public static String getMTXPriceToSell() {
-
     }
 
     public static void main(String[] args) {
-        System.out.println(getMTXPriceToBuy());
+        System.out.println(getMTXPrice());
     }
 
 }
