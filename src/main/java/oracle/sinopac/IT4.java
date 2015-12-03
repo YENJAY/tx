@@ -20,4 +20,7 @@ public interface IT4 extends StdCallLibrary {
         Pointer ord_no, Pointer octtype, Pointer pre_order);
     public abstract Pointer future_change (Pointer org_seqno, Pointer org_ordno, Pointer branch, Pointer account,
         Pointer commodity, Pointer new_price, Pointer pre_order);
+    public abstract Pointer fo_order_qry2(Pointer branch, Pointer account, Pointer code, Pointer ord_match_flag,
+        Pointer ord_type, Pointer oct_type, Pointer daily, Pointer start_date, Pointer end_date, Pointer preorder, Pointer source);
+
 }

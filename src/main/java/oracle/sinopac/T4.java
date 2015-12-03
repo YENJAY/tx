@@ -4,6 +4,7 @@ import com.sun.jna.platform.win32.*;
 import java.io.*;
 import java.util.*;
 import oracle.common.*;
+import java.text.*;
 
 public class T4 {
     // static {
@@ -21,7 +22,8 @@ public class T4 {
     public static String id;
     public static String branch;
     public static String account;
-
+    private static SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd");
+    private static Date today = new Date();
     static {
         init_t4();
     }
@@ -131,6 +133,27 @@ public class T4 {
         );
     }
 
+    public static String queryQueuingOrder() {
+        Pointer pBranch = toNativeAscii(branch);
+        Pointer pAccount = toNativeAscii(account);
+        return toJString(
+            t4.fo_order_qry2(
+                pBranch,
+                pAccount,
+                toNativeAscii(ConfigurableParameters.COMMODITY),
+                toNativeAscii("1"),
+                toNativeAscii("1"),
+                toNativeAscii("0"),
+                toNativeAscii("0"),
+                toNativeAscii(formatter.format(today)),
+                toNativeAscii(formatter.format(today)),
+                toNativeAscii("N"),
+                toNativeAscii("2")
+            )
+        );
+    }
+
+
     public static FutureStruct makeMTXFutureTicket(String buyOrSell, String price, String amount) {
         String ret = toJString(
             t4.future_order(
@@ -145,16 +168,28 @@ public class T4 {
                 toNativeAscii("0")
             )
         );
-        ret = ret.substring(120, 124);
-        if(ret.equals("00  ") || ret.equals("0000")) {
+        String query = queryQueuingOrder();
+        if(query.equals("期間內無相關紀錄")) {
+            return null;
+        }
+        else {
             String orderNum = ret.substring(49, 55);
             String orderSequence = ret.substring(55, 61);
             FutureStruct future = new FutureStruct(orderNum, orderSequence);
             return future;
         }
-        else {
-            return null;
-        }
+        // # Solution 2
+        // Using err_code to test if the ticket is made
+        // ret = ret.substring(120, 124);
+        // if(ret.equals("00  ") || ret.equals("0000")) {
+        //     String orderNum = ret.substring(49, 55);
+        //     String orderSequence = ret.substring(55, 61);
+        //     FutureStruct future = new FutureStruct(orderNum, orderSequence);
+        //     return future;
+        // }
+        // else {
+        //     return null;
+        // }
     }
 
     public static boolean cancelFutureTicket(String orderSequence, String orderNum) {
@@ -214,13 +249,22 @@ public class T4 {
                 toNativeAscii("1")
             )
         );
-        ret = ret.substring(120, 124);
-        if(ret.equals("00  ") || ret.equals("0000")) {
+        String query = queryQueuingOrder();
+        if(query.equals("期間內無相關紀錄")) {
             return true;
         }
         else {
             return false;
         }
+        // # Solution 2
+        // Using err_code to test if the ticket is made
+        // ret = ret.substring(120, 124);
+        // if(ret.equals("00  ") || ret.equals("0000")) {
+        //     return true;
+        // }
+        // else {
+        //     return false;
+        // }
     }
 
     public static void main(String[] args) throws Exception {
@@ -232,16 +276,19 @@ public class T4 {
         // for(String s : ret3) {
         //     System.out.println(s);
         // }
-        while(true) {
-            double price = getCurrentPrice();
-            if(price == -1) {
-                System.out.println("There is no header...");
-            }
-            else {
-                System.out.println("Current price = " + price);
-            }
-            Thread.sleep(1000);
-        }
+
+        System.out.println(queryQueuingOrder());
+
+        // while(true) {
+        //     double price = getCurrentPrice();
+        //     if(price == -1) {
+        //         System.out.println("There is no header...");
+        //     }
+        //     else {
+        //         System.out.println("Current price = " + price);
+        //     }
+        //     Thread.sleep(1000);
+        // }
 
     }
 }
