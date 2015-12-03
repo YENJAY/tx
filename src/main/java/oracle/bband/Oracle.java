@@ -1,6 +1,7 @@
 package oracle.bband;
 import java.text.*;
 import oracle.common.*;
+import oracle.sinopac.*;
 import java.util.*;
 import java.io.*;
 import org.jfree.ui.*;
@@ -54,12 +55,12 @@ public class Oracle {
                 }
                 bbandBuilder.parseOneK(kbarResultStr);
 
-                BBandUnit lastBBandUnit= bbandBuilder.getLastBBandUnit();
+                System.out.println(bbandBuilder);
+                BBandUnit lastBBandUnit = bbandBuilder.getLastBBandUnit();
                 if(lastBBandUnit != null && lastBBandUnit.getBoundSize() >= minimalBoundSize) {
                     int prediction = -1 * lastBBandUnit.isOutOfBound();
                     if(prediction != 0) {
                         if(transactions.size() < ConfigurableParameters.MAX_CONCURRENT_TRANSACTION) {
-                            System.out.println(bbandBuilder);
                             System.out.println(kbarResultStr + " :Guess=" + prediction);
                             Transaction trans = new Transaction(lastBBandUnit.end, lastBBandUnit.dateEnd, lifecycle, prediction, tolerance);
                             if(trans.order() == true) {
@@ -419,6 +420,10 @@ public class Oracle {
 
     public static void main(String... args) {
         Oracle oracle = new Oracle();
+        String ret1 = T4.addAccCA();
+        String ret2 = T4.verifyCAPass();
+        System.out.println(ret1);
+        System.out.println(ret2);
         oracle.onlineTest();
     }
 }
