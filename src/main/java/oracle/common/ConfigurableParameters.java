@@ -37,7 +37,7 @@ public class ConfigurableParameters {
             MAX_B2B_WRONG_PREDICTION = Integer.parseInt(obj.getJSONObject("configuration").getString("MAX_B2B_WRONG_PREDICTION"));
             MAX_CONCURRENT_TRANSACTION = Integer.parseInt(obj.getJSONObject("configuration").getString("MAX_CONCURRENT_TRANSACTION"));
             NUM_TRY_TO_ORDER = Integer.parseInt(obj.getJSONObject("configuration").getString("NUM_TRY_TO_ORDER"));
-            COMMODITY = obj.getJSONObject("configuration").getString("NUM_TRY_TO_ORDER");
+            COMMODITY = obj.getJSONObject("configuration").getString("COMMODITY");
             System.out.println("Configuration loaded successfully.");
         }
         catch (IOException e) {

@@ -177,8 +177,15 @@ public class Oracle {
         long timeShifting = 0;
         while(true) {
             long t1 = System.currentTimeMillis();
-            double price = RealTimePrice.getMTXPrice();
+            double price = -1;
+            if(ConfigurableParameters.COMMODITY.contains("MTX")) {
+                price = RealTimePrice.getMTXPrice();
+            }
+            else if(ConfigurableParameters.COMMODITY.contains("TX")) {
+                price = RealTimePrice.getTXPrice();
+            }
             timeShifting = System.currentTimeMillis() - t1;
+
             if(price != -1) {
                 String timeStamp = new SimpleDateFormat("yyyyMMdd HHmmss").format(Calendar.getInstance().getTime());
                 String line = timeStamp + " " + price;

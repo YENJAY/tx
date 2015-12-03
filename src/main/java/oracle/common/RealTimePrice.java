@@ -10,8 +10,17 @@ public class RealTimePrice {
     private static Pattern p = Pattern.compile("([0-9]+\\.[0-9]*)");
 
     public static double getMTXPrice() {
+        return getPrice(capitalMTX);
+    }
+
+    public static double getTXPrice() {
+        return getPrice(capitalTX);
+    }
+
+
+    private static double getPrice(String url) {
         try {
-            URLConnection connection = new URL(capitalMTX).openConnection();
+            URLConnection connection = new URL(url).openConnection();
             connection.setRequestProperty("Accept-Charset", "Big5");
             BufferedReader response = new BufferedReader(new InputStreamReader(connection.getInputStream(), "Big5"));
             String line = "";
