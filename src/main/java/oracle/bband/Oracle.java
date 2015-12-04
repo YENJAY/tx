@@ -85,11 +85,11 @@ public class Oracle {
             }
             System.out.println(pBB);
             int prediction = 0;
-            if(pBB > 90) {
-                prediction = 1;
-            }
-            else if(pBB < 10) {
+            if(pBB > ConfigurableParameters.PERCENT_BB_UPPER) {
                 prediction = -1;
+            }
+            else if(pBB < ConfigurableParameters.PERCENT_BB_LOWER) {
+                prediction = 1;
             }
             return prediction;
         }
@@ -332,15 +332,14 @@ public class Oracle {
                 e.printStackTrace();
             }
             // Write out graph
-            try {
-                String filename = args[0].split("/")[2].split("\\.")[0];
-                File outFile = new File("output/chart/" + filename + ".jpg");
-                oracle.saveAsJpeg(outFile);
-            }
-            catch(IOException e) {
-                e.printStackTrace();
-            }
-
+            // try {
+            //     String filename = args[0].split("/")[2].split("\\.")[0];
+            //     File outFile = new File("output/chart/" + filename + ".jpg");
+            //     oracle.saveAsJpeg(outFile);
+            // }
+            // catch(IOException e) {
+            //     e.printStackTrace();
+            // }
         }
     }
 }
