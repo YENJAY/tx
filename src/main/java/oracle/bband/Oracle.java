@@ -192,7 +192,7 @@ public class Oracle {
             while(true) {
                 long t1 = System.currentTimeMillis();
                 double price = -1;
-                if(ConfigurableParameters.COMMODITY.contains("MTX")) {
+                if(ConfigurableParameters.COMMODITY.contains("MX")) {
                     price = RealTimePrice.getMTXPrice();
                 }
                 else if(ConfigurableParameters.COMMODITY.contains("TX")) {

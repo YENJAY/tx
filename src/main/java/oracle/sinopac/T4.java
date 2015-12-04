@@ -153,45 +153,6 @@ public class T4 {
         );
     }
 
-
-    public static FutureStruct makeMTXFutureTicket(String buyOrSell, String price, String amount) {
-        String ret = toJString(
-            t4.future_order(
-                toNativeAscii(buyOrSell),
-                toNativeAscii(branch),
-                toNativeAscii(account),
-                toNativeAscii(price),
-                toNativeAscii(ConfigurableParameters.COMMODITY),
-                toNativeAscii("amount"),
-                toNativeAscii("MKT"),
-                toNativeAscii("ROD"),
-                toNativeAscii("0")
-            )
-        );
-        String query = queryQueuingOrder();
-        if(query.equals("期間內無相關紀錄")) {
-            return null;
-        }
-        else {
-            String orderNum = ret.substring(49, 55);
-            String orderSequence = ret.substring(55, 61);
-            FutureStruct future = new FutureStruct(orderNum, orderSequence);
-            return future;
-        }
-        // # Solution 2
-        // Using err_code to test if the ticket is made
-        // ret = ret.substring(120, 124);
-        // if(ret.equals("00  ") || ret.equals("0000")) {
-        //     String orderNum = ret.substring(49, 55);
-        //     String orderSequence = ret.substring(55, 61);
-        //     FutureStruct future = new FutureStruct(orderNum, orderSequence);
-        //     return future;
-        // }
-        // else {
-        //     return null;
-        // }
-    }
-
     public static boolean cancelFutureTicket(String orderSequence, String orderNum) {
         String ret = toJString(
             t4.future_cancel(
@@ -234,6 +195,47 @@ public class T4 {
         }
     }
 
+    public static FutureStruct makeMTXFutureTicket(String buyOrSell, String price, String amount) {
+        String ret = toJString(
+            t4.future_order(
+                toNativeAscii(buyOrSell),
+                toNativeAscii(branch),
+                toNativeAscii(account),
+                toNativeAscii(ConfigurableParameters.COMMODITY),
+                toNativeAscii("00" + price),
+                toNativeAscii("001"),
+                toNativeAscii("LMT"),
+                toNativeAscii("IOC"),
+                toNativeAscii("0")
+            )
+        );
+        System.out.println(ret);
+        if(ret.contains(ConfigurableParameters.COMMODITY)) {
+            // String orderNum = ret.substring(49, 55);
+            // String orderSequence = ret.substring(55, 61);
+            String orderNum = "";
+            String orderSequence = "";
+            FutureStruct future = new FutureStruct(orderNum, orderSequence);
+            return future;
+        }
+        else {
+            return null;
+        }
+
+        // # Solution 2
+        // Using err_code to test if the ticket is made
+        // ret = ret.substring(120, 124);
+        // if(ret.equals("00  ") || ret.equals("0000")) {
+        //     String orderNum = ret.substring(49, 55);
+        //     String orderSequence = ret.substring(55, 61);
+        //     FutureStruct future = new FutureStruct(orderNum, orderSequence);
+        //     return future;
+        // }
+        // else {
+        //     return null;
+        // }
+    }
+
 
     public static boolean makeOffsetMTXFutureTicket(String buyOrSell, String price, String amount) {
         String ret = toJString(
@@ -242,15 +244,15 @@ public class T4 {
                 toNativeAscii(branch),
                 toNativeAscii(account),
                 toNativeAscii(ConfigurableParameters.COMMODITY),
-                toNativeAscii(price),
-                toNativeAscii("amount"),
-                toNativeAscii("MKT"),
-                toNativeAscii("ROD"),
+                toNativeAscii("00" + price),
+                toNativeAscii("001"),
+                toNativeAscii("LMT"),
+                toNativeAscii("IOC"),
                 toNativeAscii("1")
             )
         );
-        String query = queryQueuingOrder();
-        if(query.equals("期間內無相關紀錄")) {
+        System.out.println(ret);
+        if(ret.indexOf("成功") != -1) {
             return true;
         }
         else {
@@ -276,8 +278,11 @@ public class T4 {
         // for(String s : ret3) {
         //     System.out.println(s);
         // }
-
+        makeMTXFutureTicket("B", "7000", "001");
         System.out.println(queryQueuingOrder());
+
+        // FutureStruct f = makeMTXFutureTicket(String buyOrSell, String , String "1")
+        // System.out.println(f);
 
         // while(true) {
         //     double price = getCurrentPrice();
