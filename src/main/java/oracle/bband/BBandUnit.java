@@ -42,6 +42,13 @@ public class BBandUnit{
         }
     }
 
+    public int getPercentBB() {
+        if( lowerBound == Double.MIN_VALUE || upperBound == Double.MAX_VALUE ) {
+            return Integer.MAX_VALUE;
+        }
+        return (int) (100 * (end - lowerBound) / (upperBound - lowerBound));
+    }
+
     // public void setPrediction(int i) {
     //     prediction = i;
     // }
