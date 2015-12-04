@@ -83,12 +83,11 @@ public class Oracle {
             if(pBB == Integer.MAX_VALUE) {
                 return 0;
             }
-            System.out.println(pBB);
             int prediction = 0;
-            if(pBB > ConfigurableParameters.PERCENT_BB_UPPER) {
+            if(pBB < ConfigurableParameters.PERCENT_BB_UPPER) {
                 prediction = -1;
             }
-            else if(pBB < ConfigurableParameters.PERCENT_BB_LOWER) {
+            else if(pBB > ConfigurableParameters.PERCENT_BB_LOWER) {
                 prediction = 1;
             }
             return prediction;

@@ -2,13 +2,13 @@
    "configuration": {
          "BBAND_THRESHOLD": "3",
          "KBAR_LENGTH": "60000",
-         "LOST_TOLERANCE": "10",
-         "TRANS_LIFECYCLE": "60000",
-         "BBAND_BOUND_SIZE": "10",
+         "LOST_TOLERANCE": "30",
+         "TRANS_LIFECYCLE": "180000",
+         "BBAND_BOUND_SIZE": "30",
          "TAX_FEE": "66",
          "NTD_PER_POINT": "50",
-         "PERCENT_BB_UPPER": "110",
-         "PERCENT_BB_LOWER": "-10",
+         "PERCENT_BB_UPPER": "90",
+         "PERCENT_BB_LOWER": "10",
          "MAX_CONCURRENT_TRANSACTION": "1",
          "MAX_B2B_WRONG_PREDICTION": "2"
     }
