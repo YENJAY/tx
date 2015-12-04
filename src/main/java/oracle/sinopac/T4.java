@@ -202,8 +202,8 @@ public class T4 {
                 toNativeAscii(branch),
                 toNativeAscii(account),
                 toNativeAscii(ConfigurableParameters.COMMODITY),
-                toNativeAscii(String.format("000000", price)),
-                toNativeAscii(String.format("000", amount)),
+                toNativeAscii(String.format("%06d", price)),
+                toNativeAscii(String.format("%03d", amount)),
                 toNativeAscii("LMT"),
                 toNativeAscii("IOC"),
                 toNativeAscii("0")
@@ -244,8 +244,8 @@ public class T4 {
                 toNativeAscii(branch),
                 toNativeAscii(account),
                 toNativeAscii(ConfigurableParameters.COMMODITY),
-                toNativeAscii(String.format("000000", price)),
-                toNativeAscii(String.format("000", amount)),
+                toNativeAscii(String.format("%06d", price)),
+                toNativeAscii(String.format("%03d", amount)),
                 toNativeAscii("LMT"),
                 toNativeAscii("IOC"),
                 toNativeAscii("1")
@@ -281,7 +281,7 @@ public class T4 {
         // makeMTXFutureTicket("B", "7000", "001");
         // System.out.println(queryQueuingOrder());
         System.out.println(ret3);
-        String ret = String.format("0000", 300);
+        String ret = String.format("%04d", 300);
         System.out.println(ret);
         // FutureStruct f = makeMTXFutureTicket(String buyOrSell, String , String "1")
         // System.out.println(f);
