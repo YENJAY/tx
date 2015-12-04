@@ -29,7 +29,7 @@ public class Transaction {
     public int offset(double newestValue, Date dateOffset) {
         this.dateOffset = dateOffset;
         this.offsetValue = newestValue;
-        boolean offseted = false;
+        boolean offsetted = false;
         boolean successMadeOffsetTicket = false;
         // make offset ticket
         while(successMadeOffsetTicket != true) {
@@ -49,7 +49,7 @@ public class Transaction {
             }
         }
         while(offsetted != true) {
-            String ret = queryQueuingOrder();
+            String ret = T4.queryQueuingOrder();
             if(ret.contains("無此資料")) {
                 offsetted = true;
             }

@@ -202,8 +202,8 @@ public class T4 {
                 toNativeAscii(branch),
                 toNativeAscii(account),
                 toNativeAscii(ConfigurableParameters.COMMODITY),
-                toNativeAscii("00" + price),
-                toNativeAscii("001"),
+                toNativeAscii(String.format("000000", price)),
+                toNativeAscii(String.format("000", amount)),
                 toNativeAscii("LMT"),
                 toNativeAscii("IOC"),
                 toNativeAscii("0")
@@ -244,8 +244,8 @@ public class T4 {
                 toNativeAscii(branch),
                 toNativeAscii(account),
                 toNativeAscii(ConfigurableParameters.COMMODITY),
-                toNativeAscii("00" + price),
-                toNativeAscii("001"),
+                toNativeAscii(String.format("000000", price)),
+                toNativeAscii(String.format("000", amount)),
                 toNativeAscii("LMT"),
                 toNativeAscii("IOC"),
                 toNativeAscii("1")
@@ -272,15 +272,17 @@ public class T4 {
     public static void main(String[] args) throws Exception {
         String ret1 = addAccCA();
         String ret2 = verifyCAPass();
-        // Vector<String> ret3 = queryUnsettled();
+        String ret3 = queryUnsettled();
         // System.out.println(ret1);
         // System.out.println(ret2);
         // for(String s : ret3) {
         //     System.out.println(s);
         // }
-        makeMTXFutureTicket("B", "7000", "001");
-        System.out.println(queryQueuingOrder());
-
+        // makeMTXFutureTicket("B", "7000", "001");
+        // System.out.println(queryQueuingOrder());
+        System.out.println(ret3);
+        String ret = String.format("0000", 300);
+        System.out.println(ret);
         // FutureStruct f = makeMTXFutureTicket(String buyOrSell, String , String "1")
         // System.out.println(f);
 
