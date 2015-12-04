@@ -138,7 +138,7 @@ public class Oracle {
             Date newestDate = lastBBandUnit.dateEnd;
             for(Transaction trans : transactions) {
                 profit3 += trans.offset(newestPrice, newestDate);
-                System.out.println("Offseted transaction: " + trans);
+                System.out.println("Offsetted transaction: " + trans);
                 System.out.println("Profit 3 = " + profit3);
             }
         }

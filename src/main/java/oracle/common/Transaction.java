@@ -48,11 +48,13 @@ public class Transaction {
                 }
             }
         }
-        // TODO
-        // check if offset succeed
-        while(offseted != true) {
-
+        while(offsetted != true) {
+            String ret = queryQueuingOrder();
+            if(ret.contains("無此資料")) {
+                offsetted = true;
+            }
         }
+        // TODO: Need to check the result of offsetting price rather than using newestValue
         earning = ((int)((newestValue-price)*prediction))*ntdPerPoint - taxfee;
         return earning;
     }
