@@ -269,6 +269,10 @@ public class Oracle {
         for(BBandUnit bbandUnit : bbandBuilder.getBBandSequence()) {
             double upper = bbandUnit.upperBound;
             double lower = bbandUnit.lowerBound;
+            if(upper == Double.MAX_VALUE || lower == Double.MIN_VALUE) {
+                // initializing part
+                continue;
+            }
             long t1 = (bbandUnit.dateStart.getTime() - initTime)/1000;
             long t2 = (bbandUnit.dateEnd.getTime() - initTime)/1000;
 
