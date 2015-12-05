@@ -55,7 +55,7 @@ public class Oracle {
 
                 // System.out.println(kbarResultStr + " :Guess=" + prediction);
                 // int prediction = outOfBoundStrategy();
-                int prediction = RSVStrategy();
+                int prediction = percentBBStrategy();
 
                 if(prediction != 0) {
                     if(transactions.size() < ConfigurableParameters.MAX_CONCURRENT_TRANSACTION) {
@@ -83,6 +83,27 @@ public class Oracle {
             prediction = -1;
         }
         return 0;
+    }
+
+    private int percentBBStrategy() {
+        if(bbandBuilder.isEmpty()) {
+            return 0;
+        }
+        else {
+            BBandUnit lastBBandUnit = bbandBuilder.getLastBBandUnit();
+            int pBB = lastBBandUnit.getPercentBB();
+            if(pBB == Integer.MAX_VALUE) {
+                return 0;
+            }
+            int prediction = 0;
+            if(pBB < ConfigurableParameters.PERCENT_BB_UPPER) {
+                prediction = -1;
+            }
+            else if(pBB > ConfigurableParameters.PERCENT_BB_LOWER) {
+                prediction = 1;
+            }
+            return prediction;
+        }
     }
 
 

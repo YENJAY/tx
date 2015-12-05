@@ -7,6 +7,8 @@
          "BBAND_BOUND_SIZE": "10",
          "TAX_FEE": "66",
          "NTD_PER_POINT": "50",
+         "PERCENT_BB_UPPER": "90",
+         "PERCENT_BB_LOWER": "10",
          "MAX_CONCURRENT_TRANSACTION": "1",
          "MAX_B2B_WRONG_PREDICTION": "2"
     }

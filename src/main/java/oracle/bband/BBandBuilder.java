@@ -51,6 +51,15 @@ class BBandBuilder {
         }
     }
 
+    public boolean isEmpty() {
+        if(ring.size() == 0) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
     public double getMA() {
         // System.out.println("Ring size = " + ring.size());
         if(ring.size() < length) {
