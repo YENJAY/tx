@@ -1,6 +1,6 @@
 #!/bin/sh
 # Example: mvn_run.sh 2015 11 20
-mkdir -p output/bband output/char output/intermediate  output/result output/transaction
+mkdir -p output/bband output/char output/intermediate  output/results output/transaction
 f=input/Daily_$1_$2_$3_C.rpt
 str=${f:6:16}
 echo $str
