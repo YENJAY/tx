@@ -1,6 +1,6 @@
 #!/bin/sh
 # Example: mvn_run.sh 2015 11 20
-mkdir -p output/bband output/char output/intermediate  output/results output/transaction
+mkdir -p output/bband output/char output/intermediate  output/results output/transaction input/
 for f in input/*
 do
     str=${f:6:16}
