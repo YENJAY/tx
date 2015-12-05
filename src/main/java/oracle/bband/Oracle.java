@@ -53,23 +53,33 @@ public class Oracle {
                 }
                 bbandBuilder.parseOneK(kbarResultStr);
 
-                BBandUnit lastBBandUnit= bbandBuilder.getLastBBandUnit();
-                if(lastBBandUnit != null && lastBBandUnit.getBoundSize() >= minimalBoundSize) {
-                    int prediction = -1 * lastBBandUnit.isOutOfBound();
-                    // System.out.println(kbarResultStr + " :Guess=" + prediction);
-                    if(prediction != 0) {
-                        if(transactions.size() < ConfigurableParameters.MAX_CONCURRENT_TRANSACTION) {
-                            Transaction trans = new Transaction(lastBBandUnit.end, lastBBandUnit.dateEnd, lifecycle, prediction, tolerance);
-                            allTransactions.add(trans);
-                            transactions.add(trans);
-                        }
-                        else {
-                            // System.out.println("# Maximum number of concurrent transactions has reached.");
-                        }
+
+                // System.out.println(kbarResultStr + " :Guess=" + prediction);
+                // int prediction = outOfBoundStrategy();
+                int prediction = outOfBoundStrategy();
+
+                if(prediction != 0) {
+                    if(transactions.size() < ConfigurableParameters.MAX_CONCURRENT_TRANSACTION) {
+                        BBandUnit lastBBandUnit = bbandBuilder.getLastBBandUnit();
+                        Transaction trans = new Transaction(lastBBandUnit.end, lastBBandUnit.dateEnd, lifecycle, prediction, tolerance);
+                        allTransactions.add(trans);
+                        transactions.add(trans);
+                    }
+                    else {
+                        // System.out.println("# Maximum number of concurrent transactions has reached.");
                     }
                 }
             }
         }
+    }
+
+    private int outOfBoundStrategy() {
+        BBandUnit lastBBandUnit = bbandBuilder.getLastBBandUnit();
+        int prediction = 0;
+        if(lastBBandUnit != null && lastBBandUnit.getBoundSize() >= minimalBoundSize) {
+            prediction = -1 * lastBBandUnit.isOutOfBound();
+        }
+        return prediction;
     }
 
 
@@ -197,6 +207,10 @@ public class Oracle {
         for(BBandUnit bbandUnit : bbandBuilder.getBBandSequence()) {
             double upper = bbandUnit.upperBound;
             double lower = bbandUnit.lowerBound;
+            if(upper == Double.MAX_VALUE || lower == Double.MIN_VALUE) {
+                // initializing part
+                continue;
+            }
             long t1 = (bbandUnit.dateStart.getTime() - initTime)/1000;
             long t2 = (bbandUnit.dateEnd.getTime() - initTime)/1000;
 
@@ -296,15 +310,14 @@ public class Oracle {
                 e.printStackTrace();
             }
             // Write out graph
-            try {
-                String filename = args[0].split("/")[2].split("\\.")[0];
-                File outFile = new File("output/chart/" + filename + ".jpg");
-                oracle.saveAsJpeg(outFile);
-            }
-            catch(IOException e) {
-                e.printStackTrace();
-            }
-
+            // try {
+            //     String filename = args[0].split("/")[2].split("\\.")[0];
+            //     File outFile = new File("output/chart/" + filename + ".jpg");
+            //     oracle.saveAsJpeg(outFile);
+            // }
+            // catch(IOException e) {
+            //     e.printStackTrace();
+            // }
         }
     }
 }
