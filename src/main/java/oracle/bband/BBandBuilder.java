@@ -3,7 +3,7 @@ import java.io.*;
 import java.util.*;
 import java.text.*;
 
-class BBandBuilder {
+public class BBandBuilder {
     private CircularFifoQueue<BBandUnit> ring;
     private int length;
     private double upperBound, lowerBound;

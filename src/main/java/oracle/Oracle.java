@@ -2,7 +2,6 @@ package oracle;
 import oracle.bband.*;
 import java.text.*;
 import oracle.common.*;
-import oracle.sinopac.*;
 import java.util.*;
 import java.io.*;
 import org.jfree.ui.*;
@@ -24,7 +23,6 @@ public class Oracle {
     private int minimalBoundSize = ConfigurableParameters.BBAND_BOUND_SIZE;
     private KBarBuilder kbarBuilder = new KBarBuilder(duration); // in millisecond
     private Vector<Transaction> allTransactions = new Vector<Transaction>();
-
     public void streamingInput(String time, String value) {
         // build kbar unit
         // String[] input = line.split("\\s");
@@ -56,37 +54,40 @@ public class Oracle {
                 }
                 bbandBuilder.parseOneK(kbarResultStr);
 
-                System.out.println(bbandBuilder.toRingString());
-                BBandUnit lastBBandUnit = bbandBuilder.getLastBBandUnit();
-                if(lastBBandUnit != null && lastBBandUnit.getBoundSize() >= minimalBoundSize) {
-                    int prediction = -1 * lastBBandUnit.isOutOfBound();
-                    if(prediction != 0) {
-                        if(transactions.size() < ConfigurableParameters.MAX_CONCURRENT_TRANSACTION) {
-                            System.out.println(kbarResultStr + " :Guess=" + prediction);
-                            Transaction trans = new Transaction(lastBBandUnit.end, lastBBandUnit.dateEnd, lifecycle, prediction, tolerance);
-                            if(trans.order() == true) {
-                                System.out.println("New transaction: " + trans);
-                                allTransactions.add(trans);
-                                transactions.add(trans);
-                            }
-                            else {
-                                // bypass this chance
-                            }
-                        }
-                        else {
-                            // System.out.println("# Maximum number of concurrent transactions has reached.");
-                        }
+
+                // System.out.println(kbarResultStr + " :Guess=" + prediction);
+                // int prediction = outOfBoundStrategy();
+                int prediction = outOfBoundStrategy();
+
+                if(prediction != 0) {
+                    if(transactions.size() < ConfigurableParameters.MAX_CONCURRENT_TRANSACTION) {
+                        BBandUnit lastBBandUnit = bbandBuilder.getLastBBandUnit();
+                        Transaction trans = new Transaction(lastBBandUnit.end, lastBBandUnit.dateEnd, lifecycle, prediction, tolerance);
+                        allTransactions.add(trans);
+                        transactions.add(trans);
+                    }
+                    else {
+                        // System.out.println("# Maximum number of concurrent transactions has reached.");
                     }
                 }
             }
         }
     }
 
+    private int outOfBoundStrategy() {
+        BBandUnit lastBBandUnit = bbandBuilder.getLastBBandUnit();
+        int prediction = 0;
+        if(lastBBandUnit != null && lastBBandUnit.getBoundSize() >= minimalBoundSize) {
+            prediction = -1 * lastBBandUnit.isOutOfBound();
+        }
+        return prediction;
+    }
+
 
     private int profit0 = 0;
     private int profit1 = 0;
     private int profit2 = 0;
-    public void decideOffsetting(String newestTime, String newestValueStr) {
+    public void decide(String newestTime, String newestValueStr) {
         double newestValue = Double.parseDouble(newestValueStr);
         Date newestDate = null;
         try {
@@ -101,21 +102,18 @@ public class Oracle {
                 // Date oneMinuteLater = new Date(trans.birthday.getTime() + trans.lifecycle);
                 profit0 += trans.offset(newestValue, newestDate);
                 transToRemove.add(trans);
-                System.out.println("Offseted transaction: " + trans);
-                System.out.println("Profit 0 = " + profit0);
+                // System.out.println("Profit 0 = " + profit0);
             }
             else if( (newestValue-trans.price)*trans.prediction <= -tolerance) {
                 profit1 += trans.offset(newestValue, newestDate);
-                System.out.println("Offseted transaction: " + trans);
-                System.out.println("Profit 1 = " + profit1);
+                // System.out.println("Profit 1 = " + profit);
                 transToRemove.add(trans);
             }
             else if( bbandBuilder.getLatestTrend() * trans.prediction == -1 ) {
                 trans.b2bWrongPrediction++;
                 if(trans.b2bWrongPrediction >= ConfigurableParameters.MAX_B2B_WRONG_PREDICTION) {
                     profit2 += trans.offset(newestValue, newestDate);
-                    System.out.println("Offseted transaction: " + trans);
-                    System.out.println("Profit 2 = " + profit2);
+                    // System.out.println("Profit 2 = " + profit);
                     transToRemove.add(trans);
                     // trans.b2bWrongPrediction = 0;
                 }
@@ -127,20 +125,18 @@ public class Oracle {
             }
             // System.out.println(profit);
         }
+
         transactions.removeAll(transToRemove);
     }
 
     private int profit3 = 0;
     public void finishRemaining() {
         BBandUnit lastBBandUnit = bbandBuilder.getLastBBandUnit();
-        System.out.println("Finish remaining:");
         if(lastBBandUnit != null) {
             double newestPrice = lastBBandUnit.end;
             Date newestDate = lastBBandUnit.dateEnd;
             for(Transaction trans : transactions) {
                 profit3 += trans.offset(newestPrice, newestDate);
-                System.out.println("Offsetted transaction: " + trans);
-                System.out.println("Profit 3 = " + profit3);
             }
         }
     }
@@ -165,7 +161,7 @@ public class Oracle {
                     throw new RuntimeException("Error input for building K bar...");
                 }
                 streamingInput(input[1], input[2]);
-                decideOffsetting(input[1], input[2]);
+                decide(input[1], input[2]);
                 // System.out.println(line);
             }
             reader.close();
@@ -173,65 +169,7 @@ public class Oracle {
         catch(IOException e) {
             e.printStackTrace();
         }
-    }
-
-    public void onlineTest() {
-        long timeShifting = 0;
-        Date deadline = null;
-        Date today = new Date();
-        SimpleDateFormat yyyyMMdd = new SimpleDateFormat("yyyyMMdd");
-        SimpleDateFormat yyyyMMddHHmmss = new SimpleDateFormat("yyyyMMddHHmmss");
-        try {
-            String datePrefix = yyyyMMdd.format(today);
-            deadline = yyyyMMddHHmmss.parse(datePrefix + ConfigurableParameters.TRANSACTION_DEADLINE);
-            System.out.println("Deadline of Transaction: " + deadline);
-        }
-        catch(ParseException e) {
-            e.printStackTrace();
-        }
-        try {
-            while(true) {
-                long t1 = System.currentTimeMillis();
-                double price = -1;
-                if(ConfigurableParameters.COMMODITY.contains("MX")) {
-                    price = RealTimePrice.getMTXPrice();
-                }
-                else if(ConfigurableParameters.COMMODITY.contains("TX")) {
-                    price = RealTimePrice.getTXPrice();
-                }
-                timeShifting = System.currentTimeMillis() - t1;
-
-                if(price != -1) {
-                    String timeStamp = new SimpleDateFormat("yyyyMMdd HHmmss").format(Calendar.getInstance().getTime());
-                    String line = timeStamp + " " + price;
-                    System.out.println("# " + line);
-                    String[] input = line.split("\\s");
-                    if(input.length != 3) {
-                        for(String s : input) {
-                            System.out.println(s);
-                        }
-                        throw new RuntimeException("Error input for building K bar...");
-                    }
-                    streamingInput(input[1], input[2]);
-                    decideOffsetting(input[1], input[2]);
-                }
-                if(timeShifting < 1000) {
-                    try {
-                        Thread.sleep(1000 - timeShifting);
-                    }
-                    catch(InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-                Date now = new Date();
-                if(now.after(deadline)) {
-                    break;
-                }
-            }
-        }
-        finally {
-            saveResults();
-        }
+        // System.out.println(bbandBuilder);
     }
 
     public String toString() {
@@ -332,103 +270,55 @@ public class Oracle {
         ChartUtilities.saveChartAsJPEG(outFile, 1.0f, chart, width, height);
     }
 
-    private void saveResults() {
-        finishRemaining();
-        System.out.println(this);
-        // for network streaming input test
-        // String line = getNetworkInput();
-        // streamingInput(line);
-        // Write out bband data points
-        Date today = new Date();
-        String filename = formatter.format(today);
-        try {
-            File outFile = new File("output/bband/" + filename);
-            PrintWriter pw = new PrintWriter(new FileWriter(outFile));
-            pw.println(bbandBuilder);
-            pw.close();
-        }
-        catch(IOException e) {
-            e.printStackTrace();
-        }
-        // Write out transaction data points
-        try {
-            File outFile = new File("output/transaction/" + filename);
-            PrintWriter pw = new PrintWriter(new FileWriter(outFile));
-            pw.println(this);
-            pw.close();
-        }
-        catch(IOException e) {
-            e.printStackTrace();
-        }
-        // Write out graph
-        try {
-            File outFile = new File("output/chart/" + filename + ".jpg");
-            saveAsJpeg(outFile);
-        }
-        catch(IOException e) {
-            e.printStackTrace();
-        }
-
-    }
-
-    // private void fileTest(String... args) {
-    //     if(args.length == 0) {
-    //         System.out.println("append the input file after the command, please.");
-    //     }
-    //     else {
-    //         // for testing
-    //         for(String s : args) {
-    //             System.out.println(s);
-    //         }
-    //
-    //         logfileTest(args[0]);
-    //         // System.out.println(bbandBuilder);
-    //         finishRemaining();
-    //         System.out.println(this);
-    //         // for network streaming input test
-    //         // String line = getNetworkInput();
-    //         // streamingInput(line);
-    //         // Write out bband data points
-    //         try {
-    //             String filename = args[0].split("/")[2];
-    //             File outFile = new File("output/bband/" + filename);
-    //             PrintWriter pw = new PrintWriter(new FileWriter(outFile));
-    //             pw.println(bbandBuilder);
-    //             pw.close();
-    //         }
-    //         catch(IOException e) {
-    //             e.printStackTrace();
-    //         }
-    //         // Write out transaction data points
-    //         try {
-    //             String filename = args[0].split("/")[2];
-    //             File outFile = new File("output/transaction/" + filename);
-    //             PrintWriter pw = new PrintWriter(new FileWriter(outFile));
-    //             pw.println(this);
-    //             pw.close();
-    //         }
-    //         catch(IOException e) {
-    //             e.printStackTrace();
-    //         }
-    //         // Write out graph
-    //         try {
-    //             String filename = args[0].split("/")[2].split("\\.")[0];
-    //             File outFile = new File("output/chart/" + filename + ".jpg");
-    //             saveAsJpeg(outFile);
-    //         }
-    //         catch(IOException e) {
-    //             e.printStackTrace();
-    //         }
-    //
-    //     }
-    // }
 
     public static void main(String... args) {
-        Oracle oracle = new Oracle();
-        String ret1 = T4.addAccCA();
-        String ret2 = T4.verifyCAPass();
-        System.out.println(ret1);
-        System.out.println(ret2);
-        oracle.onlineTest();
+        if(args.length == 0) {
+            System.out.println("append the input file after the command, please.");
+        }
+        else {
+            // for testing
+            for(String s : args) {
+                System.out.println(s);
+            }
+            Oracle oracle = new Oracle();
+            oracle.logfileTest(args[0]);
+            // System.out.println(oracle.bbandBuilder);
+            oracle.finishRemaining();
+            System.out.println(oracle);
+            // for network streaming input test
+            // String line = getNetworkInput();
+            // streamingInput(line);
+            // Write out bband data points
+            try {
+                String filename = args[0].split("/")[2];
+                File outFile = new File("output/bband/" + filename);
+                PrintWriter pw = new PrintWriter(new FileWriter(outFile));
+                pw.println(oracle.bbandBuilder);
+                pw.close();
+            }
+            catch(IOException e) {
+                e.printStackTrace();
+            }
+            // Write out transaction data points
+            try {
+                String filename = args[0].split("/")[2];
+                File outFile = new File("output/transaction/" + filename);
+                PrintWriter pw = new PrintWriter(new FileWriter(outFile));
+                pw.println(oracle);
+                pw.close();
+            }
+            catch(IOException e) {
+                e.printStackTrace();
+            }
+            // Write out graph
+            // try {
+            //     String filename = args[0].split("/")[2].split("\\.")[0];
+            //     File outFile = new File("output/chart/" + filename + ".jpg");
+            //     oracle.saveAsJpeg(outFile);
+            // }
+            // catch(IOException e) {
+            //     e.printStackTrace();
+            // }
+        }
     }
 }
