@@ -8,6 +8,8 @@ public class BBandUnit{
     public double start, high, low, end;
     public double upperBound = Double.MAX_VALUE,  lowerBound = Double.MIN_VALUE;
     public double MA;
+    public double K;
+    public double D;
     // private int prediction;
     private SimpleDateFormat formatter = new SimpleDateFormat("HHmmss");
     private double threshold = ConfigurableParameters.BBAND_THRESHOLD;

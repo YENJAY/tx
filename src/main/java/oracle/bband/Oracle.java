@@ -55,7 +55,14 @@ public class Oracle {
 
                 BBandUnit lastBBandUnit= bbandBuilder.getLastBBandUnit();
                 if(lastBBandUnit != null && lastBBandUnit.getBoundSize() >= minimalBoundSize) {
-                    int prediction = -1 * lastBBandUnit.isOutOfBound();
+                    double rsv = bbandBuilder.getRSV();
+                    int prediction = 0;
+                    if(rsv > 90) {
+                        prediction = 1;
+                    }
+                    else if(rsv < 10) {
+                        prediction = -1;
+                    }
                     // System.out.println(kbarResultStr + " :Guess=" + prediction);
                     if(prediction != 0) {
                         if(transactions.size() < ConfigurableParameters.MAX_CONCURRENT_TRANSACTION) {
@@ -296,14 +303,14 @@ public class Oracle {
                 e.printStackTrace();
             }
             // Write out graph
-            try {
-                String filename = args[0].split("/")[2].split("\\.")[0];
-                File outFile = new File("output/chart/" + filename + ".jpg");
-                oracle.saveAsJpeg(outFile);
-            }
-            catch(IOException e) {
-                e.printStackTrace();
-            }
+            // try {
+            //     String filename = args[0].split("/")[2].split("\\.")[0];
+            //     File outFile = new File("output/chart/" + filename + ".jpg");
+            //     oracle.saveAsJpeg(outFile);
+            // }
+            // catch(IOException e) {
+            //     e.printStackTrace();
+            // }
 
         }
     }

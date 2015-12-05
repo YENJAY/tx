@@ -17,6 +17,26 @@ class BBandBuilder {
         this.stdMulFactor = stdMulFactor;
     }
 
+    public double getRSV() {
+        if(ring.size() <= 9) {
+            return -1;
+        }
+        else {
+            double min = Double.MAX_VALUE;
+            double max = Double.MIN_VALUE;
+            BBandUnit last = getLastBBandUnit();
+            for(BBandUnit b : ring) {
+                if(b.end > max) {
+                    max = b.end;
+                }
+                if(b.end < min) {
+                    min = b.end;
+                }
+            }
+            return 100 * (last.end - min)/(max - min);
+        }
+    }
+
     public double getStd() {
         double MA = getMA();
         double sum = 0;
