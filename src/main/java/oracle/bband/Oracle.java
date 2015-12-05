@@ -53,30 +53,46 @@ public class Oracle {
                 }
                 bbandBuilder.parseOneK(kbarResultStr);
 
-                BBandUnit lastBBandUnit= bbandBuilder.getLastBBandUnit();
-                if(lastBBandUnit != null && lastBBandUnit.getBoundSize() >= minimalBoundSize) {
-                    double rsv = bbandBuilder.getRSV();
-                    int prediction = 0;
-                    if(rsv > 90) {
-                        prediction = 1;
+                // System.out.println(kbarResultStr + " :Guess=" + prediction);
+                // int prediction = outOfBoundStrategy();
+                int prediction = RSVStrategy();
+
+                if(prediction != 0) {
+                    if(transactions.size() < ConfigurableParameters.MAX_CONCURRENT_TRANSACTION) {
+                        BBandUnit lastBBandUnit = bbandBuilder.getLastBBandUnit();
+                        Transaction trans = new Transaction(lastBBandUnit.end, lastBBandUnit.dateEnd, lifecycle, prediction, tolerance);
+                        allTransactions.add(trans);
+                        transactions.add(trans);
                     }
-                    else if(rsv < 10) {
-                        prediction = -1;
-                    }
-                    // System.out.println(kbarResultStr + " :Guess=" + prediction);
-                    if(prediction != 0) {
-                        if(transactions.size() < ConfigurableParameters.MAX_CONCURRENT_TRANSACTION) {
-                            Transaction trans = new Transaction(lastBBandUnit.end, lastBBandUnit.dateEnd, lifecycle, prediction, tolerance);
-                            allTransactions.add(trans);
-                            transactions.add(trans);
-                        }
-                        else {
-                            // System.out.println("# Maximum number of concurrent transactions has reached.");
-                        }
+                    else {
+                        // System.out.println("# Maximum number of concurrent transactions has reached.");
                     }
                 }
             }
         }
+    }
+
+
+    private int RSVStrategy() {
+        double rsv = bbandBuilder.getRSV();
+        int prediction = 0;
+        if(rsv > 90) {
+            prediction = 1;
+        }
+        else if(rsv < 10) {
+            prediction = -1;
+        }
+        return 0;
+    }
+
+
+    private int outOfBoundStrategy() {
+        BBandUnit lastBBandUnit = bbandBuilder.getLastBBandUnit();
+        int prediction = 0;
+        if(lastBBandUnit != null && lastBBandUnit.getBoundSize() >= minimalBoundSize) {
+            prediction = -1 * lastBBandUnit.isOutOfBound();
+        }
+        return prediction;
     }
 
 
@@ -204,6 +220,10 @@ public class Oracle {
         for(BBandUnit bbandUnit : bbandBuilder.getBBandSequence()) {
             double upper = bbandUnit.upperBound;
             double lower = bbandUnit.lowerBound;
+            if(upper == Double.MAX_VALUE || lower == Double.MIN_VALUE) {
+                // initializing part
+                continue;
+            }
             long t1 = (bbandUnit.dateStart.getTime() - initTime)/1000;
             long t2 = (bbandUnit.dateEnd.getTime() - initTime)/1000;
 
@@ -311,7 +331,6 @@ public class Oracle {
             // catch(IOException e) {
             //     e.printStackTrace();
             // }
-
         }
     }
 }
