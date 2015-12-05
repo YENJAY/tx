@@ -3,10 +3,10 @@ import java.io.*;
 import java.util.*;
 import java.text.*;
 
-class BBandBuilder {
+public class BBandBuilder {
     private CircularFifoQueue<BBandUnit> ring;
     private int length;
-    private double upperBound, lowerBound;
+    public double upperBound, lowerBound;
     private double stdMulFactor;
     private Vector<BBandUnit> bbandSquence = new Vector<BBandUnit>();
     private SimpleDateFormat formatter = new SimpleDateFormat("HHmmss");
