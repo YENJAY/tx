@@ -23,6 +23,20 @@ public class Oracle {
     private int minimalBoundSize = ConfigurableParameters.BBAND_BOUND_SIZE;
     private KBarBuilder kbarBuilder = new KBarBuilder(duration); // in millisecond
     private Vector<Transaction> allTransactions = new Vector<Transaction>();
+    private java.lang.reflect.Method strategyMethod;
+    public Oracle() {
+        try {
+            strategyMethod = getClass().getDeclaredMethod(ConfigurableParameters.STRATEGY);
+            strategyMethod.setAccessible(true);
+        }
+        catch (SecurityException e) {
+            e.printStackTrace();
+        }
+        catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void streamingInput(String time, String value) {
         // build kbar unit
         // String[] input = line.split("\\s");
@@ -56,7 +70,16 @@ public class Oracle {
 
                 // System.out.println(kbarResultStr + " :Guess=" + prediction);
                 // int prediction = outOfBoundStrategy();
-                int prediction = percentBBStrategy();
+                int prediction = 0;
+                try {
+                    prediction = ((Integer) strategyMethod.invoke(this)).intValue();
+                }
+                catch(IllegalAccessException e) {
+                    e.printStackTrace();
+                }
+                catch(java.lang.reflect.InvocationTargetException e) {
+                    e.printStackTrace();
+                }
 
                 if(prediction != 0) {
                     if(transactions.size() < ConfigurableParameters.MAX_CONCURRENT_TRANSACTION) {

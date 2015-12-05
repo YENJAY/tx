@@ -14,6 +14,7 @@ public class ConfigurableParameters {
     public static int MAX_CONCURRENT_TRANSACTION;
     public static int PERCENT_BB_UPPER;
     public static int PERCENT_BB_LOWER;
+    public static String STRATEGY;
     static {
         String content = "";
         try {
@@ -38,20 +39,11 @@ public class ConfigurableParameters {
             MAX_CONCURRENT_TRANSACTION = Integer.parseInt(obj.getJSONObject("configuration").getString("MAX_CONCURRENT_TRANSACTION"));
             PERCENT_BB_UPPER = Integer.parseInt(obj.getJSONObject("configuration").getString("PERCENT_BB_UPPER"));
             PERCENT_BB_LOWER = Integer.parseInt(obj.getJSONObject("configuration").getString("PERCENT_BB_LOWER"));
-
+            STRATEGY = obj.getJSONObject("configuration").getString("STRATEGY");
             System.out.println("Configuration loaded successfully.");
         }
         catch (IOException e) {
-            System.err.println("I cannot find the configuration file. I'll use default values instead.");
-            BBAND_THRESHOLD = 3;
-            KBAR_LENGTH = 1*60*1000;
-            LOST_TOLERANCE = 10;
-            TRANS_LIFECYCLE = 3*60*1000;
-            BBAND_BOUND_SIZE = 8;
-            TAX_FEE = 66;
-            NTD_PER_POINT = 50;
-            MAX_B2B_WRONG_PREDICTION = 2;
-            MAX_CONCURRENT_TRANSACTION = 4;
+            throw new RuntimeException("I cannot find the configuration file. I'll use default values instead.");
         }
     }
 }
