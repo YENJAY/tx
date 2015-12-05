@@ -4,7 +4,7 @@ import java.util.*;
 import oracle.common.*;
 
 public class BBandUnit{
-    Date dateStart, dateEnd;
+    public Date dateStart, dateEnd;
     public double start, high, low, end;
     public double upperBound = Double.MAX_VALUE,  lowerBound = Double.MIN_VALUE;
     public double MA;
@@ -26,6 +26,13 @@ public class BBandUnit{
     public void setBounds(double upper, double lower) {
         upperBound = upper;
         lowerBound = lower;
+    }
+
+    public double getPercentBB() {
+        if( lowerBound == Double.MIN_VALUE || upperBound == Double.MAX_VALUE ) {
+            return Double.MAX_VALUE;
+        }
+        return 100 * (end - lowerBound) / (upperBound - lowerBound);
     }
 
     public void setMA(double MA) {

@@ -1,4 +1,5 @@
-package oracle.bband;
+package oracle;
+import oracle.bband.*;
 import java.text.*;
 import oracle.common.*;
 import java.util.*;
@@ -91,16 +92,16 @@ public class Oracle {
         }
         else {
             BBandUnit lastBBandUnit = bbandBuilder.getLastBBandUnit();
-            int pBB = lastBBandUnit.getPercentBB();
-            if(pBB == Integer.MAX_VALUE) {
+            double pBB = lastBBandUnit.getPercentBB();
+            if(pBB == Double.MAX_VALUE) {
                 return 0;
             }
             int prediction = 0;
-            if(pBB < ConfigurableParameters.PERCENT_BB_UPPER) {
-                prediction = -1;
-            }
-            else if(pBB > ConfigurableParameters.PERCENT_BB_LOWER) {
+            if(pBB > ConfigurableParameters.PERCENT_BB_UPPER) {
                 prediction = 1;
+            }
+            else if(pBB < ConfigurableParameters.PERCENT_BB_LOWER) {
+                prediction = -1;
             }
             return prediction;
         }

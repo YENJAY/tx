@@ -3,7 +3,7 @@ import java.io.*;
 import java.util.*;
 import java.text.*;
 
-class BBandBuilder {
+public class BBandBuilder {
     private CircularFifoQueue<BBandUnit> ring;
     private int length;
     private double upperBound, lowerBound;
@@ -52,7 +52,7 @@ class BBandBuilder {
     }
 
     public boolean isEmpty() {
-        if(ring.size() == 0) {
+        if(ring.size() == 0 || getLastBBandUnit() == null) {
             return true;
         }
         else {
