@@ -23,6 +23,7 @@ public class Oracle {
     private int minimalBoundSize = ConfigurableParameters.BBAND_BOUND_SIZE;
     private KBarBuilder kbarBuilder = new KBarBuilder(duration); // in millisecond
     private Vector<Transaction> allTransactions = new Vector<Transaction>();
+    private Date lastDate;
     public void streamingInput(String time, String value) {
         // build kbar unit
         // String[] input = line.split("\\s");
@@ -32,11 +33,31 @@ public class Oracle {
         //     }
         //     throw new RuntimeException("Error input for building K bar...");
         // }
-        boolean smallerThanMinTick = kbarBuilder.append(time, value);
-        if(smallerThanMinTick) {
-            return;
+        kbarBuilder.append(time, value);
+        KBarUnit kbarResult = null;
+        if(lastDate == null) {
+            try {
+                lastDate = formatter.parse(time);
+                return;
+            }
+            catch(ParseException e) {
+                e.printStackTrace();
+            }
         }
-        KBarUnit kbarResult = kbarBuilder.consumeAndMakeKBar();
+        else {
+            Date now = null;
+            try {
+                now = formatter.parse(time);
+            }
+            catch(ParseException e) {
+                e.printStackTrace();
+            }
+            if(now.getTime() - lastDate.getTime() >= ConfigurableParameters.MIN_TICK) {
+                kbarResult = kbarBuilder.consumeAndMakeKBar();
+                lastDate = now;
+            }
+        }
+
         if(kbarResult != null) {
             String startDateStr = formatter.format(kbarResult.startDate);
             String endDateStr = formatter.format(kbarResult.endDate);
