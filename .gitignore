@@ -1,6 +1,5 @@
 out/
 target/
-input/
 libs/Sinopac/logs/
 account.ini
 Sinopac.pfx
