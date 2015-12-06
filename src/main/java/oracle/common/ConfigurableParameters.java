@@ -13,6 +13,7 @@ public class ConfigurableParameters {
     public static int MAX_B2B_WRONG_PREDICTION;
     public static int MAX_CONCURRENT_TRANSACTION;
     public static int NUM_TRY_TO_ORDER;
+    public static int INSURANCE_FOR_SLIPPAGE;
     public static long REALTIME_PRICE_REFRESH_RATE;
     public static String TRANSACTION_DEADLINE;
     public static String COMMODITY;
@@ -39,6 +40,7 @@ public class ConfigurableParameters {
             MAX_B2B_WRONG_PREDICTION = Integer.parseInt(obj.getJSONObject("configuration").getString("MAX_B2B_WRONG_PREDICTION"));
             MAX_CONCURRENT_TRANSACTION = Integer.parseInt(obj.getJSONObject("configuration").getString("MAX_CONCURRENT_TRANSACTION"));
             NUM_TRY_TO_ORDER = Integer.parseInt(obj.getJSONObject("configuration").getString("NUM_TRY_TO_ORDER"));
+            INSURANCE_FOR_SLIPPAGE = Integer.parseInt(obj.getJSONObject("configuration").getString("INSURANCE_FOR_SLIPPAGE"));
             REALTIME_PRICE_REFRESH_RATE = Long.parseLong(obj.getJSONObject("configuration").getString("REALTIME_PRICE_REFRESH_RATE"));
             TRANSACTION_DEADLINE = obj.getJSONObject("configuration").getString("TRANSACTION_DEADLINE");
             COMMODITY = obj.getJSONObject("configuration").getString("COMMODITY");

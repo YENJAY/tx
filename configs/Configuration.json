@@ -12,6 +12,7 @@
          "NUM_TRY_TO_ORDER": "20",
          "COMMODITY": "MXFL5",
          "TRANSACTION_DEADLINE": "134000",
+         "INSURANCE_FOR_SLIPPAGE": "50",
          "REALTIME_PRICE_REFRESH_RATE": "1000"
     }
 }

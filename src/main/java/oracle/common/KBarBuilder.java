@@ -84,7 +84,7 @@ public class KBarBuilder implements IDataReceiver {
 
     // for standing for a row of processed raw data (.rpt -> .txt), like 20151109 084514 8669
     // normally programmers no need to use this inner class outside.
-    // instead, they should know touch KBarUnit.
+    // instead, they should use KBarUnit.
     private class Unit {
         public Date date;
         public double value;
