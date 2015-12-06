@@ -181,6 +181,7 @@ public class Oracle {
         Date today = new Date();
         SimpleDateFormat yyyyMMdd = new SimpleDateFormat("yyyyMMdd");
         SimpleDateFormat yyyyMMddHHmmss = new SimpleDateFormat("yyyyMMddHHmmss");
+        SimpleDateFormat timeStampForKBar = new SimpleDateFormat("yyyyMMdd HHmmss");
         try {
             String datePrefix = yyyyMMdd.format(today);
             deadline = yyyyMMddHHmmss.parse(datePrefix + ConfigurableParameters.TRANSACTION_DEADLINE);
@@ -202,7 +203,7 @@ public class Oracle {
                 timeShifting = System.currentTimeMillis() - t1;
 
                 if(price != -1) {
-                    String timeStamp = new SimpleDateFormat("yyyyMMdd HHmmss").format(Calendar.getInstance().getTime());
+                    String timeStamp = timeStampForKBar.format(Calendar.getInstance().getTime());
                     String line = timeStamp + " " + price;
                     System.out.println("# " + line);
                     String[] input = line.split("\\s");
@@ -215,9 +216,9 @@ public class Oracle {
                     streamingInput(input[1], input[2]);
                     decideOffsetting(input[1], input[2]);
                 }
-                if(timeShifting < 1000) {
+                if(timeShifting < ConfigurableParameters.REALTIME_PRICE_REFRESH_RATE) {
                     try {
-                        Thread.sleep(1000 - timeShifting);
+                        Thread.sleep(ConfigurableParameters.REALTIME_PRICE_REFRESH_RATE - timeShifting);
                     }
                     catch(InterruptedException e) {
                         e.printStackTrace();

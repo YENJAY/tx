@@ -11,6 +11,7 @@
          "MAX_B2B_WRONG_PREDICTION": "2",
          "NUM_TRY_TO_ORDER": "20",
          "COMMODITY": "MXFL5",
-         "TRANSACTION_DEADLINE": "134000"
+         "TRANSACTION_DEADLINE": "134000",
+         "REALTIME_PRICE_REFRESH_RATE": "1000"
     }
 }
