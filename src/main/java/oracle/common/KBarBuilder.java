@@ -25,20 +25,7 @@ public class KBarBuilder implements IDataReceiver {
         }
         double v = Double.parseDouble(value);
         Unit unit = new Unit(date, v);
-        if(rawSequence.size()==0) {
-            rawSequence.add(unit);
-        }
-        else {
-            Unit lastElement = rawSequence.lastElement();
-            // if(lastElement.equals(unit)) {
-            if(unit.date.getTime() - lastElement.date.getTime() < 1000) {
-                // we don't want too many data. Only >= 1 sec is required.
-                return;
-            }
-            else {
-                rawSequence.add(unit);
-            }
-        }
+        rawSequence.add(unit);
     }
 
     public KBarUnit consumeAndMakeKBar() {

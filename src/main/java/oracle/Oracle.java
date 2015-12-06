@@ -201,7 +201,10 @@ public class Oracle {
                     price = RealTimePrice.getTXPrice();
                 }
                 timeShifting = System.currentTimeMillis() - t1;
-
+                if(timeShifting > ConfigurableParameters.REALTIME_PRICE_REFRESH_RATE) {
+                    // this request may take too much time. Let's ignore it.
+                    continue;
+                }
                 if(price != -1) {
                     String timeStamp = timeStampForKBar.format(Calendar.getInstance().getTime());
                     String line = timeStamp + " " + price;
