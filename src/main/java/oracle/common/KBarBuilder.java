@@ -15,7 +15,7 @@ public class KBarBuilder implements IDataReceiver {
         historyTimeLength = length;
     }
 
-    public void append(String time, String value) {
+    public boolean append(String time, String value) {
         Date date = null;
         try {
             date = formatter.parse(time);
@@ -27,16 +27,18 @@ public class KBarBuilder implements IDataReceiver {
         Unit unit = new Unit(date, v);
         if(rawSequence.size()==0) {
             rawSequence.add(unit);
+            return true;
         }
         else {
             Unit lastElement = rawSequence.lastElement();
             // if(lastElement.equals(unit)) {
-            if(unit.date.getTime() - lastElement.date.getTime() < 1000) {
+            if(unit.date.getTime() - lastElement.date.getTime() < ConfigurableParameters.MIN_TICK) {
                 // we don't want too many data. Only >= 1 sec is required.
-                return;
+                return false;
             }
             else {
                 rawSequence.add(unit);
+                return true;
             }
         }
     }

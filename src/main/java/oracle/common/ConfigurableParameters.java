@@ -15,6 +15,7 @@ public class ConfigurableParameters {
     public static int PERCENT_BB_UPPER;
     public static int PERCENT_BB_LOWER;
     public static String STRATEGY;
+    public static long MIN_TICK;
     static {
         String content = "";
         try {
@@ -40,6 +41,7 @@ public class ConfigurableParameters {
             PERCENT_BB_UPPER = Integer.parseInt(obj.getJSONObject("configuration").getString("PERCENT_BB_UPPER"));
             PERCENT_BB_LOWER = Integer.parseInt(obj.getJSONObject("configuration").getString("PERCENT_BB_LOWER"));
             STRATEGY = obj.getJSONObject("configuration").getString("STRATEGY");
+            MIN_TICK = Integer.parseInt(obj.getJSONObject("configuration").getString("MIN_TICK"));
             System.out.println("Configuration loaded successfully.");
         }
         catch (IOException e) {

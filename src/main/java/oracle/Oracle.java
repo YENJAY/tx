@@ -46,7 +46,10 @@ public class Oracle {
         //     }
         //     throw new RuntimeException("Error input for building K bar...");
         // }
-        kbarBuilder.append(time, value);
+        boolean smallerThanMinTick = kbarBuilder.append(time, value);
+        if(smallerThanMinTick) {
+            return;
+        }
         KBarUnit kbarResult = kbarBuilder.consumeAndMakeKBar();
         if(kbarResult != null) {
             String startDateStr = formatter.format(kbarResult.startDate);

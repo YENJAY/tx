@@ -11,6 +11,7 @@
          "PERCENT_BB_LOWER": "10",
          "MAX_CONCURRENT_TRANSACTION": "1",
          "MAX_B2B_WRONG_PREDICTION": "2",
-         "STRATEGY": "percentBBStrategy"
+         "STRATEGY": "percentBBStrategy",
+         "MIN_TICK": "1000"
     }
 }
