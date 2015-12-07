@@ -70,19 +70,15 @@ public class Transaction {
             else if(prediction == 1) {
                 future = T4.makeMTXFutureTicket("B", "" + (int) price, "1");
             }
-            if(future != null) {
-                return true;
+
+            String ret = T4.queryQueuingOrder();
+            System.out.println(ret);
+            if(ret.contains("期間內無相關紀錄")) {
+                // IOC. Try again.
+                continue;
             }
             else {
-                // double confirmation before making another order
-                String ret = T4.queryQueuingOrder();
-                System.out.println(ret);
-                if(ret.contains("期間內無相關紀錄")) {
-                    continue;
-                }
-                else {
-                    return true;
-                }
+                return true;
             }
         }
     }
