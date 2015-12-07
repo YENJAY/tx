@@ -4,14 +4,14 @@
          "KBAR_LENGTH": "60000",
          "LOST_TOLERANCE": "5",
          "TRANS_LIFECYCLE": "60000",
-         "BBAND_BOUND_SIZE": "10",
+         "BBAND_BOUND_SIZE": "8",
          "TAX_FEE": "66",
          "NTD_PER_POINT": "50",
          "MAX_CONCURRENT_TRANSACTION": "1",
          "MAX_B2B_WRONG_PREDICTION": "2",
          "NUM_TRY_TO_ORDER": "50",
          "COMMODITY": "MXFL5",
-         "TRANSACTION_DEADLINE": "134000",
+         "TRANSACTION_DEADLINE": "134200",
          "INSURANCE_FOR_SLIPPAGE": "50",
          "REALTIME_PRICE_REFRESH_RATE": "1000"
     }
