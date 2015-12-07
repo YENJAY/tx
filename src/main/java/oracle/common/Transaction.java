@@ -62,6 +62,7 @@ public class Transaction {
 
     public boolean order() {
         for(int i=0; i<ConfigurableParameters.NUM_TRY_TO_ORDER; i++) {
+            System.out.println("Trial " + i + ":");
             FutureStruct future = null;
             if(prediction == -1) {
                 future = T4.makeMTXFutureTicket("S", "" + (int) price, "1");
@@ -73,21 +74,16 @@ public class Transaction {
                 return true;
             }
             else {
-                try {
-                    Thread.sleep(100); // wait for 0.5 sec and then try to buy ticket again
+                // double confirmation before making another order
+                String ret = T4.queryQueuingOrder();
+                System.out.println(ret);
+                if(ret.contains("期間內無相關紀錄")) {
+                    continue;
                 }
-                catch(InterruptedException e) {
-                    e.printStackTrace();
+                else {
+                    return true;
                 }
             }
-        }
-        String ret = T4.queryQueuingOrder();
-        System.out.println(ret);
-        if(ret.contains("期間內無相關紀錄")) {
-            return false;
-        }
-        else {
-            return true;
         }
     }
 

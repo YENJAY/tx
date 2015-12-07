@@ -210,7 +210,7 @@ public class T4 {
             )
         );
         System.out.println(ret);
-        if(ret.contains(ConfigurableParameters.COMMODITY) && ret.contains(buyOrSell+"00")) {
+        if(ret.contains(ConfigurableParameters.COMMODITY) && ret.contains(buyOrSell+"00"+price)) {
             // String orderNum = ret.substring(49, 55);
             // String orderSequence = ret.substring(55, 61);
             String orderNum = "";
@@ -252,7 +252,7 @@ public class T4 {
             )
         );
         System.out.println(ret);
-        if(ret.contains(ConfigurableParameters.COMMODITY) && ret.contains(buyOrSell+"00")) {
+        if(ret.contains(ConfigurableParameters.COMMODITY) && ret.contains(buyOrSell+"00"+price)) {
             return true;
         }
         else {
