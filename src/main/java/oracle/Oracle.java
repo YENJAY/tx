@@ -13,6 +13,7 @@ import org.jfree.data.xy.XYSeries;
 import org.jfree.chart.axis.*;
 import org.jfree.chart.plot.*;
 import java.awt.BasicStroke;
+import java.awt.Toolkit;
 
 public class Oracle {
     private SimpleDateFormat formatter = new SimpleDateFormat("HHmmss");
@@ -64,7 +65,9 @@ public class Oracle {
                         if(transactions.size() < ConfigurableParameters.MAX_CONCURRENT_TRANSACTION) {
                             System.out.println(kbarResultStr + " :Guess=" + prediction);
                             Transaction trans = new Transaction(lastBBandUnit.end, lastBBandUnit.dateEnd, lifecycle, prediction, tolerance);
+                            Toolkit.getDefaultToolkit().beep();
                             if(trans.order() == true) {
+                                Toolkit.getDefaultToolkit().beep();
                                 System.out.println("New transaction: " + trans);
                                 allTransactions.add(trans);
                                 transactions.add(trans);
@@ -103,12 +106,14 @@ public class Oracle {
                 transToRemove.add(trans);
                 System.out.println("Offseted transaction: " + trans);
                 System.out.println("Profit 0 = " + profit0);
+                Toolkit.getDefaultToolkit().beep();
             }
             else if( (newestValue-trans.price)*trans.prediction <= -tolerance) {
                 profit1 += trans.offset(newestValue, newestDate);
                 System.out.println("Offseted transaction: " + trans);
                 System.out.println("Profit 1 = " + profit1);
                 transToRemove.add(trans);
+                Toolkit.getDefaultToolkit().beep();
             }
             else if( bbandBuilder.getLatestTrend() * trans.prediction == -1 ) {
                 trans.b2bWrongPrediction++;
@@ -117,6 +122,7 @@ public class Oracle {
                     System.out.println("Offseted transaction: " + trans);
                     System.out.println("Profit 2 = " + profit2);
                     transToRemove.add(trans);
+                    Toolkit.getDefaultToolkit().beep();
                     // trans.b2bWrongPrediction = 0;
                 }
             }
@@ -134,6 +140,7 @@ public class Oracle {
     public void finishRemaining() {
         BBandUnit lastBBandUnit = bbandBuilder.getLastBBandUnit();
         System.out.println("Finish remaining:");
+        Toolkit.getDefaultToolkit().beep();
         if(lastBBandUnit != null) {
             double newestPrice = lastBBandUnit.end;
             Date newestDate = lastBBandUnit.dateEnd;

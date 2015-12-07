@@ -50,7 +50,8 @@ public class Transaction {
         }
         while(offsetted != true) {
             String ret = T4.queryQueuingOrder();
-            if(ret.contains("無此資料")) {
+            System.out.println("尚未平倉成功:\n" + this);
+            if(ret.contains("期間內無相關紀錄")) {
                 offsetted = true;
             }
         }
@@ -73,14 +74,21 @@ public class Transaction {
             }
             else {
                 try {
-                    Thread.sleep(500); // wait for 0.5 sec and then try to buy ticket again
+                    Thread.sleep(100); // wait for 0.5 sec and then try to buy ticket again
                 }
                 catch(InterruptedException e) {
                     e.printStackTrace();
                 }
             }
         }
-        return false;
+        String ret = T4.queryQueuingOrder();
+        System.out.println(ret);
+        if(ret.contains("期間內無相關紀錄")) {
+            return false;
+        }
+        else {
+            return true;
+        }
     }
 
     public String toString() {
