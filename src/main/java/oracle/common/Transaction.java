@@ -84,12 +84,15 @@ public class Transaction {
     }
 
     public String toString() {
-        if(prediction!=0) {
+        if(dateOffset == null) {
+            if(prediction!=0) {
+                return formatter.format(birthday) + " ----" + " prediction=" + prediction + " " + price + "->" + offsetValue + " earning=" + earning;
+            }
+        }
+        else if(prediction!=0) {
             return formatter.format(birthday) + " " + formatter.format(dateOffset) + " prediction=" + prediction + " " +
                 price + "->" + offsetValue + " earning=" + earning;
         }
-        else {
-            return "";
-        }
+        return "";
     }
 }
