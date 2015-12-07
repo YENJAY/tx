@@ -202,15 +202,15 @@ public class T4 {
                 toNativeAscii(branch),
                 toNativeAscii(account),
                 toNativeAscii(ConfigurableParameters.COMMODITY),
-                toNativeAscii(String.format("%06d", price)),
-                toNativeAscii(String.format("%03d", amount)),
+                toNativeAscii("00" + price),
+                toNativeAscii("00" + amount),
                 toNativeAscii("LMT"),
                 toNativeAscii("IOC"),
                 toNativeAscii("0")
             )
         );
         System.out.println(ret);
-        if(ret.contains(ConfigurableParameters.COMMODITY)) {
+        if(ret.contains(ConfigurableParameters.COMMODITY) && ret.contains(buyOrSell+"00")) {
             // String orderNum = ret.substring(49, 55);
             // String orderSequence = ret.substring(55, 61);
             String orderNum = "";
@@ -244,15 +244,15 @@ public class T4 {
                 toNativeAscii(branch),
                 toNativeAscii(account),
                 toNativeAscii(ConfigurableParameters.COMMODITY),
-                toNativeAscii(String.format("%06d", price)),
-                toNativeAscii(String.format("%03d", amount)),
+                toNativeAscii("00" + price),
+                toNativeAscii("00" + amount),
                 toNativeAscii("LMT"),
                 toNativeAscii("IOC"),
                 toNativeAscii("1")
             )
         );
         System.out.println(ret);
-        if(ret.indexOf("жие\") != -1) {
+        if(ret.contains(ConfigurableParameters.COMMODITY) && ret.contains(buyOrSell+"00")) {
             return true;
         }
         else {
@@ -278,11 +278,10 @@ public class T4 {
         // for(String s : ret3) {
         //     System.out.println(s);
         // }
-        // makeMTXFutureTicket("B", "7000", "001");
-        // System.out.println(queryQueuingOrder());
+        makeMTXFutureTicket("B", "8473", "1");
+        System.out.println(queryQueuingOrder());
         System.out.println(ret3);
-        String ret = String.format("%04d", 300);
-        System.out.println(ret);
+        makeOffsetMTXFutureTicket("S", "8473", "1");
         // FutureStruct f = makeMTXFutureTicket(String buyOrSell, String , String "1")
         // System.out.println(f);
 
