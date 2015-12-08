@@ -278,10 +278,12 @@ public class T4 {
         //     System.out.println(s);
         // }
         // makeMTXFutureTicket("B", "8473", "1");
-        makeOffsetMTXFutureTicket("S", "8390", "1");
-        System.out.println(queryQueuingOrder());
+        System.out.println("HERE");
+        makeMTXFutureTicket("S", "8300", "1");
+        // System.out.println(queryQueuingOrder());
         String ret3 = queryUnsettled();
         System.out.println(ret3);
+        System.out.println("----");
         String ret = T4.queryQueuingOrder();
         System.out.println(ret);
         // FutureStruct f = makeMTXFutureTicket(String buyOrSell, String , String "1")

@@ -75,8 +75,14 @@ public class Transaction {
 
             String ret = T4.queryUnsettled();
             System.out.println(ret);
-            if(ret.contains("期間內無相關紀錄")) {
+            if(ret.contains("委託成功") == false) {
                 // IOC. Try again.
+                try {
+                    Thread.sleep(100); // wait for 1 sec and then try to buy/sell ticket again
+                }
+                catch(InterruptedException e) {
+                    e.printStackTrace();
+                }
                 continue;
             }
             else {
