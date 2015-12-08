@@ -15,7 +15,7 @@ import java.awt.BasicStroke;
 
 public class Oracle {
     private SimpleDateFormat formatter = new SimpleDateFormat("HHmmss");
-    private BBandBuilder bbandBuilder = new BBandBuilder(22, 2);
+    private BBandBuilder bbandBuilder = new BBandBuilder(60, 2);
     private Vector<Transaction> transactions = new Vector<Transaction>();
     private int duration = ConfigurableParameters.KBAR_LENGTH;
     private int tolerance = ConfigurableParameters.LOST_TOLERANCE;
