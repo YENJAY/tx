@@ -2,9 +2,11 @@ package oracle.common;
 import java.io.*;
 import java.net.*;
 import java.util.regex.*;
+import java.util.*;
+import java.text.*;
 
 public class RealTimePrice {
-
+    private static SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd HHmmss");
     private static String capitalMTX = "https://www.capitalfutures.com.tw/quotations/default.asp?xy=1&xt=2&StockCode=MTX00";
     private static String capitalTX = "https://www.capitalfutures.com.tw/quotations/default.asp?xy=1&xt=1&StockCode=TX00";
     private static Pattern p = Pattern.compile("([0-9]+\\.[0-9]*)");
@@ -45,7 +47,26 @@ public class RealTimePrice {
     }
 
     public static void main(String[] args) {
-        System.out.println(getMTXPrice());
+        while(true) {
+            try {
+                Date now = new Date();
+                String line = formatter.format(now);
+                long t1 = System.currentTimeMillis();
+                System.out.println(line + " " + getMTXPrice());
+                long t2 = System.currentTimeMillis();
+                long diff = t2 - t1;
+                if(diff > 1000) {
+                    continue;
+                }
+                else {
+                    Thread.sleep(1000 - diff);
+                }
+            }
+            catch(InterruptedException e) {
+                // i don't care
+            }
+        }
+
     }
 
 }
