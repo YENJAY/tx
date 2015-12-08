@@ -32,27 +32,29 @@ public class Transaction {
         boolean offsetted = false;
         boolean successMadeOffsetTicket = false;
         // make offset ticket
-        while(successMadeOffsetTicket != true) {
-            if(prediction == -1) {
-                successMadeOffsetTicket = T4.makeOffsetMTXFutureTicket("B", "" + (int) (newestValue - ConfigurableParameters.INSURANCE_FOR_SLIPPAGE), "1");
-            }
-            else if(prediction == 1) {
-                successMadeOffsetTicket = T4.makeOffsetMTXFutureTicket("S", "" + (int) (newestValue + ConfigurableParameters.INSURANCE_FOR_SLIPPAGE), "1");
-            }
-            if(successMadeOffsetTicket == false) {
-                try {
-                    Thread.sleep(100); // wait for 1 sec and then try to buy/sell ticket again
-                }
-                catch(InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
         while(offsetted != true) {
-            String ret = T4.queryQueuingOrder();
+            String ret = T4.queryUnsettled();
             System.out.println("尚未平倉成功:\n" + this);
             if(ret.contains("期間內無相關紀錄")) {
                 offsetted = true;
+            }
+            else {
+                while(successMadeOffsetTicket != true) {
+                    if(prediction == -1) {
+                        successMadeOffsetTicket = T4.makeOffsetMTXFutureTicket("B", "" + (int) (newestValue - ConfigurableParameters.INSURANCE_FOR_SLIPPAGE), "1");
+                    }
+                    else if(prediction == 1) {
+                        successMadeOffsetTicket = T4.makeOffsetMTXFutureTicket("S", "" + (int) (newestValue + ConfigurableParameters.INSURANCE_FOR_SLIPPAGE), "1");
+                    }
+                    if(successMadeOffsetTicket == false) {
+                        try {
+                            Thread.sleep(100); // wait for 1 sec and then try to buy/sell ticket again
+                        }
+                        catch(InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
             }
         }
         // TODO: Need to check the result of offsetting price rather than using newestValue
@@ -71,7 +73,7 @@ public class Transaction {
                 future = T4.makeMTXFutureTicket("B", "" + (int) price, "1");
             }
 
-            String ret = T4.queryQueuingOrder();
+            String ret = T4.queryUnsettled();
             System.out.println(ret);
             if(ret.contains("期間內無相關紀錄")) {
                 // IOC. Try again.
