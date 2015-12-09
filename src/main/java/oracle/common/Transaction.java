@@ -44,7 +44,7 @@ public class Transaction {
                 }
                 ret = T4.queryUnsettled();
             }
-            if(ret.trim().equals("")) {
+            if(ret.trim().equals("") || ret.contains("期間內無相關紀錄")) {
                 offsetted = true;
             }
             else {
