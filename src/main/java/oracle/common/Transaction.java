@@ -86,7 +86,7 @@ public class Transaction {
             System.out.println(ret);
             while(ret.contains("短時間內查詢次數過多")) {
                 try {
-                    Thread.sleep(50); // wait for 1 sec and then try to buy/sell ticket again
+                    Thread.sleep(100); // wait for 1 sec and then try to buy/sell ticket again
                 }
                 catch(InterruptedException e) {
                     e.printStackTrace();
