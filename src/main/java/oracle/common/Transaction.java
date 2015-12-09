@@ -44,7 +44,7 @@ public class Transaction {
                 }
                 ret = T4.queryUnsettled();
             }
-            if(ret.contains("期間內無相關紀錄")) {
+            if(ret.trim().equals("")) {
                 offsetted = true;
             }
             else {
@@ -86,7 +86,7 @@ public class Transaction {
             System.out.println(ret);
             while(ret.contains("短時間內查詢次數過多")) {
                 try {
-                    Thread.sleep(100); // wait for 1 sec and then try to buy/sell ticket again
+                    Thread.sleep(50); // wait for 1 sec and then try to buy/sell ticket again
                 }
                 catch(InterruptedException e) {
                     e.printStackTrace();
