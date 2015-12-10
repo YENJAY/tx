@@ -282,7 +282,7 @@ public class T4 {
         //makeMTXFutureTicket("S", "8300", "1");
         // System.out.println(queryQueuingOrder());
         String ret3 = queryUnsettled();
-        // System.out.println(ret3);
+        System.out.println(">" + ret3 + "<");
         // System.out.println("----");
         // String ret = T4.queryQueuingOrder();
         // System.out.println(ret);
