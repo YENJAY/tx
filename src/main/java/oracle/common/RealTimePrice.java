@@ -31,6 +31,9 @@ public class RealTimePrice {
                 content += line;
             }
             int start = content.indexOf("¦¨¥æ»ù");
+            if(start == -1) {
+                return -1;
+            }
             String subcontent = content.substring(start, start+150);
             Matcher m = p.matcher(subcontent);
             if(m.find()) {
