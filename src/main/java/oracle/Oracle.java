@@ -15,7 +15,7 @@ import java.awt.BasicStroke;
 
 public class Oracle {
     private SimpleDateFormat formatter = new SimpleDateFormat("HHmmss");
-    private BBandBuilder bbandBuilder = new BBandBuilder(22, 2);
+    private BBandBuilder bbandBuilder = new BBandBuilder(60, 2);
     private Vector<Transaction> transactions = new Vector<Transaction>();
     private int duration = ConfigurableParameters.KBAR_LENGTH;
     private int tolerance = ConfigurableParameters.LOST_TOLERANCE;
@@ -24,20 +24,6 @@ public class Oracle {
     private KBarBuilder kbarBuilder = new KBarBuilder(duration); // in millisecond
     private Vector<Transaction> allTransactions = new Vector<Transaction>();
     private Date lastDate;
-    private java.lang.reflect.Method strategyMethod;
-    public Oracle() {
-        try {
-            strategyMethod = getClass().getDeclaredMethod(ConfigurableParameters.STRATEGY);
-            strategyMethod.setAccessible(true);
-        }
-        catch (SecurityException e) {
-            e.printStackTrace();
-        }
-        catch (NoSuchMethodException e) {
-            e.printStackTrace();
-        }
-    }
-
     public void streamingInput(String time, String value) {
         // build kbar unit
         // String[] input = line.split("\\s");
@@ -92,18 +78,10 @@ public class Oracle {
                 }
                 bbandBuilder.parseOneK(kbarResultStr);
 
+
                 // System.out.println(kbarResultStr + " :Guess=" + prediction);
                 // int prediction = outOfBoundStrategy();
-                int prediction = 0;
-                try {
-                    prediction = ((Integer) strategyMethod.invoke(this)).intValue();
-                }
-                catch(IllegalAccessException e) {
-                    e.printStackTrace();
-                }
-                catch(java.lang.reflect.InvocationTargetException e) {
-                    e.printStackTrace();
-                }
+                int prediction = outOfBoundStrategy();
 
                 if(prediction != 0) {
                     if(transactions.size() < ConfigurableParameters.MAX_CONCURRENT_TRANSACTION) {
@@ -119,41 +97,6 @@ public class Oracle {
             }
         }
     }
-
-
-    private int RSVStrategy() {
-        double rsv = bbandBuilder.getRSV();
-        int prediction = 0;
-        if(rsv > 90) {
-            prediction = 1;
-        }
-        else if(rsv < 10) {
-            prediction = -1;
-        }
-        return 0;
-    }
-
-    private int percentBBStrategy() {
-        if(bbandBuilder.isEmpty()) {
-            return 0;
-        }
-        else {
-            BBandUnit lastBBandUnit = bbandBuilder.getLastBBandUnit();
-            double pBB = lastBBandUnit.getPercentBB();
-            if(pBB == Double.MAX_VALUE) {
-                return 0;
-            }
-            int prediction = 0;
-            if(pBB > ConfigurableParameters.PERCENT_BB_UPPER) {
-                prediction = 1;
-            }
-            else if(pBB < ConfigurableParameters.PERCENT_BB_LOWER) {
-                prediction = -1;
-            }
-            return prediction;
-        }
-    }
-
 
     private int outOfBoundStrategy() {
         BBandUnit lastBBandUnit = bbandBuilder.getLastBBandUnit();
@@ -184,12 +127,12 @@ public class Oracle {
                 // Date oneMinuteLater = new Date(trans.birthday.getTime() + trans.lifecycle);
                 profit0 += trans.offset(newestValue, newestDate);
                 transToRemove.add(trans);
-                System.out.println("Offseted transaction: " + trans);
+                System.out.println("Offsetted transaction: " + trans);
                 System.out.println("Profit 0 = " + profit0);
             }
             else if( (newestValue-trans.price)*trans.prediction <= -tolerance) {
                 profit1 += trans.offset(newestValue, newestDate);
-                System.out.println("Offseted transaction: " + trans);
+                System.out.println("Offsetted transaction: " + trans);
                 System.out.println("Profit 1 = " + profit1);
                 transToRemove.add(trans);
             }
@@ -197,10 +140,9 @@ public class Oracle {
                 trans.b2bWrongPrediction++;
                 if(trans.b2bWrongPrediction >= ConfigurableParameters.MAX_B2B_WRONG_PREDICTION) {
                     profit2 += trans.offset(newestValue, newestDate);
-                    System.out.println("Offseted transaction: " + trans);
+                    System.out.println("Offsetted transaction: " + trans);
                     System.out.println("Profit 2 = " + profit2);
                     transToRemove.add(trans);
-
                     // trans.b2bWrongPrediction = 0;
                 }
             }
@@ -211,19 +153,18 @@ public class Oracle {
                 BBandUnit lastBBandUnit = bbandBuilder.getLastBBandUnit();
                 // offset if touched boundaries
                 if(trans.prediction == 1) {
-                    if(lastBBandUnit.upperBound <= newestValue) {
+                    if(newestValue >= lastBBandUnit.upperBound) {
                         profit4 += trans.offset(newestValue, newestDate);
-                        System.out.println("Offseted transaction: " + trans);
+                        System.out.println("Offsetted transaction: " + trans);
                         System.out.println("Profit 4 = " + profit4);
                         transToRemove.add(trans);
-
                     }
                 }
                 else if(trans.prediction == -1) {
-                    if(lastBBandUnit.lowerBound <= newestValue) {
+                    if(newestValue <= lastBBandUnit.lowerBound) {
                         profit4 += trans.offset(newestValue, newestDate);
-                        System.out.println("Offseted transaction: " + trans);
-                        System.out.println("Profit 4 = " + profit2);
+                        System.out.println("Offsetted transaction: " + trans);
+                        System.out.println("Profit 4 = " + profit4);
                         transToRemove.add(trans);
                     }
                 }
