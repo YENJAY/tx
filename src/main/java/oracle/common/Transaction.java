@@ -31,39 +31,41 @@ public class Transaction {
         this.offsetValue = newestValue;
         boolean offsetted = false;
         boolean successMadeOffsetTicket = false;
+        int increment = 200;
         // make offset ticket
         while(offsetted != true) {
-            String ret = T4.queryUnsettled();
-            System.out.println("﹟ゼキΘ:\n" + this);
-            while(ret.contains("祏丁ず琩高Ω计筁")) {
-                try {
-                    Thread.sleep(250); // wait for 1 sec and then try to buy/sell ticket again
+            while(successMadeOffsetTicket != true) {
+                if(prediction == -1) {
+                    successMadeOffsetTicket = T4.makeOffsetMTXFutureTicket("B", "" + (int) (newestValue - ConfigurableParameters.INSURANCE_FOR_SLIPPAGE), "1");
                 }
-                catch(InterruptedException e) {
-                    e.printStackTrace();
+                else if(prediction == 1) {
+                    successMadeOffsetTicket = T4.makeOffsetMTXFutureTicket("S", "" + (int) (newestValue + ConfigurableParameters.INSURANCE_FOR_SLIPPAGE), "1");
                 }
-                ret = T4.queryUnsettled();
-                System.out.println(">" + ret + "<");
+                if(successMadeOffsetTicket == false) {
+                    try {
+                        Thread.sleep(100); // wait for 1 sec and then try to buy/sell ticket again
+                    }
+                    catch(InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
             }
+            String ret = T4.queryUnsettled();
             if(ret.contains(ConfigurableParameters.COMMODITY) == false) {
                 offsetted = true;
             }
             else {
-                while(successMadeOffsetTicket != true) {
-                    if(prediction == -1) {
-                        successMadeOffsetTicket = T4.makeOffsetMTXFutureTicket("B", "" + (int) (newestValue - ConfigurableParameters.INSURANCE_FOR_SLIPPAGE), "1");
+                // System.out.println("﹟ゼキΘ:\n" + this);
+                if(ret.contains("祏丁ず琩高Ω计筁")) {
+                    try {
+                        Thread.sleep(1000 + increment); // wait for 1 sec and then try to buy/sell ticket again
+                        increment += 200;
+                        System.out.println("Increment = " + increment);
                     }
-                    else if(prediction == 1) {
-                        successMadeOffsetTicket = T4.makeOffsetMTXFutureTicket("S", "" + (int) (newestValue + ConfigurableParameters.INSURANCE_FOR_SLIPPAGE), "1");
+                    catch(InterruptedException e) {
+                        e.printStackTrace();
                     }
-                    if(successMadeOffsetTicket == false) {
-                        try {
-                            Thread.sleep(100); // wait for 1 sec and then try to buy/sell ticket again
-                        }
-                        catch(InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                    }
+                    System.out.println(">" + ret + "<");
                 }
             }
         }

@@ -105,13 +105,13 @@ public class Oracle {
                 // Date oneMinuteLater = new Date(trans.birthday.getTime() + trans.lifecycle);
                 profit0 += trans.offset(newestValue, newestDate);
                 transToRemove.add(trans);
-                System.out.println("Offseted transaction: " + trans);
+                System.out.println("Offsetted transaction: " + trans);
                 System.out.println("Profit 0 = " + profit0);
                 Toolkit.getDefaultToolkit().beep();
             }
             else if( (newestValue-trans.price)*trans.prediction <= -tolerance) {
                 profit1 += trans.offset(newestValue, newestDate);
-                System.out.println("Offseted transaction: " + trans);
+                System.out.println("Offsetted transaction: " + trans);
                 System.out.println("Profit 1 = " + profit1);
                 transToRemove.add(trans);
                 Toolkit.getDefaultToolkit().beep();
@@ -120,7 +120,7 @@ public class Oracle {
                 trans.b2bWrongPrediction++;
                 if(trans.b2bWrongPrediction >= ConfigurableParameters.MAX_B2B_WRONG_PREDICTION) {
                     profit2 += trans.offset(newestValue, newestDate);
-                    System.out.println("Offseted transaction: " + trans);
+                    System.out.println("Offsetted transaction: " + trans);
                     System.out.println("Profit 2 = " + profit2);
                     transToRemove.add(trans);
                     Toolkit.getDefaultToolkit().beep();
@@ -134,19 +134,19 @@ public class Oracle {
                 BBandUnit lastBBandUnit = bbandBuilder.getLastBBandUnit();
                 // offset if touched boundaries
                 if(trans.prediction == 1) {
-                    if(lastBBandUnit.upperBound <= newestValue) {
+                    if(newestValue >= lastBBandUnit.upperBound) {
                         profit4 += trans.offset(newestValue, newestDate);
-                        System.out.println("Offseted transaction: " + trans);
+                        System.out.println("Offsetted transaction: " + trans);
                         System.out.println("Profit 4 = " + profit4);
                         transToRemove.add(trans);
                         Toolkit.getDefaultToolkit().beep();
                     }
                 }
                 else if(trans.prediction == -1) {
-                    if(lastBBandUnit.lowerBound <= newestValue) {
+                    if(newestValue <= lastBBandUnit.lowerBound) {
                         profit4 += trans.offset(newestValue, newestDate);
-                        System.out.println("Offseted transaction: " + trans);
-                        System.out.println("Profit 4 = " + profit2);
+                        System.out.println("Offsetted transaction: " + trans);
+                        System.out.println("Profit 4 = " + profit4);
                         transToRemove.add(trans);
                         Toolkit.getDefaultToolkit().beep();
                     }
