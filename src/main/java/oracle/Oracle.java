@@ -89,6 +89,7 @@ public class Oracle {
     private int profit0 = 0;
     private int profit1 = 0;
     private int profit2 = 0;
+    private int profit4 = 0;
     public void decideOffsetting(String newestTime, String newestValueStr) {
         double newestValue = Double.parseDouble(newestValueStr);
         Date newestDate = null;
@@ -130,6 +131,27 @@ public class Oracle {
                 // still earning within 1 min
                 // reset wrong prediction
                 trans.b2bWrongPrediction = 0;
+                BBandUnit lastBBandUnit = bbandBuilder.getLastBBandUnit();
+                // offset if touched boundaries
+                if(trans.prediction == 1) {
+                    if(lastBBandUnit.upperBound <= newestValue) {
+                        profit4 += trans.offset(newestValue, newestDate);
+                        System.out.println("Offseted transaction: " + trans);
+                        System.out.println("Profit 4 = " + profit4);
+                        transToRemove.add(trans);
+                        Toolkit.getDefaultToolkit().beep();
+                    }
+                }
+                else if(trans.prediction == -1) {
+                    if(lastBBandUnit.lowerBound <= newestValue) {
+                        profit4 += trans.offset(newestValue, newestDate);
+                        System.out.println("Offseted transaction: " + trans);
+                        System.out.println("Profit 4 = " + profit2);
+                        transToRemove.add(trans);
+                        Toolkit.getDefaultToolkit().beep();
+                    }
+                }
+                // still earning inside bband
             }
             // System.out.println(profit);
         }
@@ -261,12 +283,14 @@ public class Oracle {
         ret += "# Profit 1: Stop losing.\n";
         ret += "# Profit 2: Reach max wrong prediction limit\n";
         ret += "# Profit 3: Remaining transactions.\n";
+        ret += "# Profit 4: Touched boundaries.\n";
         ret += "# -------------------------------------------------------\n";
         ret += "# Profit 0 = " + profit0 + "\n";
         ret += "# Profit 1 = " + profit1 + "\n";
         ret += "# Profit 2 = " + profit2 + "\n";
         ret += "# Profit 3 = " + profit3 + "\n";
-        return ret += "# Final profit = " + (profit0 + profit1 + profit2 + profit3);
+        ret += "# Profit 4 = " + profit4 + "\n";
+        return ret += "# Final profit = " + (profit0 + profit1 + profit2 + profit3 + profit4);
     }
 
     private void saveAsJpeg(File outFile) throws IOException {
