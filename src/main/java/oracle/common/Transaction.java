@@ -19,7 +19,7 @@ public class Transaction {
     private FutureStruct futureStruct;
 
     public Transaction(double price, Date birthday, long lifecycle, int prediction, double tolerance) {
-        this.price = price;
+        this.price = price + prediction * ConfigurableParameters.TICKET_SLIPPAGE;
         this.birthday = birthday;
         this.lifecycle = lifecycle;
         this.prediction = prediction;
@@ -55,8 +55,8 @@ public class Transaction {
                 offsetted = true;
             }
             else {
-                // System.out.println("﹟ゼキΘ:\n" + this);
-                if(ret.contains("祏丁ず琩高Ω计筁")) {
+                // System.out.println("﹟ゼキ?堞ē\:\n" + this);
+                if(ret.contains("祏?啥·含d高Ω计筁?h")) {
                     try {
                         Thread.sleep(1000 + increment); // wait for 1 sec and then try to buy/sell ticket again
                         increment += 200;
@@ -87,7 +87,7 @@ public class Transaction {
 
             String ret = T4.queryUnsettled();
             System.out.println(ret);
-            while(ret.contains("祏丁ず琩高Ω计筁")) {
+            while(ret.contains("祏?啥·含d高Ω计筁?h")) {
                 try {
                     Thread.sleep(2000); // wait for 1 sec and then try to buy/sell ticket again
                 }

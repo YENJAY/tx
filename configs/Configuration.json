@@ -13,6 +13,7 @@
          "COMMODITY": "MXFL5",
          "TRANSACTION_DEADLINE": "134200",
          "INSURANCE_FOR_SLIPPAGE": "50",
-         "REALTIME_PRICE_REFRESH_RATE": "1000"
+         "REALTIME_PRICE_REFRESH_RATE": "1000",
+         "TICKET_SLIPPAGE": "1"
     }
 }

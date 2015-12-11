@@ -17,6 +17,7 @@ public class ConfigurableParameters {
     public static long REALTIME_PRICE_REFRESH_RATE;
     public static String TRANSACTION_DEADLINE;
     public static String COMMODITY;
+    public static int TICKET_SLIPPAGE;
     static {
         String content = "";
         try {
@@ -44,6 +45,8 @@ public class ConfigurableParameters {
             REALTIME_PRICE_REFRESH_RATE = Long.parseLong(obj.getJSONObject("configuration").getString("REALTIME_PRICE_REFRESH_RATE"));
             TRANSACTION_DEADLINE = obj.getJSONObject("configuration").getString("TRANSACTION_DEADLINE");
             COMMODITY = obj.getJSONObject("configuration").getString("COMMODITY");
+            System.out.println("Configuration loaded successfully.");
+            TICKET_SLIPPAGE = Integer.parseInt(obj.getJSONObject("configuration").getString("TICKET_SLIPPAGE"));
             System.out.println("Configuration loaded successfully.");
         }
         catch (IOException e) {
