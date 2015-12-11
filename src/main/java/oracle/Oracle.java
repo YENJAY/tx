@@ -59,7 +59,7 @@ public class Oracle {
 
                 BBandUnit lastBBandUnit = bbandBuilder.getLastBBandUnit();
                 if(lastBBandUnit != null) {
-                    // initialized
+                    // initialized 
                     System.out.println(lastBBandUnit);
                 }
                 if(lastBBandUnit != null && lastBBandUnit.getBoundSize() >= minimalBoundSize) {

@@ -87,11 +87,9 @@ public class Transaction {
 
             String ret = T4.queryUnsettled();
             System.out.println(ret);
-            int increment = 200;
             while(ret.contains("短時間內查詢次數過多")) {
                 try {
-                    Thread.sleep(1000 + increment); // wait for 1 sec and then try to buy/sell ticket again
-                    increment += 200;
+                    Thread.sleep(2000); // wait for 1 sec and then try to buy/sell ticket again
                 }
                 catch(InterruptedException e) {
                     e.printStackTrace();
@@ -102,7 +100,6 @@ public class Transaction {
                 continue;
             }
             else {
-                System.out.print("queryUnsettled succeeded for " + (1000+increment) + " ms");
                 return true;
             }
         }
