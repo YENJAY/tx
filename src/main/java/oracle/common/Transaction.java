@@ -14,7 +14,7 @@ public class Transaction {
     public int b2bWrongPrediction;
     public int taxfee = ConfigurableParameters.TAX_FEE;
     public int ntdPerPoint = ConfigurableParameters.NTD_PER_POINT;
-    private SimpleDateFormat formatter = new SimpleDateFormat("HHmmss");
+    private SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss");
 
     public Transaction(double price, Date birthday, long lifecycle, int prediction, double tolerance) {
         this.price = price + prediction * ConfigurableParameters.TICKET_SLIPPAGE;

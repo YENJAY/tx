@@ -9,7 +9,7 @@ public class BBandBuilder {
     private double upperBound, lowerBound;
     private double stdMulFactor;
     private Vector<BBandUnit> bbandSquence = new Vector<BBandUnit>();
-    private SimpleDateFormat formatter = new SimpleDateFormat("HHmmss");
+    private SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss");
 
     public BBandBuilder(int length, int stdMulFactor) {
         ring = new CircularFifoQueue<BBandUnit>(length);

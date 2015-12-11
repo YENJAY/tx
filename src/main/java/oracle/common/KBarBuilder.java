@@ -7,7 +7,7 @@ public class KBarBuilder implements IDataReceiver {
     public double high;
     public double low;
     private Vector<Unit> rawSequence = new Vector<Unit>();
-    private SimpleDateFormat formatter = new SimpleDateFormat("HHmmss");
+    private SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss");
     private Vector<KBarUnit> kbarSequence = new Vector<KBarUnit>();
     private long historyTimeLength;
 

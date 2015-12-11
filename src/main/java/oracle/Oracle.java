@@ -14,8 +14,8 @@ import org.jfree.chart.plot.*;
 import java.awt.BasicStroke;
 
 public class Oracle {
-    private SimpleDateFormat formatter = new SimpleDateFormat("HHmmss");
-    private BBandBuilder bbandBuilder = new BBandBuilder(60, 2);
+    private SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss");
+    private BBandBuilder bbandBuilder = new BBandBuilder(ConfigurableParameters.KBAR_LENGTH/1000, 2);
     private Vector<Transaction> transactions = new Vector<Transaction>();
     private int duration = ConfigurableParameters.KBAR_LENGTH;
     private int tolerance = ConfigurableParameters.LOST_TOLERANCE;
@@ -200,7 +200,7 @@ public class Oracle {
                     continue;
                 }
                 String[] input = line.split("\\s");
-                if(input.length != 3) {
+                if(input.length <= 3) {
                     for(String s : input) {
                         System.out.println(s);
                     }
