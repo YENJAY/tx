@@ -36,10 +36,10 @@ public class Transaction {
         while(offsetted != true) {
             while(successMadeOffsetTicket != true) {
                 if(prediction == -1) {
-                    successMadeOffsetTicket = T4.makeOffsetMTXFutureTicket("B", "" + (int) (newestValue - ConfigurableParameters.INSURANCE_FOR_SLIPPAGE), "1");
+                    successMadeOffsetTicket = T4.makeOffsetMTXFutureTicket("B", "" + (int) (newestValue + ConfigurableParameters.INSURANCE_FOR_SLIPPAGE), "1");
                 }
                 else if(prediction == 1) {
-                    successMadeOffsetTicket = T4.makeOffsetMTXFutureTicket("S", "" + (int) (newestValue + ConfigurableParameters.INSURANCE_FOR_SLIPPAGE), "1");
+                    successMadeOffsetTicket = T4.makeOffsetMTXFutureTicket("S", "" + (int) (newestValue - ConfigurableParameters.INSURANCE_FOR_SLIPPAGE), "1");
                 }
                 if(successMadeOffsetTicket == false) {
                     try {
