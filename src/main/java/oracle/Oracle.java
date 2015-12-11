@@ -81,7 +81,7 @@ public class Oracle {
 
                 // System.out.println(kbarResultStr + " :Guess=" + prediction);
                 // int prediction = outOfBoundStrategy();
-                int prediction = outOfBoundStrategy();
+                int prediction = percentBBStrategy();
 
                 if(prediction != 0) {
                     if(transactions.size() < ConfigurableParameters.MAX_CONCURRENT_TRANSACTION) {
@@ -97,6 +97,28 @@ public class Oracle {
             }
         }
     }
+
+    private int percentBBStrategy() {
+        BBandUnit lastBBandUnit = bbandBuilder.getLastBBandUnit();
+        if(lastBBandUnit == null || lastBBandUnit.getBoundSize() < minimalBoundSize) {
+            return 0;
+        }
+        else {
+            double pBB = lastBBandUnit.getPercentBB();
+            if(pBB == Double.MAX_VALUE || pBB == Double.MIN_VALUE) {
+                return 0;
+            }
+            int prediction = 0;
+            if(pBB > ConfigurableParameters.PBB_UPPER) {
+                prediction = 1;
+            }
+            else if(pBB < ConfigurableParameters.PBB_LOWER) {
+                prediction = -1;
+            }
+            return prediction;
+        }
+    }
+
 
     private int outOfBoundStrategy() {
         BBandUnit lastBBandUnit = bbandBuilder.getLastBBandUnit();
@@ -152,22 +174,22 @@ public class Oracle {
                 trans.b2bWrongPrediction = 0;
                 BBandUnit lastBBandUnit = bbandBuilder.getLastBBandUnit();
                 // offset if touched boundaries
-                if(trans.prediction == 1) {
-                    if(newestValue >= lastBBandUnit.upperBound) {
-                        profit4 += trans.offset(newestValue, newestDate);
-                        System.out.println("Offsetted transaction: " + trans);
-                        System.out.println("Profit 4 = " + profit4);
-                        transToRemove.add(trans);
-                    }
-                }
-                else if(trans.prediction == -1) {
-                    if(newestValue <= lastBBandUnit.lowerBound) {
-                        profit4 += trans.offset(newestValue, newestDate);
-                        System.out.println("Offsetted transaction: " + trans);
-                        System.out.println("Profit 4 = " + profit4);
-                        transToRemove.add(trans);
-                    }
-                }
+                // if(trans.prediction == 1) {
+                //     if(newestValue >= lastBBandUnit.upperBound) {
+                //         profit4 += trans.offset(newestValue, newestDate);
+                //         System.out.println("Offsetted transaction: " + trans);
+                //         System.out.println("Profit 4 = " + profit4);
+                //         transToRemove.add(trans);
+                //     }
+                // }
+                // else if(trans.prediction == -1) {
+                //     if(newestValue <= lastBBandUnit.lowerBound) {
+                //         profit4 += trans.offset(newestValue, newestDate);
+                //         System.out.println("Offsetted transaction: " + trans);
+                //         System.out.println("Profit 4 = " + profit4);
+                //         transToRemove.add(trans);
+                //     }
+                // }
                 // still earning inside bband
             }
             // System.out.println(profit);

@@ -14,6 +14,9 @@ public class ConfigurableParameters {
     public static int MAX_CONCURRENT_TRANSACTION;
     public static long MIN_TICK;
     public static int TICKET_SLIPPAGE;
+    public static int PBB_UPPER;
+    public static int PBB_LOWER;
+    
     static {
         String content = "";
         try {
@@ -38,6 +41,8 @@ public class ConfigurableParameters {
             MAX_CONCURRENT_TRANSACTION = Integer.parseInt(obj.getJSONObject("configuration").getString("MAX_CONCURRENT_TRANSACTION"));
             MIN_TICK = Integer.parseInt(obj.getJSONObject("configuration").getString("MIN_TICK"));
             TICKET_SLIPPAGE = Integer.parseInt(obj.getJSONObject("configuration").getString("TICKET_SLIPPAGE"));
+            PBB_UPPER = Integer.parseInt(obj.getJSONObject("configuration").getString("PBB_UPPER"));
+            PBB_LOWER = Integer.parseInt(obj.getJSONObject("configuration").getString("PBB_LOWER"));
             System.out.println("Configuration loaded successfully.");
         }
         catch (IOException e) {
