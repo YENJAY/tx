@@ -13,6 +13,7 @@ public class ConfigurableParameters {
     public static int MAX_B2B_WRONG_PREDICTION;
     public static int MAX_CONCURRENT_TRANSACTION;
     public static long MIN_TICK;
+    public static int TICKET_SLIPPAGE;
     static {
         String content = "";
         try {
@@ -36,19 +37,11 @@ public class ConfigurableParameters {
             MAX_B2B_WRONG_PREDICTION = Integer.parseInt(obj.getJSONObject("configuration").getString("MAX_B2B_WRONG_PREDICTION"));
             MAX_CONCURRENT_TRANSACTION = Integer.parseInt(obj.getJSONObject("configuration").getString("MAX_CONCURRENT_TRANSACTION"));
             MIN_TICK = Integer.parseInt(obj.getJSONObject("configuration").getString("MIN_TICK"));
+            TICKET_SLIPPAGE = Integer.parseInt(obj.getJSONObject("configuration").getString("TICKET_SLIPPAGE"));
             System.out.println("Configuration loaded successfully.");
         }
         catch (IOException e) {
-            System.err.println("I cannot find the configuration file. I'll use default values instead.");
-            BBAND_THRESHOLD = 3;
-            KBAR_LENGTH = 1*60*1000;
-            LOST_TOLERANCE = 10;
-            TRANS_LIFECYCLE = 3*60*1000;
-            BBAND_BOUND_SIZE = 8;
-            TAX_FEE = 66;
-            NTD_PER_POINT = 50;
-            MAX_B2B_WRONG_PREDICTION = 2;
-            MAX_CONCURRENT_TRANSACTION = 4;
+            throw new RuntimeException("I cannot find the configuration file. I'll use default values instead.");
         }
     }
 }

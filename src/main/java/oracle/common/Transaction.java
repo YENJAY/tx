@@ -17,7 +17,7 @@ public class Transaction {
     private SimpleDateFormat formatter = new SimpleDateFormat("HHmmss");
 
     public Transaction(double price, Date birthday, long lifecycle, int prediction, double tolerance) {
-        this.price = price;
+        this.price = price + prediction * ConfigurableParameters.TICKET_SLIPPAGE;
         this.birthday = birthday;
         this.lifecycle = lifecycle;
         this.prediction = prediction;
