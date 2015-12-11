@@ -9,7 +9,7 @@
          "NTD_PER_POINT": "50",
          "MAX_CONCURRENT_TRANSACTION": "1",
          "MAX_B2B_WRONG_PREDICTION": "2",
-         "NUM_TRY_TO_ORDER": "20",
+         "NUM_TRY_TO_ORDER": "10",
          "COMMODITY": "MXFL5",
          "TRANSACTION_DEADLINE": "134200",
          "INSURANCE_FOR_SLIPPAGE": "50",
