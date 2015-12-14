@@ -132,8 +132,19 @@ public class BBandBuilder {
         return bbandSquence;
     }
 
+    public String toRingString() {
+        String ret = "# Output=[dateStart dateEnd start high low end upperDiff lowerDiff width outOfBound]\n";
+        for(BBandUnit d : ring) {
+            int bound = d.isOutOfBound();
+            ret += d.toString() + " " + bound + "\n";
+            // ret += formatter.format(d.dateStart) + " " + formatter.format(d.dateEnd)
+            // + " " + d.start + " " + d.end + " " + d.upperBound + " " + d.MA + " " + d.lowerBound + "\n";
+        }
+        return ret;
+    }
+
     public String toString() {
-        String ret = "# Output=[dateStart dateEnd start high low end upperBound lowerBound outOfBound]\n";
+        String ret = "# Output=[dateStart dateEnd start high low end upperDiff lowerDiff width outOfBound]\n";
         for(BBandUnit d : bbandSquence) {
             int bound = d.isOutOfBound();
             ret += d.toString() + " " + bound + "\n";

@@ -3,5 +3,9 @@ target/
 libs/Sinopac/logs/
 account.ini
 Sinopac.pfx
+<<<<<<< HEAD
+=======
+~*
+>>>>>>> e7bd6d7153a49abbde38725087452937464856b7
 output/
 tmp/

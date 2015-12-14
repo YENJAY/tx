@@ -12,7 +12,16 @@ public class ConfigurableParameters {
     public static int NTD_PER_POINT;
     public static int MAX_B2B_WRONG_PREDICTION;
     public static int MAX_CONCURRENT_TRANSACTION;
+<<<<<<< HEAD
     public static long MIN_TICK;
+=======
+    public static int NUM_TRY_TO_ORDER;
+    public static int INSURANCE_FOR_SLIPPAGE;
+    public static long REALTIME_PRICE_REFRESH_RATE;
+    public static String TRANSACTION_DEADLINE;
+    public static String COMMODITY;
+    public static int TICKET_SLIPPAGE;
+>>>>>>> e7bd6d7153a49abbde38725087452937464856b7
     static {
         String content = "";
         try {
@@ -35,20 +44,21 @@ public class ConfigurableParameters {
             NTD_PER_POINT = Integer.parseInt(obj.getJSONObject("configuration").getString("NTD_PER_POINT"));
             MAX_B2B_WRONG_PREDICTION = Integer.parseInt(obj.getJSONObject("configuration").getString("MAX_B2B_WRONG_PREDICTION"));
             MAX_CONCURRENT_TRANSACTION = Integer.parseInt(obj.getJSONObject("configuration").getString("MAX_CONCURRENT_TRANSACTION"));
+<<<<<<< HEAD
             MIN_TICK = Integer.parseInt(obj.getJSONObject("configuration").getString("MIN_TICK"));
+=======
+            NUM_TRY_TO_ORDER = Integer.parseInt(obj.getJSONObject("configuration").getString("NUM_TRY_TO_ORDER"));
+            INSURANCE_FOR_SLIPPAGE = Integer.parseInt(obj.getJSONObject("configuration").getString("INSURANCE_FOR_SLIPPAGE"));
+            REALTIME_PRICE_REFRESH_RATE = Long.parseLong(obj.getJSONObject("configuration").getString("REALTIME_PRICE_REFRESH_RATE"));
+            TRANSACTION_DEADLINE = obj.getJSONObject("configuration").getString("TRANSACTION_DEADLINE");
+            COMMODITY = obj.getJSONObject("configuration").getString("COMMODITY");
+            System.out.println("Configuration loaded successfully.");
+            TICKET_SLIPPAGE = Integer.parseInt(obj.getJSONObject("configuration").getString("TICKET_SLIPPAGE"));
+>>>>>>> e7bd6d7153a49abbde38725087452937464856b7
             System.out.println("Configuration loaded successfully.");
         }
         catch (IOException e) {
-            System.err.println("I cannot find the configuration file. I'll use default values instead.");
-            BBAND_THRESHOLD = 3;
-            KBAR_LENGTH = 1*60*1000;
-            LOST_TOLERANCE = 10;
-            TRANS_LIFECYCLE = 3*60*1000;
-            BBAND_BOUND_SIZE = 8;
-            TAX_FEE = 66;
-            NTD_PER_POINT = 50;
-            MAX_B2B_WRONG_PREDICTION = 2;
-            MAX_CONCURRENT_TRANSACTION = 4;
+            throw new RuntimeException("I cannot find the configuration file. ");
         }
     }
 }

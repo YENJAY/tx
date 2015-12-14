@@ -30,6 +30,7 @@ public class KBarBuilder implements IDataReceiver {
         double v = Double.parseDouble(value);
         Unit unit = new Unit(date, v);
         rawSequence.add(unit);
+<<<<<<< HEAD
     }
 
     public KBarUnit getLastKbarUnit() {
@@ -57,6 +58,8 @@ public class KBarBuilder implements IDataReceiver {
             return -1;
         }
         else return 0;
+=======
+>>>>>>> e7bd6d7153a49abbde38725087452937464856b7
     }
 
     public KBarUnit consumeAndMakeKBar() {
@@ -102,7 +105,11 @@ public class KBarBuilder implements IDataReceiver {
 
     // for standing for a row of processed raw data (.rpt -> .txt), like 20151109 084514 8669
     // normally programmers no need to use this inner class outside.
+<<<<<<< HEAD
     // instead, they should only touch KBarUnit.
+=======
+    // instead, they should use KBarUnit.
+>>>>>>> e7bd6d7153a49abbde38725087452937464856b7
     private class Unit {
         public Date date;
         public double value;

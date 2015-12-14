@@ -3,6 +3,8 @@ import com.sun.jna.*;
 import com.sun.jna.platform.win32.*;
 import java.io.*;
 import java.util.*;
+import oracle.common.*;
+import java.text.*;
 
 public class T4 {
     // static {
@@ -20,7 +22,8 @@ public class T4 {
     public static String id;
     public static String branch;
     public static String account;
-
+    private static SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd");
+    private static Date today = new Date();
     static {
         init_t4();
     }
@@ -78,32 +81,42 @@ public class T4 {
         return ret;
     }
 
-    public static String show_list() {
+    public static String showList() {
         return toJString(t4.show_list());
     }
 
-    public static String show_version() {
+    public static String showVersion() {
         return toJString(t4.show_version());
     }
 
-    public static String verify_ca_pass() {
+    public static String verifyCAPass() {
         return toJString(t4.verify_ca_pass(toNativeAscii(branch), toNativeAscii(account)));
     }
 
-    public static String add_acc_ca() {
+    public static String addAccCA() {
         return toJString(t4.add_acc_ca(
             toNativeAscii(branch),
             toNativeAscii(account),
             toNativeAscii(id),
             toNativeAscii(workingDirectory),
             toNativeAscii(id)
-            ));
+            )
+        );
     }
 
-    public static Vector queryUnsettled() {
+    public static double getCurrentPrice() {
+        String s = queryUnsettled();
+        if(s.length() < 208) {
+            return -1;
+        }
+        String price = s.substring(48, 64);
+        return Double.parseDouble(price);
+    }
+
+    public static String queryUnsettled() {
         Pointer pBranch = toNativeAscii(branch);
         Pointer pAccount = toNativeAscii(account);
-        String[] rets = toJString(
+        return toJString(
             t4.fo_unsettled_qry(
                 toNativeAscii("0000"),
                 toNativeAscii("0004"),
@@ -116,24 +129,176 @@ public class T4 {
                 toNativeAscii("1"),
                 toNativeAscii("0"),
                 toNativeAscii("1")
-            )).split("\\s");
-        Vector<String> results = new Vector<String>();
-        for(String s : rets) {
-            if(s.isEmpty()==false) {
-                results.add(s);
-            }
+            )
+        );
+    }
+
+    public static String queryQueuingOrder() {
+        Pointer pBranch = toNativeAscii(branch);
+        Pointer pAccount = toNativeAscii(account);
+        return toJString(
+            t4.fo_order_qry2(
+                pBranch,
+                pAccount,
+                toNativeAscii(ConfigurableParameters.COMMODITY),
+                toNativeAscii("1"),
+                toNativeAscii("1"),
+                toNativeAscii("0"),
+                toNativeAscii("0"),
+                toNativeAscii(formatter.format(today)),
+                toNativeAscii(formatter.format(today)),
+                toNativeAscii("N"),
+                toNativeAscii("2")
+            )
+        );
+    }
+
+    public static boolean cancelFutureTicket(String orderSequence, String orderNum) {
+        String ret = toJString(
+            t4.future_cancel(
+                toNativeAscii(branch),
+                toNativeAscii(account),
+                toNativeAscii(ConfigurableParameters.COMMODITY),
+                toNativeAscii(orderSequence),
+                toNativeAscii(orderNum),
+                toNativeAscii(" "),
+                toNativeAscii("N")
+            )
+        );
+        ret = ret.substring(120, 124);
+        if(ret.equals("00  ") || ret.equals("0000")) {
+            return true;
         }
-        return results;
+        else {
+            return false;
+        }
+    }
+
+    public static boolean changeFutureTicketPrice(String orderSequence, String orderNum, String newPrice) {
+        String ret = toJString(
+            t4.future_change(
+                toNativeAscii(orderSequence),
+                toNativeAscii(orderNum),
+                toNativeAscii(branch),
+                toNativeAscii(account),
+                toNativeAscii(ConfigurableParameters.COMMODITY),
+                toNativeAscii(newPrice),
+                toNativeAscii("N")
+            )
+        );
+        ret = ret.substring(120, 124);
+        if(ret.equals("00  ") || ret.equals("0000")) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    public static FutureStruct makeMTXFutureTicket(String buyOrSell, String price, String amount) {
+        String ret = toJString(
+            t4.future_order(
+                toNativeAscii(buyOrSell),
+                toNativeAscii(branch),
+                toNativeAscii(account),
+                toNativeAscii(ConfigurableParameters.COMMODITY),
+                toNativeAscii("00" + price),
+                toNativeAscii("00" + amount),
+                toNativeAscii("LMT"),
+                toNativeAscii("ROD"),
+                toNativeAscii("0")
+            )
+        );
+        System.out.println(ret);
+        if(ret.contains(ConfigurableParameters.COMMODITY) && ret.contains(buyOrSell+"00"+price)) {
+            // String orderNum = ret.substring(49, 55);
+            // String orderSequence = ret.substring(55, 61);
+            String orderNum = "";
+            String orderSequence = "";
+            FutureStruct future = new FutureStruct(orderNum, orderSequence);
+            return future;
+        }
+        else {
+            return null;
+        }
+
+        // # Solution 2
+        // Using err_code to test if the ticket is made
+        // ret = ret.substring(120, 124);
+        // if(ret.equals("00  ") || ret.equals("0000")) {
+        //     String orderNum = ret.substring(49, 55);
+        //     String orderSequence = ret.substring(55, 61);
+        //     FutureStruct future = new FutureStruct(orderNum, orderSequence);
+        //     return future;
+        // }
+        // else {
+        //     return null;
+        // }
+    }
+
+
+    public static boolean makeOffsetMTXFutureTicket(String buyOrSell, String price, String amount) {
+        String ret = toJString(
+            t4.future_order(
+                toNativeAscii(buyOrSell),
+                toNativeAscii(branch),
+                toNativeAscii(account),
+                toNativeAscii(ConfigurableParameters.COMMODITY),
+                toNativeAscii("00" + price),
+                toNativeAscii("00" + amount),
+                toNativeAscii("LMT"),
+                toNativeAscii("ROD"),
+                toNativeAscii("1")
+            )
+        );
+        System.out.println(ret);
+        if(ret.contains(ConfigurableParameters.COMMODITY) && ret.contains(buyOrSell+"00"+price)) {
+            return true;
+        }
+        else {
+            return false;
+        }
+        // # Solution 2
+        // Using err_code to test if the ticket is made
+        // ret = ret.substring(120, 124);
+        // if(ret.equals("00  ") || ret.equals("0000")) {
+        //     return true;
+        // }
+        // else {
+        //     return false;
+        // }
     }
 
     public static void main(String[] args) throws Exception {
-        String ret1 = add_acc_ca();
-        String ret2 = verify_ca_pass();
-        Vector<String> ret3 = queryUnsettled();
-        System.out.println(ret1);
-        System.out.println(ret2);
-        for(String s : ret3) {
-            System.out.println(s);
-        }
+        String ret1 = addAccCA();
+        String ret2 = verifyCAPass();
+        // System.out.println(ret1);
+        // System.out.println(ret2);
+        // for(String s : ret3) {
+        //     System.out.println(s);
+        // }
+        // makeMTXFutureTicket("B", "8473", "1");
+        System.out.println("HERE");
+        //makeMTXFutureTicket("S", "8300", "1");
+        // System.out.println(queryQueuingOrder());
+        String ret3 = queryUnsettled();
+        System.out.println(">" + ret3 + "<");
+        // System.out.println("----");
+        // String ret = T4.queryQueuingOrder();
+        // System.out.println(ret);
+        // FutureStruct f = makeMTXFutureTicket(String buyOrSell, String , String "1")
+        // System.out.println(f);
+
+        // while(true) {
+        //     double price = getCurrentPrice();
+        //     if(price == -1) {
+        //         System.out.println("There is no header...");
+        //     }
+        //     else {
+        //         System.out.println("Current price = " + price);
+        //     }
+        //     Thread.sleep(1000);
+        // }
+
     }
 }

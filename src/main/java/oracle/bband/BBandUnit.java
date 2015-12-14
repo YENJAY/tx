@@ -53,7 +53,7 @@ public class BBandUnit{
         String dateStartStr = formatter.format(dateStart);
         String dateEndStr = formatter.format(dateEnd);
         return dateStartStr + " " + dateEndStr + " " +
-            start + " " + high + " " + low + " " + end + " " + upperBound + " " + lowerBound;
+            start + " " + high + " " + low + " " + end + " " + (upperBound-end) + " " + (end-lowerBound) + " " + (int)(upperBound - lowerBound);
     }
     public boolean equals(Object o) {
         if(o instanceof BBandUnit) {

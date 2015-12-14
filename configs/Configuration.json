@@ -1,29 +1,23 @@
 {
    "configuration": {
-<<<<<<< HEAD
-         "BBAND_THRESHOLD": "3",
-         "KBAR_LENGTH": "60000",
-         "LOST_TOLERANCE": "5",
-         "TRANS_LIFECYCLE": "60000",
-         "BBAND_BOUND_SIZE": "10",
-=======
          "BBAND_THRESHOLD": "5",
          "KBAR_LENGTH": "5400000",
          "LOST_TOLERANCE": "10",
          "TRANS_LIFECYCLE": "5400000",
          "BBAND_BOUND_SIZE": "8",
->>>>>>> d8869a1... HighTide
          "TAX_FEE": "66",
          "NTD_PER_POINT": "50",
          "MAX_CONCURRENT_TRANSACTION": "1",
          "MAX_B2B_WRONG_PREDICTION": "2",
-<<<<<<< HEAD
-         "MIN_TICK": "1000"
-=======
          "MIN_TICK": "1000",
          "PBB_UPPER": "160",
          "PBB_LOWER": "-60",
+         "TICKET_SLIPPAGE": "0",
+         "NUM_TRY_TO_ORDER": "1",
+         "COMMODITY": "MXFL5",
+         "TRANSACTION_DEADLINE": "134200",
+         "INSURANCE_FOR_SLIPPAGE": "50",
+         "REALTIME_PRICE_REFRESH_RATE": "1000",
          "TICKET_SLIPPAGE": "0"
->>>>>>> d8869a1... HighTide
     }
 }
