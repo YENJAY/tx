@@ -69,7 +69,7 @@ public class BBandBuilder {
             // time is too close. no way to predict the trend
             return 0;
         }
-        else if(left.high < left.high) {
+        else if(left.high < right.high) {
             return 1;
         }
         else if(left.low > right.low) {

@@ -31,10 +31,10 @@ public class BBandUnit{
     }
 
     public int isOutOfBound() {
-        if(end >= upperBound + threshold) {
+        if(high >= upperBound + threshold) {
             return 1;
         }
-        else if(end <= lowerBound - threshold) {
+        else if(low <= lowerBound - threshold) {
             return -1;
         }
         else {
