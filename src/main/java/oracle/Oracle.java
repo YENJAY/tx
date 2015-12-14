@@ -52,7 +52,7 @@ public class Oracle {
             catch(ParseException e) {
                 e.printStackTrace();
             }
-            if(now.getTime() - lastDate.getTime() >= ConfigurableParameters.MIN_TICK) {
+            if(now.getTime() - lastDate.getTime() >= ConfigurableParameters.KBAR_LENGTH) {
                 kbarResult = kbarBuilder.consumeAndMakeKBar();
                 lastDate = now;
             }
@@ -81,7 +81,7 @@ public class Oracle {
 
                 // System.out.println(kbarResultStr + " :Guess=" + prediction);
                 // int prediction = outOfBoundStrategy();
-                int prediction = percentBBStrategy();
+                int prediction = outOfBoundStrategy();
 
                 if(prediction != 0) {
                     if(transactions.size() < ConfigurableParameters.MAX_CONCURRENT_TRANSACTION) {
@@ -98,6 +98,44 @@ public class Oracle {
         }
     }
 
+    private int kbarChasingStrategy() {
+        BBandUnit lastBBandUnit = bbandBuilder.getLastBBandUnit();
+        if(lastBBandUnit == null || lastBBandUnit.getBoundSize() < minimalBoundSize) {
+            return 0;
+        }
+        else {
+            int trend = bbandBuilder.getLatestTrend();
+            if(trend == 1) {
+                return 1;
+            }
+            else if(trend == -1) {
+                return -1;
+            }
+            else {
+                return 0;
+            }
+        }
+    }
+
+    private int MATrendStrategy() {
+        BBandUnit lastBBandUnit = bbandBuilder.getLastBBandUnit();
+        if(lastBBandUnit == null || lastBBandUnit.getBoundSize() < minimalBoundSize) {
+            return 0;
+        }
+        else {
+            int trend = bbandBuilder.getLatestTrend();
+            if(trend == 1) {
+                return 1;
+            }
+            else if(trend == -1) {
+                return -1;
+            }
+            else {
+                return 0;
+            }
+        }
+    }
+
     private int percentBBStrategy() {
         BBandUnit lastBBandUnit = bbandBuilder.getLastBBandUnit();
         if(lastBBandUnit == null || lastBBandUnit.getBoundSize() < minimalBoundSize) {
@@ -110,10 +148,10 @@ public class Oracle {
             }
             int prediction = 0;
             if(pBB > ConfigurableParameters.PBB_UPPER) {
-                prediction = 1;
+                prediction = -1;
             }
             else if(pBB < ConfigurableParameters.PBB_LOWER) {
-                prediction = -1;
+                prediction = 1;
             }
             return prediction;
         }
@@ -174,22 +212,22 @@ public class Oracle {
                 trans.b2bWrongPrediction = 0;
                 BBandUnit lastBBandUnit = bbandBuilder.getLastBBandUnit();
                 // offset if touched boundaries
-                // if(trans.prediction == 1) {
-                //     if(newestValue >= lastBBandUnit.upperBound) {
-                //         profit4 += trans.offset(newestValue, newestDate);
-                //         System.out.println("Offsetted transaction: " + trans);
-                //         System.out.println("Profit 4 = " + profit4);
-                //         transToRemove.add(trans);
-                //     }
-                // }
-                // else if(trans.prediction == -1) {
-                //     if(newestValue <= lastBBandUnit.lowerBound) {
-                //         profit4 += trans.offset(newestValue, newestDate);
-                //         System.out.println("Offsetted transaction: " + trans);
-                //         System.out.println("Profit 4 = " + profit4);
-                //         transToRemove.add(trans);
-                //     }
-                // }
+                if(trans.prediction == 1) {
+                    if(newestValue >= lastBBandUnit.upperBound) {
+                        profit4 += trans.offset(newestValue, newestDate);
+                        System.out.println("Offsetted transaction: " + trans);
+                        System.out.println("Profit 4 = " + profit4);
+                        transToRemove.add(trans);
+                    }
+                }
+                else if(trans.prediction == -1) {
+                    if(newestValue <= lastBBandUnit.lowerBound) {
+                        profit4 += trans.offset(newestValue, newestDate);
+                        System.out.println("Offsetted transaction: " + trans);
+                        System.out.println("Profit 4 = " + profit4);
+                        transToRemove.add(trans);
+                    }
+                }
                 // still earning inside bband
             }
             // System.out.println(profit);
@@ -199,12 +237,17 @@ public class Oracle {
 
     private int profit3 = 0;
     public void finishRemaining() {
-        BBandUnit lastBBandUnit = bbandBuilder.getLastBBandUnit();
-        if(lastBBandUnit != null) {
-            double newestPrice = lastBBandUnit.end;
-            Date newestDate = lastBBandUnit.dateEnd;
-            for(Transaction trans : transactions) {
-                profit3 += trans.offset(newestPrice, newestDate);
+        if(bbandBuilder.isEmpty()) {
+            return;
+        }
+        else {
+            BBandUnit lastBBandUnit = bbandBuilder.getLastBBandUnit();
+            if(lastBBandUnit != null) {
+                double newestPrice = lastBBandUnit.end;
+                Date newestDate = lastBBandUnit.dateEnd;
+                for(Transaction trans : transactions) {
+                    profit3 += trans.offset(newestPrice, newestDate);
+                }
             }
         }
     }
@@ -222,7 +265,7 @@ public class Oracle {
                     continue;
                 }
                 String[] input = line.split("\\s");
-                if(input.length <= 3) {
+                if(input.length < 3) {
                     for(String s : input) {
                         System.out.println(s);
                     }
@@ -358,17 +401,19 @@ public class Oracle {
             // for network streaming input test
             // String line = getNetworkInput();
             // streamingInput(line);
+
             // Write out bband data points
-            try {
-                String filename = args[0].split("/")[2];
-                File outFile = new File("output/bband/" + filename);
-                PrintWriter pw = new PrintWriter(new FileWriter(outFile));
-                pw.println(oracle.bbandBuilder);
-                pw.close();
-            }
-            catch(IOException e) {
-                e.printStackTrace();
-            }
+            // try {
+            //     String filename = args[0].split("/")[2];
+            //     File outFile = new File("output/bband/" + filename);
+            //     PrintWriter pw = new PrintWriter(new FileWriter(outFile));
+            //     pw.println(oracle.bbandBuilder);
+            //     pw.close();
+            // }
+            // catch(IOException e) {
+            //     e.printStackTrace();
+            // }
+
             // Write out transaction data points
             try {
                 String filename = args[0].split("/")[2];

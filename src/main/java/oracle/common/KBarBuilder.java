@@ -15,6 +15,10 @@ public class KBarBuilder implements IDataReceiver {
         historyTimeLength = length;
     }
 
+    public int size() {
+        return kbarSequence.size();
+    }
+
     public void append(String time, String value) {
         Date date = null;
         try {
@@ -26,6 +30,33 @@ public class KBarBuilder implements IDataReceiver {
         double v = Double.parseDouble(value);
         Unit unit = new Unit(date, v);
         rawSequence.add(unit);
+    }
+
+    public KBarUnit getLastKbarUnit() {
+        if(kbarSequence.isEmpty()) {
+            return null;
+        }
+        return kbarSequence.lastElement();
+    }
+
+    public int getLatestTrend() {
+        int length = kbarSequence.size();
+        if(length < 2) {
+            return 0;
+        }
+        KBarUnit left = kbarSequence.get(length-2);
+        KBarUnit right = kbarSequence.get(length-1);
+        if(left.startDate.equals(right.startDate) && left.endDate.equals(right.endDate)) {
+            // time is too close. no way to predict the trend
+            return 0;
+        }
+        else if(left.high < right.high) {
+            return 1;
+        }
+        else if(left.low > right.low) {
+            return -1;
+        }
+        else return 0;
     }
 
     public KBarUnit consumeAndMakeKBar() {

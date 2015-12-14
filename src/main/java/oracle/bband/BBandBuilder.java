@@ -69,10 +69,30 @@ public class BBandBuilder {
             // time is too close. no way to predict the trend
             return 0;
         }
-        else if(left.high < left.high) {
+        else if(left.high < right.high) {
             return 1;
         }
         else if(left.low > right.low) {
+            return -1;
+        }
+        else return 0;
+    }
+
+    public int getLatestPBBTrend() {
+        int length = ring.size();
+        if(length < 2) {
+            return 0;
+        }
+        BBandUnit left = ring.get(length-2);
+        BBandUnit right = ring.get(length-1);
+        if(left.dateStart.equals(right.dateStart) && left.dateEnd.equals(right.dateEnd)) {
+            // time is too close. no way to predict the trend
+            return 0;
+        }
+        else if(left.getPercentBB() < right.getPercentBB()) {
+            return 1;
+        }
+        else if(left.getPercentBB() > right.getPercentBB()) {
             return -1;
         }
         else return 0;
