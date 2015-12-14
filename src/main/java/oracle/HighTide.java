@@ -1,5 +1,6 @@
 package oracle;
 import oracle.bband.*;
+import oracle.sinopac.*;
 import java.text.*;
 import oracle.common.*;
 import java.util.*;
@@ -14,7 +15,7 @@ import org.jfree.chart.plot.*;
 import java.awt.BasicStroke;
 
 public class HighTide {
-    private SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss");
+    private SimpleDateFormat formatter = new SimpleDateFormat("HHmmss");
     private Vector<Transaction> transactions = new Vector<Transaction>();
     private int duration = ConfigurableParameters.KBAR_LENGTH;
     private int tolerance = ConfigurableParameters.LOST_TOLERANCE;
@@ -22,8 +23,8 @@ public class HighTide {
     private int minimalBoundSize = ConfigurableParameters.BBAND_BOUND_SIZE;
     private KBarBuilder kbarBuilder = new KBarBuilder(duration); // in millisecond
     private Vector<Transaction> allTransactions = new Vector<Transaction>();
-    private Date lastDate;
     private KBarUnit kbarResult = null;
+
     public void streamingInput(String time, String value) {
         // build kbar unit
         // String[] input = line.split("\\s");
@@ -40,28 +41,8 @@ public class HighTide {
             }
         }
         kbarBuilder.append(time, value);
-        if(lastDate == null) {
-            try {
-                lastDate = formatter.parse(time);
-                return;
-            }
-            catch(ParseException e) {
-                e.printStackTrace();
-            }
-        }
-        else {
-            Date now = null;
-            try {
-                now = formatter.parse(time);
-            }
-            catch(ParseException e) {
-                e.printStackTrace();
-            }
-            if(now.getTime() - lastDate.getTime() >= ConfigurableParameters.MIN_TICK) {
-                kbarResult = kbarBuilder.consumeAndMakeKBar();
-                lastDate = now;
-            }
-        }
+        kbarResult = kbarBuilder.consumeAndMakeKBar();
+
     }
 
     private void highTideStrategy(KBarUnit kbarUnit, String time, String value) {
@@ -178,6 +159,70 @@ public class HighTide {
         // System.out.println(bbandBuilder);
     }
 
+
+    public void onlineTest() {
+        long timeShifting = 0;
+        Date deadline = null;
+        Date today = new Date();
+        SimpleDateFormat yyyyMMdd = new SimpleDateFormat("yyyyMMdd");
+        SimpleDateFormat yyyyMMddHHmmss = new SimpleDateFormat("yyyyMMddHHmmss");
+        SimpleDateFormat timeStampForKBar = new SimpleDateFormat("yyyyMMdd HHmmss");
+        try {
+            String datePrefix = yyyyMMdd.format(today);
+            deadline = yyyyMMddHHmmss.parse(datePrefix + ConfigurableParameters.TRANSACTION_DEADLINE);
+            System.out.println("Deadline of Transaction: " + deadline);
+        }
+        catch(ParseException e) {
+            e.printStackTrace();
+        }
+        try {
+            while(true) {
+                long t1 = System.currentTimeMillis();
+                double price = -1;
+                if(ConfigurableParameters.COMMODITY.contains("MX")) {
+                    price = RealTimePrice.getMTXPrice();
+                }
+                else if(ConfigurableParameters.COMMODITY.contains("TX")) {
+                    price = RealTimePrice.getTXPrice();
+                }
+                timeShifting = System.currentTimeMillis() - t1;
+                if(timeShifting > ConfigurableParameters.REALTIME_PRICE_REFRESH_RATE) {
+                    // this request may take too much time. Let's ignore it.
+                    continue;
+                }
+                if(price != -1) {
+                    String timeStamp = timeStampForKBar.format(Calendar.getInstance().getTime());
+                    String line = timeStamp + " " + price;
+                    System.out.println("# " + line);
+                    String[] input = line.split("\\s");
+                    if(input.length != 3) {
+                        for(String s : input) {
+                            System.out.println(s);
+                        }
+                        throw new RuntimeException("Error input for building K bar...");
+                    }
+                    streamingInput(input[1], input[2]);
+                    decideOffsetting(input[1], input[2]);
+                }
+                if(timeShifting < ConfigurableParameters.REALTIME_PRICE_REFRESH_RATE) {
+                    try {
+                        Thread.sleep(ConfigurableParameters.REALTIME_PRICE_REFRESH_RATE - timeShifting);
+                    }
+                    catch(InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+                Date now = new Date();
+                if(now.after(deadline)) {
+                    break;
+                }
+            }
+        }
+        finally {
+            saveResults();
+        }
+    }
+
     public String toString() {
         String ret = "# Transactions:\n";
         for(Transaction trans : allTransactions) {
@@ -274,58 +319,35 @@ public class HighTide {
     //     ChartUtilities.saveChartAsJPEG(outFile, 1.0f, chart, width, height);
     // }
 
+    private void saveResults() {
+        finishRemaining();
+        System.out.println(this);
+        // for network streaming input test
+        // String line = getNetworkInput();
+        // streamingInput(line);
+        Date today = new Date();
+        String filename = formatter.format(today);
+        // Write out transaction data points
+        try {
+            File outFile = new File("output/transaction/" + filename);
+            PrintWriter pw = new PrintWriter(new FileWriter(outFile));
+            pw.println(this);
+            pw.close();
+        }
+        catch(IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
 
     public static void main(String... args) {
-        if(args.length == 0) {
-            System.out.println("append the input file after the command, please.");
-        }
-        else {
-            // for testing
-            for(String s : args) {
-                System.out.println(s);
-            }
-            HighTide ht = new HighTide();
-            ht.logfileTest(args[0]);
-            // System.out.println(oracle.bbandBuilder);
-            ht.finishRemaining();
-            System.out.println(ht);
-            // for network streaming input test
-            // String line = getNetworkInput();
-            // streamingInput(line);
-
-            // Write out bband data points
-            // try {
-            //     String filename = args[0].split("/")[2];
-            //     File outFile = new File("output/bband/" + filename);
-            //     PrintWriter pw = new PrintWriter(new FileWriter(outFile));
-            //     pw.println(oracle.bbandBuilder);
-            //     pw.close();
-            // }
-            // catch(IOException e) {
-            //     e.printStackTrace();
-            // }
-
-            // Write out transaction data points
-            try {
-                String filename = args[0].split("/")[2];
-                File outFile = new File("output/transaction/" + filename);
-                PrintWriter pw = new PrintWriter(new FileWriter(outFile));
-                pw.println(ht);
-                pw.close();
-            }
-            catch(IOException e) {
-                e.printStackTrace();
-            }
-            // Write out graph
-            // try {
-            //     String filename = args[0].split("/")[2].split("\\.")[0];
-            //     File outFile = new File("output/chart/" + filename + ".jpg");
-            //     oracle.saveAsJpeg(outFile);
-            // }
-            // catch(IOException e) {
-            //     e.printStackTrace();
-            // }
-        }
+        HighTide ht = new HighTide();
+        String ret1 = T4.addAccCA();
+        String ret2 = T4.verifyCAPass();
+        System.out.println(ret1);
+        System.out.println(ret2);
+        ht.onlineTest();
     }
 
 }

@@ -12,12 +12,11 @@
          "MIN_TICK": "1000",
          "PBB_UPPER": "160",
          "PBB_LOWER": "-60",
-         "TICKET_SLIPPAGE": "0",
-         "NUM_TRY_TO_ORDER": "1",
+         "NUM_TRY_TO_ORDER": "10",
          "COMMODITY": "MXFL5",
          "TRANSACTION_DEADLINE": "134200",
          "INSURANCE_FOR_SLIPPAGE": "50",
          "REALTIME_PRICE_REFRESH_RATE": "1000",
-         "TICKET_SLIPPAGE": "0"
+         "TICKET_SLIPPAGE": "1"
     }
 }

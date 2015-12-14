@@ -56,7 +56,7 @@ public class Transaction {
             }
             else {
                 // System.out.println("﹟ゼキ?堞ē\:\n" + this);
-                if(ret.contains("祏?啥·含d高Ω计筁?h")) {
+                if(ret.contains("祏丁ず琩高Ω计筁")) {
                     try {
                         Thread.sleep(1000 + increment); // wait for 1 sec and then try to buy/sell ticket again
                         increment += 200;
@@ -79,15 +79,15 @@ public class Transaction {
             System.out.println("Trial " + i + ":");
             FutureStruct future = null;
             if(prediction == -1) {
-                future = T4.makeMTXFutureTicket("S", "" + (int) price, "1");
+                future = T4.makeMTXFutureTicket("S", "" + (int) price + ConfigurableParameters.TICKET_SLIPPAGE, "1");
             }
             else if(prediction == 1) {
-                future = T4.makeMTXFutureTicket("B", "" + (int) price, "1");
+                future = T4.makeMTXFutureTicket("B", "" + (int) price + ConfigurableParameters.TICKET_SLIPPAGE, "1");
             }
 
             String ret = T4.queryUnsettled();
             System.out.println(ret);
-            while(ret.contains("祏?啥·含d高Ω计筁?h")) {
+            while(ret.contains("祏丁ず琩高Ω计筁")) {
                 try {
                     Thread.sleep(2000); // wait for 1 sec and then try to buy/sell ticket again
                 }

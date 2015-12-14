@@ -205,7 +205,7 @@ public class T4 {
                 toNativeAscii("00" + price),
                 toNativeAscii("00" + amount),
                 toNativeAscii("LMT"),
-                toNativeAscii("ROD"),
+                toNativeAscii("IOC"),
                 toNativeAscii("0")
             )
         );
@@ -247,7 +247,7 @@ public class T4 {
                 toNativeAscii("00" + price),
                 toNativeAscii("00" + amount),
                 toNativeAscii("LMT"),
-                toNativeAscii("ROD"),
+                toNativeAscii("IOC"),
                 toNativeAscii("1")
             )
         );
@@ -280,7 +280,7 @@ public class T4 {
         // makeMTXFutureTicket("B", "8473", "1");
         System.out.println("HERE");
         //makeMTXFutureTicket("S", "8300", "1");
-        // System.out.println(queryQueuingOrder());
+        System.out.println(">" + queryQueuingOrder() + "<");
         String ret3 = queryUnsettled();
         System.out.println(">" + ret3 + "<");
         // System.out.println("----");
