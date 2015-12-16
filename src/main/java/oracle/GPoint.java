@@ -16,7 +16,7 @@ import java.awt.BasicStroke;
 import java.awt.Toolkit;
 
 public class GPoint {
-    private SimpleDateFormat formatter = new SimpleDateFormat("HHmmss");
+    private SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss");
     private Vector<Transaction> transactions = new Vector<Transaction>();
     private int duration = ConfigurableParameters.KBAR_LENGTH;
     private int tolerance = ConfigurableParameters.LOST_TOLERANCE;
@@ -24,8 +24,10 @@ public class GPoint {
     private int minimalBoundSize = ConfigurableParameters.BBAND_BOUND_SIZE;
     private double newestPrice;
     private double lastPrice;
+    private Date lastDate;
     private Date newestDate;
     private int currentDirection;
+    private int[] price = new int[15000];
     private Vector<Transaction> allTransactions = new Vector<Transaction>();
 
     public void streamingInput(String time, String value) {
@@ -35,7 +37,20 @@ public class GPoint {
         catch(ParseException e) {
             e.printStackTrace();
         }
+
+        if(lastDate == null) {
+            // update last data
+            lastDate = newestDate;
+            lastPrice = newestPrice;
+        }
+
+        // counting
         newestPrice = Double.parseDouble(value);
+        int staying = (int) ((newestDate.getTime() - lastDate.getTime())/1000);
+        int p = (int) newestPrice;
+        price[p] += staying;
+
+        // moving direction
         if(newestPrice > lastPrice) {
             currentDirection = 1;
         }
@@ -43,6 +58,8 @@ public class GPoint {
             currentDirection = -1;
         }
         else currentDirection = 0;
+
+
     }
 
     public void GPointStrategy() {
@@ -141,7 +158,7 @@ public class GPoint {
                     continue;
                 }
                 String[] input = line.split("\\s");
-                if(input.length != 3) {
+                if(input.length < 3) {
                     for(String s : input) {
                         System.out.println(s);
                     }
@@ -366,6 +383,34 @@ public class GPoint {
     //     }
     // }
 
+    private void showCounting() {
+        int max = Integer.MIN_VALUE;
+        int min = Integer.MAX_VALUE;
+        for(int i=0; i<price.length; i++) {
+            if(price[i] > max) {
+                max = price[i];
+            }
+            else if(price[i] < min) {
+                min = price[i];
+            }
+        }
+        System.out.println("Max = " + max);
+        System.out.println("Min = " + min);
+        double norm = max - min;
+
+        // normalize
+        // for(int i=0; i<price.length; i++) {
+        for(int i=0; i<price.length; i++) {
+            int pbb = (int) (100*(price[i]-min)/norm);
+            if(pbb == 0) {
+                continue;
+            }
+            else {
+                System.out.println(i + " = " + pbb);
+            }
+        }
+    }
+
     public static void main(String... args) {
         GPoint gpoint = new GPoint();
         // String ret1 = T4.addAccCA();
@@ -373,5 +418,8 @@ public class GPoint {
         // System.out.println(ret1);
         // System.out.println(ret2);
         gpoint.logfileTest(args[0]);
+        System.out.println(gpoint);
+        System.out.println("Distribution...");
+        gpoint.showCounting();
     }
 }
