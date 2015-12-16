@@ -31,10 +31,20 @@ public class Transaction {
         return earning;
     }
 
+    public boolean order() {
+        return true;
+    }
+
     public String toString() {
         if(prediction!=0) {
-            return formatter.format(birthday) + " " + formatter.format(dateOffset) + " prediction=" + prediction + " " +
-                price + "->" + offsetValue + " earning=" + earning;
+            if(dateOffset == null) {
+                return formatter.format(birthday) + " " + "----" + " prediction=" + prediction + " " +
+                    price + "->" + offsetValue + " earning=" + earning;
+            }
+            else {
+                return formatter.format(birthday) + " " + formatter.format(dateOffset) + " prediction=" + prediction + " " +
+                    price + "->" + offsetValue + " earning=" + earning;
+            }
         }
         else {
             return "";
