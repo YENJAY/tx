@@ -19,6 +19,9 @@ public class ConfigurableParameters {
     public static String COMMODITY;
     public static int TICKET_SLIPPAGE;
     public static int MIN_TICK;
+    public static int PBB_UPPER;
+    public static int PBB_LOWER;
+    
     static {
         String content = "";
         try {
@@ -48,6 +51,8 @@ public class ConfigurableParameters {
             COMMODITY = obj.getJSONObject("configuration").getString("COMMODITY");
             TICKET_SLIPPAGE = Integer.parseInt(obj.getJSONObject("configuration").getString("TICKET_SLIPPAGE"));
             MIN_TICK = Integer.parseInt(obj.getJSONObject("configuration").getString("MIN_TICK"));
+            PBB_UPPER = Integer.parseInt(obj.getJSONObject("configuration").getString("PBB_UPPER"));
+            PBB_LOWER = Integer.parseInt(obj.getJSONObject("configuration").getString("PBB_LOWER"));
             System.out.println("Configuration loaded successfully.");
         }
         catch (IOException e) {
