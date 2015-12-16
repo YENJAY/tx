@@ -22,21 +22,30 @@ public class GPoint {
     private int tolerance = ConfigurableParameters.LOST_TOLERANCE;
     private int lifecycle = ConfigurableParameters.TRANS_LIFECYCLE;
     private int minimalBoundSize = ConfigurableParameters.BBAND_BOUND_SIZE;
-    private double newestValue;
+    private double newestPrice;
+    private double lastPrice;
     private Date newestDate;
+    private int currentDirection;
     private Vector<Transaction> allTransactions = new Vector<Transaction>();
 
     public void streamingInput(String time, String value) {
         try {
-            newestDate = formatter.parse(input[1]);
+            newestDate = formatter.parse(time);
         }
         catch(ParseException e) {
             e.printStackTrace();
         }
-        newestValue = Double.parseDouble(input[2]);
+        newestPrice = Double.parseDouble(value);
+        if(newestPrice > lastPrice) {
+            currentDirection = 1;
+        }
+        else if(newestPrice < lastPrice) {
+            currentDirection = -1;
+        }
+        else currentDirection = 0;
     }
 
-    public int GPointStrategy() {
+    public void GPointStrategy() {
         if(transactions.size() < ConfigurableParameters.MAX_CONCURRENT_TRANSACTION) {
             in();
         }
@@ -49,19 +58,19 @@ public class GPoint {
     private void in() {
         // TODO
         // GPoint strategy here
-        if(prediction !=0) {
-            Transaction trans = new Transaction(lastBBandUnit.end, lastBBandUnit.dateEnd, lifecycle, prediction, tolerance);
-            Toolkit.getDefaultToolkit().beep();
-            if(trans.order() == true) {
-                Toolkit.getDefaultToolkit().beep();
-                System.out.println("New transaction: " + trans);
-                allTransactions.add(trans);
-                transactions.add(trans);
-            }
-            else {
-                // bypass this chance
-            }
-        }
+        // if(prediction !=0) {
+        //     Transaction trans = new Transaction(lastBBandUnit.end, lastBBandUnit.dateEnd, lifecycle, prediction, tolerance);
+        //     Toolkit.getDefaultToolkit().beep();
+        //     if(trans.order() == true) {
+        //         Toolkit.getDefaultToolkit().beep();
+        //         System.out.println("New transaction: " + trans);
+        //         allTransactions.add(trans);
+        //         transactions.add(trans);
+        //     }
+        //     else {
+        //         // bypass this chance
+        //     }
+        // }
     }
 
     private void out() {
@@ -69,23 +78,23 @@ public class GPoint {
         for(Transaction trans : transactions) {
             if(newestDate.getTime() - trans.birthday.getTime() >= trans.lifecycle) {
                 // Date oneMinuteLater = new Date(trans.birthday.getTime() + trans.lifecycle);
-                profit0 += trans.offset(newestValue, newestDate);
+                profit0 += trans.offset(newestPrice, newestDate);
                 transToRemove.add(trans);
                 System.out.println("Offsetted transaction: " + trans);
                 System.out.println("Profit 0 = " + profit0);
                 Toolkit.getDefaultToolkit().beep();
             }
-            else if( (newestValue-trans.price)*trans.prediction <= -tolerance) {
-                profit1 += trans.offset(newestValue, newestDate);
+            else if( (newestPrice-trans.price)*trans.prediction <= -tolerance) {
+                profit1 += trans.offset(newestPrice, newestDate);
                 System.out.println("Offsetted transaction: " + trans);
                 System.out.println("Profit 1 = " + profit1);
                 transToRemove.add(trans);
                 Toolkit.getDefaultToolkit().beep();
             }
-            else if( bbandBuilder.getLatestTrend() * trans.prediction == -1 ) {
+            else if( currentDirection != trans.prediction ) {
                 trans.b2bWrongPrediction++;
                 if(trans.b2bWrongPrediction >= ConfigurableParameters.MAX_B2B_WRONG_PREDICTION) {
-                    profit2 += trans.offset(newestValue, newestDate);
+                    profit2 += trans.offset(newestPrice, newestDate);
                     System.out.println("Offsetted transaction: " + trans);
                     System.out.println("Profit 2 = " + profit2);
                     transToRemove.add(trans);
@@ -110,7 +119,7 @@ public class GPoint {
     public void finishRemaining() {
         System.out.println("Finish remaining:");
         Toolkit.getDefaultToolkit().beep();
-        if(transactions.size() != null) {
+        if(transactions.size() != 0) {
             for(Transaction trans : transactions) {
                 profit3 += trans.offset(newestPrice, newestDate);
                 System.out.println("Offsetted transaction: " + trans);
@@ -149,67 +158,67 @@ public class GPoint {
         }
     }
 
-    public void onlineTest() {
-        long timeShifting = 0;
-        Date deadline = null;
-        Date today = new Date();
-        SimpleDateFormat yyyyMMdd = new SimpleDateFormat("yyyyMMdd");
-        SimpleDateFormat yyyyMMddHHmmss = new SimpleDateFormat("yyyyMMddHHmmss");
-        SimpleDateFormat timeStampForKBar = new SimpleDateFormat("yyyyMMdd HHmmss");
-        try {
-            String datePrefix = yyyyMMdd.format(today);
-            deadline = yyyyMMddHHmmss.parse(datePrefix + ConfigurableParameters.TRANSACTION_DEADLINE);
-            System.out.println("Deadline of Transaction: " + deadline);
-        }
-        catch(ParseException e) {
-            e.printStackTrace();
-        }
-        try {
-            while(true) {
-                long t1 = System.currentTimeMillis();
-                double price = -1;
-                if(ConfigurableParameters.COMMODITY.contains("MX")) {
-                    price = RealTimePrice.getMTXPrice();
-                }
-                else if(ConfigurableParameters.COMMODITY.contains("TX")) {
-                    price = RealTimePrice.getTXPrice();
-                }
-                timeShifting = System.currentTimeMillis() - t1;
-                if(timeShifting > ConfigurableParameters.REALTIME_PRICE_REFRESH_RATE) {
-                    // this request may take too much time. Let's ignore it.
-                    continue;
-                }
-                if(price != -1) {
-                    String timeStamp = timeStampForKBar.format(Calendar.getInstance().getTime());
-                    String line = timeStamp + " " + price;
-                    System.out.println("# " + line);
-                    String[] input = line.split("\\s");
-                    if(input.length != 3) {
-                        for(String s : input) {
-                            System.out.println(s);
-                        }
-                        throw new RuntimeException("Error input for building K bar...");
-                    }
-                    GPointStrategy();
-                }
-                if(timeShifting < ConfigurableParameters.REALTIME_PRICE_REFRESH_RATE) {
-                    try {
-                        Thread.sleep(ConfigurableParameters.REALTIME_PRICE_REFRESH_RATE - timeShifting);
-                    }
-                    catch(InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-                Date now = new Date();
-                if(now.after(deadline)) {
-                    break;
-                }
-            }
-        }
-        finally {
-            saveResults();
-        }
-    }
+    // public void onlineTest() {
+    //     long timeShifting = 0;
+    //     Date deadline = null;
+    //     Date today = new Date();
+    //     SimpleDateFormat yyyyMMdd = new SimpleDateFormat("yyyyMMdd");
+    //     SimpleDateFormat yyyyMMddHHmmss = new SimpleDateFormat("yyyyMMddHHmmss");
+    //     SimpleDateFormat timeStampForKBar = new SimpleDateFormat("yyyyMMdd HHmmss");
+    //     try {
+    //         String datePrefix = yyyyMMdd.format(today);
+    //         deadline = yyyyMMddHHmmss.parse(datePrefix + ConfigurableParameters.TRANSACTION_DEADLINE);
+    //         System.out.println("Deadline of Transaction: " + deadline);
+    //     }
+    //     catch(ParseException e) {
+    //         e.printStackTrace();
+    //     }
+    //     try {
+    //         while(true) {
+    //             long t1 = System.currentTimeMillis();
+    //             double price = -1;
+    //             if(ConfigurableParameters.COMMODITY.contains("MX")) {
+    //                 price = RealTimePrice.getMTXPrice();
+    //             }
+    //             else if(ConfigurableParameters.COMMODITY.contains("TX")) {
+    //                 price = RealTimePrice.getTXPrice();
+    //             }
+    //             timeShifting = System.currentTimeMillis() - t1;
+    //             if(timeShifting > ConfigurableParameters.REALTIME_PRICE_REFRESH_RATE) {
+    //                 // this request may take too much time. Let's ignore it.
+    //                 continue;
+    //             }
+    //             if(price != -1) {
+    //                 String timeStamp = timeStampForKBar.format(Calendar.getInstance().getTime());
+    //                 String line = timeStamp + " " + price;
+    //                 System.out.println("# " + line);
+    //                 String[] input = line.split("\\s");
+    //                 if(input.length != 3) {
+    //                     for(String s : input) {
+    //                         System.out.println(s);
+    //                     }
+    //                     throw new RuntimeException("Error input for building K bar...");
+    //                 }
+    //                 GPointStrategy();
+    //             }
+    //             if(timeShifting < ConfigurableParameters.REALTIME_PRICE_REFRESH_RATE) {
+    //                 try {
+    //                     Thread.sleep(ConfigurableParameters.REALTIME_PRICE_REFRESH_RATE - timeShifting);
+    //                 }
+    //                 catch(InterruptedException e) {
+    //                     e.printStackTrace();
+    //                 }
+    //             }
+    //             Date now = new Date();
+    //             if(now.after(deadline)) {
+    //                 break;
+    //             }
+    //         }
+    //     }
+    //     finally {
+    //         saveResults();
+    //     }
+    // }
 
     public String toString() {
         String ret = "# Transactions:\n";
@@ -235,45 +244,45 @@ public class GPoint {
         return ret += "# Final profit = " + (profit0 + profit1 + profit2 + profit3);
     }
 
-    private void saveAsJpeg(File outFile) throws IOException {
-        final XYSeriesCollection data = new XYSeriesCollection();
-
-        XYSeries priceSeries = new XYSeries("Price");
-        double max = Double.MIN_VALUE;
-        double min = Double.MAX_VALUE;
-        priceSeries.add(t2, bbandUnit.end);
-
-        data.addSeries(priceSeries);
-
-        for(Transaction trans : allTransactions) {
-            XYSeries transSeries = new XYSeries(formatter.format(trans.birthday));
-            long t1 = (trans.birthday.getTime() - initTime)/1000;
-            long t2 = (trans.dateOffset.getTime() - initTime)/1000;
-            transSeries.add(t1, trans.price);
-            transSeries.add(t2, trans.offsetValue);
-            data.addSeries(transSeries);
-        }
-
-        final JFreeChart chart = ChartFactory.createXYLineChart("GPoint", "Time", "Point", data,
-            PlotOrientation.VERTICAL, false, true, false);
-        chart.setAntiAlias(false);
-        XYPlot plot = (XYPlot) chart.getXYPlot();
-        plot.setBackgroundPaint(java.awt.Color.BLACK);
-        int seriesCount = plot.getSeriesCount();
-        for (int i = 0; i < seriesCount; i++) {
-            plot.getRenderer().setSeriesStroke(i, new BasicStroke(3));
-        }
-        final NumberAxis rangeAxis = (NumberAxis) plot.getRangeAxis();
-        rangeAxis.setRange(min-20, max+20);
-        rangeAxis.setTickUnit(new NumberTickUnit(10));
-        final NumberAxis domainAxis = (NumberAxis) plot.getDomainAxis();
-        domainAxis.setTickUnit(new NumberTickUnit(60));
-        domainAxis.setRange(0, 17940);
-        domainAxis.setVerticalTickLabels(true);
-        int width = 1280*10; /* Width of the image */
-        int height = 720; /* Height of the image */
-        ChartUtilities.saveChartAsJPEG(outFile, 1.0f, chart, width, height);
-    }
+    // private void saveAsJpeg(File outFile) throws IOException {
+    //     final XYSeriesCollection data = new XYSeriesCollection();
+    //
+    //     XYSeries priceSeries = new XYSeries("Price");
+    //     double max = Double.MIN_VALUE;
+    //     double min = Double.MAX_VALUE;
+    //     priceSeries.add(t2, bbandUnit.end);
+    //
+    //     data.addSeries(priceSeries);
+    //
+    //     for(Transaction trans : allTransactions) {
+    //         XYSeries transSeries = new XYSeries(formatter.format(trans.birthday));
+    //         long t1 = (trans.birthday.getTime() - initTime)/1000;
+    //         long t2 = (trans.dateOffset.getTime() - initTime)/1000;
+    //         transSeries.add(t1, trans.price);
+    //         transSeries.add(t2, trans.offsetValue);
+    //         data.addSeries(transSeries);
+    //     }
+    //
+    //     final JFreeChart chart = ChartFactory.createXYLineChart("GPoint", "Time", "Point", data,
+    //         PlotOrientation.VERTICAL, false, true, false);
+    //     chart.setAntiAlias(false);
+    //     XYPlot plot = (XYPlot) chart.getXYPlot();
+    //     plot.setBackgroundPaint(java.awt.Color.BLACK);
+    //     int seriesCount = plot.getSeriesCount();
+    //     for (int i = 0; i < seriesCount; i++) {
+    //         plot.getRenderer().setSeriesStroke(i, new BasicStroke(3));
+    //     }
+    //     final NumberAxis rangeAxis = (NumberAxis) plot.getRangeAxis();
+    //     rangeAxis.setRange(min-20, max+20);
+    //     rangeAxis.setTickUnit(new NumberTickUnit(10));
+    //     final NumberAxis domainAxis = (NumberAxis) plot.getDomainAxis();
+    //     domainAxis.setTickUnit(new NumberTickUnit(60));
+    //     domainAxis.setRange(0, 17940);
+    //     domainAxis.setVerticalTickLabels(true);
+    //     int width = 1280*10; /* Width of the image */
+    //     int height = 720; /* Height of the image */
+    //     ChartUtilities.saveChartAsJPEG(outFile, 1.0f, chart, width, height);
+    // }
 
     private void saveResults() {
         finishRemaining();
@@ -359,10 +368,10 @@ public class GPoint {
 
     public static void main(String... args) {
         GPoint gpoint = new GPoint();
-        String ret1 = T4.addAccCA();
-        String ret2 = T4.verifyCAPass();
-        System.out.println(ret1);
-        System.out.println(ret2);
-        gpoint.onlineTest();
+        // String ret1 = T4.addAccCA();
+        // String ret2 = T4.verifyCAPass();
+        // System.out.println(ret1);
+        // System.out.println(ret2);
+        gpoint.logfileTest(args[0]);
     }
 }
