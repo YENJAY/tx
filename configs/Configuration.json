@@ -1,17 +1,22 @@
 {
    "configuration": {
-         "BBAND_THRESHOLD": "10",
-         "KBAR_LENGTH": "600000",
+         "BBAND_THRESHOLD": "5",
+         "KBAR_LENGTH": "5400000",
          "LOST_TOLERANCE": "10",
-         "TRANS_LIFECYCLE": "600000",
+         "TRANS_LIFECYCLE": "5400000",
          "BBAND_BOUND_SIZE": "8",
          "TAX_FEE": "66",
          "NTD_PER_POINT": "50",
          "MAX_CONCURRENT_TRANSACTION": "1",
          "MAX_B2B_WRONG_PREDICTION": "2",
          "MIN_TICK": "1000",
-         "PBB_UPPER": "60",
-         "PBB_LOWER": "40",
+         "PBB_UPPER": "160",
+         "PBB_LOWER": "-60",
+         "NUM_TRY_TO_ORDER": "10",
+         "COMMODITY": "MXFL5",
+         "TRANSACTION_DEADLINE": "134200",
+         "INSURANCE_FOR_SLIPPAGE": "50",
+         "REALTIME_PRICE_REFRESH_RATE": "1000",
          "TICKET_SLIPPAGE": "1"
     }
 }
