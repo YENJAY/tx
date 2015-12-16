@@ -36,11 +36,11 @@ public class GPoint {
             e.printStackTrace();
         }
         newestPrice = Double.parseDouble(value);
-        if(lastPrice > newestPrice) {
-            currentDirection = -1;
-        }
-        else if(lastPrice < newestPrice) {
+        if(newestPrice > lastPrice) {
             currentDirection = 1;
+        }
+        else if(newestPrice < lastPrice) {
+            currentDirection = -1;
         }
         else currentDirection = 0;
     }
@@ -91,7 +91,7 @@ public class GPoint {
                 transToRemove.add(trans);
                 Toolkit.getDefaultToolkit().beep();
             }
-            else if( trans.prediction != currentDirection ) {
+            else if( currentDirection != trans.prediction ) {
                 trans.b2bWrongPrediction++;
                 if(trans.b2bWrongPrediction >= ConfigurableParameters.MAX_B2B_WRONG_PREDICTION) {
                     profit2 += trans.offset(newestPrice, newestDate);
@@ -158,67 +158,67 @@ public class GPoint {
         }
     }
 
-    public void onlineTest() {
-        long timeShifting = 0;
-        Date deadline = null;
-        Date today = new Date();
-        SimpleDateFormat yyyyMMdd = new SimpleDateFormat("yyyyMMdd");
-        SimpleDateFormat yyyyMMddHHmmss = new SimpleDateFormat("yyyyMMddHHmmss");
-        SimpleDateFormat timeStampForKBar = new SimpleDateFormat("yyyyMMdd HHmmss");
-        try {
-            String datePrefix = yyyyMMdd.format(today);
-            deadline = yyyyMMddHHmmss.parse(datePrefix + ConfigurableParameters.TRANSACTION_DEADLINE);
-            System.out.println("Deadline of Transaction: " + deadline);
-        }
-        catch(ParseException e) {
-            e.printStackTrace();
-        }
-        try {
-            while(true) {
-                long t1 = System.currentTimeMillis();
-                double price = -1;
-                if(ConfigurableParameters.COMMODITY.contains("MX")) {
-                    price = RealTimePrice.getMTXPrice();
-                }
-                else if(ConfigurableParameters.COMMODITY.contains("TX")) {
-                    price = RealTimePrice.getTXPrice();
-                }
-                timeShifting = System.currentTimeMillis() - t1;
-                if(timeShifting > ConfigurableParameters.REALTIME_PRICE_REFRESH_RATE) {
-                    // this request may take too much time. Let's ignore it.
-                    continue;
-                }
-                if(price != -1) {
-                    String timeStamp = timeStampForKBar.format(Calendar.getInstance().getTime());
-                    String line = timeStamp + " " + price;
-                    System.out.println("# " + line);
-                    String[] input = line.split("\\s");
-                    if(input.length != 3) {
-                        for(String s : input) {
-                            System.out.println(s);
-                        }
-                        throw new RuntimeException("Error input for building K bar...");
-                    }
-                    GPointStrategy();
-                }
-                if(timeShifting < ConfigurableParameters.REALTIME_PRICE_REFRESH_RATE) {
-                    try {
-                        Thread.sleep(ConfigurableParameters.REALTIME_PRICE_REFRESH_RATE - timeShifting);
-                    }
-                    catch(InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-                Date now = new Date();
-                if(now.after(deadline)) {
-                    break;
-                }
-            }
-        }
-        finally {
-            saveResults();
-        }
-    }
+    // public void onlineTest() {
+    //     long timeShifting = 0;
+    //     Date deadline = null;
+    //     Date today = new Date();
+    //     SimpleDateFormat yyyyMMdd = new SimpleDateFormat("yyyyMMdd");
+    //     SimpleDateFormat yyyyMMddHHmmss = new SimpleDateFormat("yyyyMMddHHmmss");
+    //     SimpleDateFormat timeStampForKBar = new SimpleDateFormat("yyyyMMdd HHmmss");
+    //     try {
+    //         String datePrefix = yyyyMMdd.format(today);
+    //         deadline = yyyyMMddHHmmss.parse(datePrefix + ConfigurableParameters.TRANSACTION_DEADLINE);
+    //         System.out.println("Deadline of Transaction: " + deadline);
+    //     }
+    //     catch(ParseException e) {
+    //         e.printStackTrace();
+    //     }
+    //     try {
+    //         while(true) {
+    //             long t1 = System.currentTimeMillis();
+    //             double price = -1;
+    //             if(ConfigurableParameters.COMMODITY.contains("MX")) {
+    //                 price = RealTimePrice.getMTXPrice();
+    //             }
+    //             else if(ConfigurableParameters.COMMODITY.contains("TX")) {
+    //                 price = RealTimePrice.getTXPrice();
+    //             }
+    //             timeShifting = System.currentTimeMillis() - t1;
+    //             if(timeShifting > ConfigurableParameters.REALTIME_PRICE_REFRESH_RATE) {
+    //                 // this request may take too much time. Let's ignore it.
+    //                 continue;
+    //             }
+    //             if(price != -1) {
+    //                 String timeStamp = timeStampForKBar.format(Calendar.getInstance().getTime());
+    //                 String line = timeStamp + " " + price;
+    //                 System.out.println("# " + line);
+    //                 String[] input = line.split("\\s");
+    //                 if(input.length != 3) {
+    //                     for(String s : input) {
+    //                         System.out.println(s);
+    //                     }
+    //                     throw new RuntimeException("Error input for building K bar...");
+    //                 }
+    //                 GPointStrategy();
+    //             }
+    //             if(timeShifting < ConfigurableParameters.REALTIME_PRICE_REFRESH_RATE) {
+    //                 try {
+    //                     Thread.sleep(ConfigurableParameters.REALTIME_PRICE_REFRESH_RATE - timeShifting);
+    //                 }
+    //                 catch(InterruptedException e) {
+    //                     e.printStackTrace();
+    //                 }
+    //             }
+    //             Date now = new Date();
+    //             if(now.after(deadline)) {
+    //                 break;
+    //             }
+    //         }
+    //     }
+    //     finally {
+    //         saveResults();
+    //     }
+    // }
 
     public String toString() {
         String ret = "# Transactions:\n";
@@ -372,6 +372,7 @@ public class GPoint {
         // String ret2 = T4.verifyCAPass();
         // System.out.println(ret1);
         // System.out.println(ret2);
-        gpoint.onlineTest();
+        // gpoint.onlineTest();
+        gpoint.logfileTest(args[0]);
     }
 }
