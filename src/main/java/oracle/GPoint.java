@@ -28,6 +28,7 @@ public class GPoint {
     private Date newestDate;
     private int[] priceCounting = new int[15000];
     private double[] probHistory = new double[priceCounting.length];
+    private double[] np = new double[priceCounting.length];
     private double[] v = new double[1];
     private double avgV = 0;
 
@@ -38,8 +39,7 @@ public class GPoint {
     public void streamingInput(String time, String value) {
         try {
             newestDate = formatter.parse(time);
-            // tick
-            v[tick % v.length] = (newestPrice - lastPrice);
+            newestPrice = Double.parseDouble(value);
             tick++;
         }
         catch(ParseException e) {
@@ -53,8 +53,8 @@ public class GPoint {
         }
         else {
             // update
-            newestPrice = Double.parseDouble(value);
             updateProbability();
+            v[tick % v.length] = (newestPrice - lastPrice);
 
             // velocity
             for(int i=0; i<v.length; i++) {
@@ -78,7 +78,7 @@ public class GPoint {
 
     private int nextUpGPoint() {
         for(int i=(int)newestPrice; i<priceCounting.length; i++) {
-            if(probHistory[i] > 0.005) {
+            if(np[i] > 0.8) {
                 // System.out.println("Next Up G-Point = " + i);
                 return i;
             }
@@ -88,7 +88,7 @@ public class GPoint {
 
     private int nextDownGPoint() {
         for(int i=(int)newestPrice; i>0; i--) {
-            if(probHistory[i] > 0.005) {
+            if(np[i] > 0.8) {
                 // System.out.println("Next Down G-Point = " + i);
                 return i;
             }
@@ -102,15 +102,15 @@ public class GPoint {
         // Relativity strategy here
         int prediction = 0;
         int p = (int) newestPrice;
-        // System.out.println("prob@" + newestPrice + " = " + probHistory[p]);
+        // System.out.println("np@" + newestPrice + " = " + np[p]);
 
-        if(avgV > 0 && probHistory[p] < 0.002) {
+        if(avgV > 1 && np[p] < 0.10) {
             int up = nextUpGPoint();
             if(up != -1 && up - newestPrice > 10) {
                 prediction = 1;
             }
         }
-        else if(avgV < 0 && probHistory[p] < 0.002) {
+        else if(avgV < -1 && np[p] < 0.10) {
             int down = nextDownGPoint();
             if(down != -1 && newestPrice - down > 10) {
                 prediction = -1;
@@ -153,18 +153,18 @@ public class GPoint {
                 transToRemove.add(trans);
                 // Toolkit.getDefaultToolkit().beep();
             }
-            else if( avgV * trans.prediction < 0) {
-                trans.b2bWrongPrediction++;
-                if(trans.b2bWrongPrediction >= ConfigurableParameters.MAX_B2B_WRONG_PREDICTION) {
-                    profit2 += trans.offset(newestPrice, newestDate);
-                    System.out.println("Offsetted transaction: " + trans);
-                    System.out.println("Profit 2 = " + profit2);
-                    transToRemove.add(trans);
-                    // Toolkit.getDefaultToolkit().beep();
-                    // trans.b2bWrongPrediction = 0;
-                }
-            }
-            else if( probHistory[(int)newestPrice] > 0.005 || Math.abs(avgV) < 0) {
+            // else if( avgV * trans.prediction < 0) {
+            //     trans.b2bWrongPrediction++;
+            //     if(trans.b2bWrongPrediction >= ConfigurableParameters.MAX_B2B_WRONG_PREDICTION) {
+            //         profit2 += trans.offset(newestPrice, newestDate);
+            //         System.out.println("Offsetted transaction: " + trans);
+            //         System.out.println("Profit 2 = " + profit2);
+            //         transToRemove.add(trans);
+            //         // Toolkit.getDefaultToolkit().beep();
+            //         // trans.b2bWrongPrediction = 0;
+            //     }
+            // }
+            else if( np[(int)newestPrice] > 0.5 || Math.abs(avgV) < 0) {
                 profit4 += trans.offset(newestPrice, newestDate);
                 System.out.println("Offsetted transaction: " + trans);
                 System.out.println("Profit 4 = " + profit4);
@@ -437,7 +437,7 @@ public class GPoint {
     //     }
     // }
 
-    private double updateProbability() {
+    private void updateProbability() {
         int staying = (int) ((newestDate.getTime() - lastDate.getTime())/1000);
         int p = (int) newestPrice;
         priceCounting[p] += staying;
@@ -445,13 +445,44 @@ public class GPoint {
         for(int i=0; i<priceCounting.length; i++) {
             probHistory[i] = priceCounting[i]/(double)tick;
         }
-        return probHistory[(int)p];
+
+        // normalized
+        double max = Double.MIN_VALUE;
+        double min = Double.MAX_VALUE;
+        for(int i=0; i<priceCounting.length; i++) {
+            if(probHistory[i] > max) {
+                max = probHistory[i];
+            }
+            if(probHistory[i] < min) {
+                min = probHistory[i];
+            }
+        }
+
+        for(int i=0; i<priceCounting.length; i++) {
+            if(probHistory[i] != 0) {
+                np[i] = (probHistory[i]-min)/(max-min);
+            }
+        }
     }
 
     private void showCounting() {
+        double max = Double.MIN_VALUE;
+        double min = Double.MAX_VALUE;
+        double[] normalizedProb = new double[probHistory.length];
+        for(int i=0; i<priceCounting.length; i++) {
+            if(probHistory[i] > max) {
+                max = probHistory[i];
+            }
+            if(probHistory[i] < min) {
+                min = probHistory[i];
+            }
+        }
+
+        DecimalFormat df = new DecimalFormat("0.00000");
         for(int i=0; i<priceCounting.length; i++) {
             if(probHistory[i] != 0) {
-                System.out.println(probHistory[i]);
+                np[i] = (probHistory[i]-min)/(max-min);
+                // System.out.println(i + " " + df.format(np));
             }
         }
     }
@@ -465,7 +496,7 @@ public class GPoint {
         // System.out.println(ret2);
         gpoint.logfileTest(args[0]);
         System.out.println(gpoint);
-        System.out.println("Distribution...");
-        gpoint.showCounting();
+        // System.out.println("Distribution...");
+        // gpoint.showCounting();
     }
 }
