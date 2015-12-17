@@ -73,12 +73,12 @@ public class HighTide {
             e.printStackTrace();
         }
         double v = Double.parseDouble(value);
-        if(kbarUnit.high - kbarUnit.low > 35 && v > kbarUnit.high) {
+        if(kbarUnit.high - kbarUnit.low > 15 && v > kbarUnit.high + 5) {
             Transaction trans = new Transaction(v, kbarUnit.endDate, Long.MAX_VALUE, 1, tolerance);
             allTransactions.add(trans);
             transactions.add(trans);
         }
-        else if(kbarUnit.high - kbarUnit.low >= 35 && v < kbarUnit.low) {
+        else if(kbarUnit.high - kbarUnit.low >= 15 && v < kbarUnit.low - 5) {
             Transaction trans = new Transaction(v, kbarUnit.endDate, Long.MAX_VALUE, -1, tolerance);
             allTransactions.add(trans);
             transactions.add(trans);

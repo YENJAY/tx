@@ -31,6 +31,7 @@ public class GPoint {
     private double[] np = new double[priceCounting.length];
     private double[] v = new double[1];
     private double avgV = 0;
+    private double[] K = new double[ConfigurableParameters.KBAR_LENGTH/1000];
 
     private Vector<Transaction> allTransactions = new Vector<Transaction>();
 
@@ -40,6 +41,7 @@ public class GPoint {
         try {
             newestDate = formatter.parse(time);
             newestPrice = Double.parseDouble(value);
+            K[tick % K.length] = newestPrice;
             tick++;
         }
         catch(ParseException e) {
@@ -96,29 +98,41 @@ public class GPoint {
         return -1;
     }
 
+    private double Kmax() {
+        double max = Double.MIN_VALUE;
+        for(int i=0; i<K.length; i++) {
+            if(K[i] > max) {
+                max = K[i];
+            }
+        }
+        return max;
+    }
+
+    private double Kmin() {
+        double min = Double.MAX_VALUE;
+        for(int i=0; i<K.length; i++) {
+            if(K[i] < min) {
+                min = K[i];
+            }
+        }
+        return min;
+    }
 
     private void in() {
         // TODO
         // Relativity strategy here
         int prediction = 0;
-        int p = (int) newestPrice;
-        // System.out.println("np@" + newestPrice + " = " + np[p]);
-
-        if(avgV > 1 && np[p] < 0.10) {
-            int up = nextUpGPoint();
-            if(up != -1 && up - newestPrice > 10) {
-                prediction = 1;
-            }
-        }
-        else if(avgV < -1 && np[p] < 0.10) {
-            int down = nextDownGPoint();
-            if(down != -1 && newestPrice - down > 10) {
+        if(Kmax() - Kmin() >= 30) {
+            if(newestPrice <= Kmin()) {
                 prediction = -1;
+            }
+            else if(newestPrice >= Kmax()) {
+                prediction = 1;
             }
         }
 
         if(prediction != 0) {
-            Transaction trans = new Transaction(newestPrice, newestDate, Integer.MAX_VALUE, prediction, tolerance) {
+            Transaction trans = new Transaction(newestPrice, newestDate, ConfigurableParameters.TRANS_LIFECYCLE, prediction, tolerance) {
                 public boolean order() { return true; }
             };
             // Toolkit.getDefaultToolkit().beep();
@@ -164,12 +178,12 @@ public class GPoint {
             //         // trans.b2bWrongPrediction = 0;
             //     }
             // }
-            else if( np[(int)newestPrice] > 0.5 || Math.abs(avgV) < 0) {
-                profit4 += trans.offset(newestPrice, newestDate);
-                System.out.println("Offsetted transaction: " + trans);
-                System.out.println("Profit 4 = " + profit4);
-                transToRemove.add(trans);
-            }
+            // else if( np[(int)newestPrice] > 0.5) {
+            //     profit4 += trans.offset(newestPrice, newestDate);
+            //     System.out.println("Offsetted transaction: " + trans);
+            //     System.out.println("Profit 4 = " + profit4);
+            //     transToRemove.add(trans);
+            // }
             else {
                 // still earning within 1 min
                 // reset wrong prediction
