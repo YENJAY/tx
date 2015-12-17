@@ -38,8 +38,8 @@ public class Transaction {
     public String toString() {
         if(prediction!=0) {
             if(dateOffset == null) {
-                return formatter.format(birthday) + " " + "----" + " prediction=" + prediction + " " +
-                    price + "->" + offsetValue + " earning=" + earning;
+                return formatter.format(birthday) + " " + "----" + " prediction=" + prediction + " @" +
+                    price;
             }
             else {
                 return formatter.format(birthday) + " " + formatter.format(dateOffset) + " prediction=" + prediction + " " +

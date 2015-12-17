@@ -26,10 +26,14 @@ public class GPoint {
     private double lastPrice;
     private Date lastDate;
     private Date newestDate;
-    private int currentDirection;
     private int[] priceCounting = new int[15000];
-    private double v;
+    private int[] probHistory = new int[priceCounting.length];
+    private double[] v = new double[1];
+    private double avgV = 0;
+
     private Vector<Transaction> allTransactions = new Vector<Transaction>();
+
+    private int tick = 0;
 
     public void streamingInput(String time, String value) {
         try {
@@ -47,15 +51,21 @@ public class GPoint {
         else {
             // update
             newestPrice = Double.parseDouble(value);
-            System.out.println(newestPrice + " " + getStayingProbability(newestPrice));
-
-            // velocity
-            v = (newestPrice - lastPrice);
+            // System.out.println(newestPrice + " " + getStayingProbability(newestPrice));
 
             // counting
             int staying = (int) ((newestDate.getTime() - lastDate.getTime())/1000);
             int p = (int) newestPrice;
             priceCounting[p] += staying;
+
+            // velocity
+            tick %= v.length;
+            v[tick] = (newestPrice - lastPrice);
+            tick++;
+            for(int i=0; i<v.length; i++) {
+                avgV += v[i];
+            }
+            avgV /= v.length;
         }
         lastDate = newestDate;
         lastPrice = newestPrice;
@@ -71,17 +81,47 @@ public class GPoint {
         }
     }
 
+    private int nextUpGPoint() {
+        for(int i=(int)newestPrice; i<priceCounting.length; i++) {
+            if(probHistory[i] > 50) {
+                // System.out.println("Next Up G-Point = " + i);
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    private int nextDownGPoint() {
+        for(int i=(int)newestPrice; i>0; i--) {
+            if(probHistory[i] > 50) {
+                // System.out.println("Next Down G-Point = " + i);
+                return i;
+            }
+        }
+        return -1;
+    }
+
+
     private void in() {
         // TODO
         // Relativity strategy here
         int prediction = 0;
-        if(Math.abs(v) > 5) {
-            if(v > 5) {
+        int prob = getStayingProbability(newestPrice);
+
+        if(avgV > 0) {
+            int up = nextUpGPoint();
+            if(up != -1 && up - newestPrice > 10) {
                 prediction = 1;
             }
-            else if(v < -5) {
+        }
+        else if(avgV < 0) {
+            int down = nextDownGPoint();
+            if(down != -1 && newestPrice - down > 10) {
                 prediction = -1;
             }
+        }
+
+        if(prediction != 0) {
             Transaction trans = new Transaction(newestPrice, newestDate, Integer.MAX_VALUE, prediction, tolerance) {
                 public boolean order() { return true; }
             };
@@ -117,16 +157,22 @@ public class GPoint {
                 transToRemove.add(trans);
                 // Toolkit.getDefaultToolkit().beep();
             }
-            else if( currentDirection != trans.prediction ) {
-                trans.b2bWrongPrediction++;
-                if(trans.b2bWrongPrediction >= ConfigurableParameters.MAX_B2B_WRONG_PREDICTION) {
-                    profit2 += trans.offset(newestPrice, newestDate);
-                    System.out.println("Offsetted transaction: " + trans);
-                    System.out.println("Profit 2 = " + profit2);
-                    transToRemove.add(trans);
-                    // Toolkit.getDefaultToolkit().beep();
-                    // trans.b2bWrongPrediction = 0;
-                }
+            // else if( avgV * trans.prediction < 0) {
+            //     trans.b2bWrongPrediction++;
+            //     if(trans.b2bWrongPrediction >= ConfigurableParameters.MAX_B2B_WRONG_PREDICTION) {
+            //         profit2 += trans.offset(newestPrice, newestDate);
+            //         System.out.println("Offsetted transaction: " + trans);
+            //         System.out.println("Profit 2 = " + profit2);
+            //         transToRemove.add(trans);
+            //         // Toolkit.getDefaultToolkit().beep();
+            //         // trans.b2bWrongPrediction = 0;
+            //     }
+            // }
+            else if( getStayingProbability(newestPrice) > 50 && Math.abs(avgV) < 0) {
+                profit4 += trans.offset(newestPrice, newestDate);
+                System.out.println("Offsetted transaction: " + trans);
+                System.out.println("Profit 4 = " + profit4);
+                transToRemove.add(trans);
             }
             else {
                 // still earning within 1 min
@@ -142,6 +188,7 @@ public class GPoint {
     private int profit1 = 0;
     private int profit2 = 0;
     private int profit3 = 0;
+    private int profit4 = 0;
     public void finishRemaining() {
         System.out.println("Finish remaining:");
         // Toolkit.getDefaultToolkit().beep();
@@ -262,12 +309,14 @@ public class GPoint {
         ret += "# Profit 1: Stop losing.\n";
         ret += "# Profit 2: Reach max wrong prediction limit\n";
         ret += "# Profit 3: Remaining transactions.\n";
+        ret += "# Profit 4: Seems not moving.\n";
         ret += "# -------------------------------------------------------\n";
         ret += "# Profit 0 = " + profit0 + "\n";
         ret += "# Profit 1 = " + profit1 + "\n";
         ret += "# Profit 2 = " + profit2 + "\n";
         ret += "# Profit 3 = " + profit3 + "\n";
-        return ret += "# Final profit = " + (profit0 + profit1 + profit2 + profit3);
+        ret += "# Profit 4 = " + profit4 + "\n";
+        return ret += "# Final profit = " + (profit0 + profit1 + profit2 + profit3 + profit4);
     }
 
     // private void saveAsJpeg(File outFile) throws IOException {
@@ -408,11 +457,10 @@ public class GPoint {
         double norm = max - min;
 
         // normalize
-        int[] prob = new int[priceCounting.length];
         for(int i=0; i<priceCounting.length; i++) {
-            prob[i] = (int) (100*(priceCounting[i]-min)/norm);
+            probHistory[i] = (int) (100*(priceCounting[i]-min)/norm);
         }
-        return prob[(int)p];
+        return probHistory[(int)p];
     }
 
     public static void main(String... args) {
