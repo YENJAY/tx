@@ -27,7 +27,8 @@ public class GPoint {
     private Date lastDate;
     private Date newestDate;
     private int currentDirection;
-    private int[] price = new int[15000];
+    private int[] priceCounting = new int[15000];
+    private double v;
     private Vector<Transaction> allTransactions = new Vector<Transaction>();
 
     public void streamingInput(String time, String value) {
@@ -39,27 +40,25 @@ public class GPoint {
         }
 
         if(lastDate == null) {
-            // update last data
+            // initialize
             lastDate = newestDate;
             lastPrice = newestPrice;
         }
+        else {
+            // update
+            newestPrice = Double.parseDouble(value);
+            System.out.println(newestPrice + " " + getStayingProbability(newestPrice));
 
-        // counting
-        newestPrice = Double.parseDouble(value);
-        int staying = (int) ((newestDate.getTime() - lastDate.getTime())/1000);
-        int p = (int) newestPrice;
-        price[p] += staying;
+            // velocity
+            v = (newestPrice - lastPrice);
 
-        // moving direction
-        if(newestPrice > lastPrice) {
-            currentDirection = 1;
+            // counting
+            int staying = (int) ((newestDate.getTime() - lastDate.getTime())/1000);
+            int p = (int) newestPrice;
+            priceCounting[p] += staying;
         }
-        else if(newestPrice < lastPrice) {
-            currentDirection = -1;
-        }
-        else currentDirection = 0;
-
-
+        lastDate = newestDate;
+        lastPrice = newestPrice;
     }
 
     public void GPointStrategy() {
@@ -74,21 +73,31 @@ public class GPoint {
 
     private void in() {
         // TODO
-        // GPoint strategy here
-        // if(prediction !=0) {
-        //     Transaction trans = new Transaction(lastBBandUnit.end, lastBBandUnit.dateEnd, lifecycle, prediction, tolerance);
-        //     Toolkit.getDefaultToolkit().beep();
-        //     if(trans.order() == true) {
-        //         Toolkit.getDefaultToolkit().beep();
-        //         System.out.println("New transaction: " + trans);
-        //         allTransactions.add(trans);
-        //         transactions.add(trans);
-        //     }
-        //     else {
-        //         // bypass this chance
-        //     }
-        // }
+        // Relativity strategy here
+        int prediction = 0;
+        if(Math.abs(v) > 5) {
+            if(v > 5) {
+                prediction = 1;
+            }
+            else if(v < -5) {
+                prediction = -1;
+            }
+            Transaction trans = new Transaction(newestPrice, newestDate, Integer.MAX_VALUE, prediction, tolerance) {
+                public boolean order() { return true; }
+            };
+            // Toolkit.getDefaultToolkit().beep();
+            if(trans.order() == true) {
+                // Toolkit.getDefaultToolkit().beep();
+                System.out.println("New transaction: " + trans);
+                allTransactions.add(trans);
+                transactions.add(trans);
+            }
+            else {
+                // bypass this chance
+            }
+        }
     }
+
 
     private void out() {
         Vector<Transaction> transToRemove = new Vector<Transaction>();
@@ -99,14 +108,14 @@ public class GPoint {
                 transToRemove.add(trans);
                 System.out.println("Offsetted transaction: " + trans);
                 System.out.println("Profit 0 = " + profit0);
-                Toolkit.getDefaultToolkit().beep();
+                // Toolkit.getDefaultToolkit().beep();
             }
             else if( (newestPrice-trans.price)*trans.prediction <= -tolerance) {
                 profit1 += trans.offset(newestPrice, newestDate);
                 System.out.println("Offsetted transaction: " + trans);
                 System.out.println("Profit 1 = " + profit1);
                 transToRemove.add(trans);
-                Toolkit.getDefaultToolkit().beep();
+                // Toolkit.getDefaultToolkit().beep();
             }
             else if( currentDirection != trans.prediction ) {
                 trans.b2bWrongPrediction++;
@@ -115,7 +124,7 @@ public class GPoint {
                     System.out.println("Offsetted transaction: " + trans);
                     System.out.println("Profit 2 = " + profit2);
                     transToRemove.add(trans);
-                    Toolkit.getDefaultToolkit().beep();
+                    // Toolkit.getDefaultToolkit().beep();
                     // trans.b2bWrongPrediction = 0;
                 }
             }
@@ -135,7 +144,7 @@ public class GPoint {
     private int profit3 = 0;
     public void finishRemaining() {
         System.out.println("Finish remaining:");
-        Toolkit.getDefaultToolkit().beep();
+        // Toolkit.getDefaultToolkit().beep();
         if(transactions.size() != 0) {
             for(Transaction trans : transactions) {
                 profit3 += trans.offset(newestPrice, newestDate);
@@ -383,32 +392,27 @@ public class GPoint {
     //     }
     // }
 
-    private void showCounting() {
+    private int getStayingProbability(double p) {
         int max = Integer.MIN_VALUE;
         int min = Integer.MAX_VALUE;
-        for(int i=0; i<price.length; i++) {
-            if(price[i] > max) {
-                max = price[i];
+        for(int i=0; i<priceCounting.length; i++) {
+            if(priceCounting[i] > max) {
+                max = priceCounting[i];
             }
-            else if(price[i] < min) {
-                min = price[i];
+            else if(priceCounting[i] < min) {
+                min = priceCounting[i];
             }
         }
-        System.out.println("Max = " + max);
-        System.out.println("Min = " + min);
+        // System.out.println("Max = " + max);
+        // System.out.println("Min = " + min);
         double norm = max - min;
 
         // normalize
-        // for(int i=0; i<price.length; i++) {
-        for(int i=0; i<price.length; i++) {
-            int pbb = (int) (100*(price[i]-min)/norm);
-            if(pbb == 0) {
-                continue;
-            }
-            else {
-                System.out.println(i + " = " + pbb);
-            }
+        int[] prob = new int[priceCounting.length];
+        for(int i=0; i<priceCounting.length; i++) {
+            prob[i] = (int) (100*(priceCounting[i]-min)/norm);
         }
+        return prob[(int)p];
     }
 
     public static void main(String... args) {
@@ -419,7 +423,7 @@ public class GPoint {
         // System.out.println(ret2);
         gpoint.logfileTest(args[0]);
         System.out.println(gpoint);
-        System.out.println("Distribution...");
-        gpoint.showCounting();
+        // System.out.println("Distribution...");
+        // gpoint.showCounting();
     }
 }
