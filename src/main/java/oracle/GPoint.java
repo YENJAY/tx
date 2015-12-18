@@ -42,6 +42,10 @@ public class GPoint {
     public void streamingInput(String time, String value) {
         try {
             newestDate = formatter.parse(time);
+            if(lastDate != null && newestDate.equals(lastDate)) {
+                // 1 sec at least
+                return;
+            }
             newestPrice = Double.parseDouble(value);
             priceHistory[tick] = newestPrice;
             K[tick % K.length] = newestPrice;
@@ -73,13 +77,18 @@ public class GPoint {
     }
 
     public void GPointStrategy() {
-        if(transactions.size() < ConfigurableParameters.MAX_CONCURRENT_TRANSACTION) {
-            in();
+        double profit = profit0+profit1+profit2+profit3+profit4;
+        if(profit < -75) {
+            return;
         }
-        else {
-            // System.out.println("# Maximum number of concurrent transactions has reached.");
-            out();
+        if(tick > 15 * 60 && tick < 5*60*60 - 15*60) {
+            // do nothing in the last 15 minutes
+            if(transactions.size() < ConfigurableParameters.MAX_CONCURRENT_TRANSACTION) {
+                in();
+            }
         }
+        // System.out.println("# Maximum number of concurrent transactions has reached.");
+        out();
     }
 
     private int nextUpGPoint() {
@@ -123,9 +132,6 @@ public class GPoint {
     }
 
     private void in() {
-        // if(tick < ConfigurableParameters.KBAR_LENGTH/1000) {
-        //     return;
-        // }
         // TODO
         // Relativity strategy here
         int prediction = 0;
@@ -173,12 +179,12 @@ public class GPoint {
                 transToRemove.add(trans);
                 // Toolkit.getDefaultToolkit().beep();
             }
-            // else if( (newestPrice-trans.price)*trans.prediction <= -5*tolerance) {
-            //     profit2 += trans.offset(newestPrice, newestDate);
-            //     System.out.println("Offsetted transaction: " + trans);
-            //     System.out.println("Profit 2 = " + profit2);
-            //     transToRemove.add(trans);
-            // }
+            else if( (newestPrice-trans.price)*trans.prediction <= -15*tolerance) {
+                profit2 += trans.offset(newestPrice, newestDate);
+                System.out.println("Offsetted transaction: " + trans);
+                System.out.println("Profit 2 = " + profit2);
+                transToRemove.add(trans);
+            }
             // else if( avgV * trans.prediction < 0) {
             //     trans.b2bWrongPrediction++;
             //     if(trans.b2bWrongPrediction >= ConfigurableParameters.MAX_B2B_WRONG_PREDICTION) {
