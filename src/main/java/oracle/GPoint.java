@@ -27,11 +27,13 @@ public class GPoint {
     private Date lastDate;
     private Date newestDate;
     private int[] priceCounting = new int[15000];
+    private double[] priceHistory = new double[60*60*5]; // business hour
     private double[] probHistory = new double[priceCounting.length];
     private double[] np = new double[priceCounting.length];
     private double[] v = new double[1];
     private double avgV = 0;
     private double[] K = new double[ConfigurableParameters.KBAR_LENGTH/1000];
+    private Date initDate;
 
     private Vector<Transaction> allTransactions = new Vector<Transaction>();
 
@@ -41,6 +43,7 @@ public class GPoint {
         try {
             newestDate = formatter.parse(time);
             newestPrice = Double.parseDouble(value);
+            priceHistory[tick] = newestPrice;
             K[tick % K.length] = newestPrice;
             tick++;
         }
@@ -52,6 +55,7 @@ public class GPoint {
             // initialize
             lastDate = newestDate;
             lastPrice = newestPrice;
+            initDate = newestDate;
         }
         else {
             // update
@@ -329,55 +333,60 @@ public class GPoint {
         return ret += "# Final profit = " + (profit0 + profit1 + profit2 + profit3 + profit4);
     }
 
-    // private void saveAsJpeg(File outFile) throws IOException {
-    //     final XYSeriesCollection data = new XYSeriesCollection();
-    //
-    //     XYSeries priceSeries = new XYSeries("Price");
-    //     double max = Double.MIN_VALUE;
-    //     double min = Double.MAX_VALUE;
-    //     priceSeries.add(t2, bbandUnit.end);
-    //
-    //     data.addSeries(priceSeries);
-    //
-    //     for(Transaction trans : allTransactions) {
-    //         XYSeries transSeries = new XYSeries(formatter.format(trans.birthday));
-    //         long t1 = (trans.birthday.getTime() - initTime)/1000;
-    //         long t2 = (trans.dateOffset.getTime() - initTime)/1000;
-    //         transSeries.add(t1, trans.price);
-    //         transSeries.add(t2, trans.offsetValue);
-    //         data.addSeries(transSeries);
-    //     }
-    //
-    //     final JFreeChart chart = ChartFactory.createXYLineChart("GPoint", "Time", "Point", data,
-    //         PlotOrientation.VERTICAL, false, true, false);
-    //     chart.setAntiAlias(false);
-    //     XYPlot plot = (XYPlot) chart.getXYPlot();
-    //     plot.setBackgroundPaint(java.awt.Color.BLACK);
-    //     int seriesCount = plot.getSeriesCount();
-    //     for (int i = 0; i < seriesCount; i++) {
-    //         plot.getRenderer().setSeriesStroke(i, new BasicStroke(3));
-    //     }
-    //     final NumberAxis rangeAxis = (NumberAxis) plot.getRangeAxis();
-    //     rangeAxis.setRange(min-20, max+20);
-    //     rangeAxis.setTickUnit(new NumberTickUnit(10));
-    //     final NumberAxis domainAxis = (NumberAxis) plot.getDomainAxis();
-    //     domainAxis.setTickUnit(new NumberTickUnit(60));
-    //     domainAxis.setRange(0, 17940);
-    //     domainAxis.setVerticalTickLabels(true);
-    //     int width = 1280*10; /* Width of the image */
-    //     int height = 720; /* Height of the image */
-    //     ChartUtilities.saveChartAsJPEG(outFile, 1.0f, chart, width, height);
-    // }
+    private void saveAsJpeg(File outFile) throws IOException {
+        final XYSeriesCollection data = new XYSeriesCollection();
 
-    private void saveResults() {
+        XYSeries priceSeries = new XYSeries("Price");
+        for(int i=0; i<tick; i++) {
+            if(priceHistory[i]!=0) {
+                priceSeries.add(i, priceHistory[i]);
+            }
+        }
+
+        data.addSeries(priceSeries);
+
+        for(Transaction trans : allTransactions) {
+            XYSeries transSeries = new XYSeries(formatter.format(trans.birthday));
+            long t1 = (trans.birthday.getTime() - initDate.getTime())/1000;
+            long t2 = (trans.dateOffset.getTime() - initDate.getTime())/1000;
+            transSeries.add(t1, trans.price);
+            transSeries.add(t2, trans.offsetValue);
+            data.addSeries(transSeries);
+        }
+
+        final JFreeChart chart = ChartFactory.createXYLineChart("GPoint", "Time", "Point", data,
+            PlotOrientation.VERTICAL, false, true, false);
+        chart.setAntiAlias(false);
+        XYPlot plot = (XYPlot) chart.getXYPlot();
+        plot.setBackgroundPaint(java.awt.Color.BLACK);
+        int seriesCount = plot.getSeriesCount();
+        for (int i = 0; i < seriesCount; i++) {
+            plot.getRenderer().setSeriesStroke(i, new BasicStroke(3));
+        }
+        final NumberAxis rangeAxis = (NumberAxis) plot.getRangeAxis();
+        Arrays.sort(priceHistory);
+        rangeAxis.setRange(8500, 9500);
+        rangeAxis.setTickUnit(new NumberTickUnit(10));
+        final NumberAxis domainAxis = (NumberAxis) plot.getDomainAxis();
+        domainAxis.setTickUnit(new NumberTickUnit(60));
+        domainAxis.setRange(0, 60*60*5);
+        domainAxis.setVerticalTickLabels(true);
+        int width = 1280*10; /* Width of the image */
+        int height = 720; /* Height of the image */
+        ChartUtilities.saveChartAsJPEG(outFile, 1.0f, chart, width, height);
+    }
+
+    private void saveResults(String path) {
         finishRemaining();
         System.out.println(this);
         // for network streaming input test
         // String line = getNetworkInput();
         // streamingInput(line);
         // Write out bband data points
-        Date today = new Date();
-        String filename = formatter.format(today);
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd");
+
+        String[] parts = path.split("/");
+        String filename = parts[1] + parts[2].split("\\.")[0];
 
         // Write out transaction data points
         try {
@@ -390,13 +399,13 @@ public class GPoint {
             e.printStackTrace();
         }
         // Write out graph
-        // try {
-        //     File outFile = new File("output/chart/" + filename + ".jpg");
-        //     saveAsJpeg(outFile);
-        // }
-        // catch(IOException e) {
-        //     e.printStackTrace();
-        // }
+        try {
+            File outFile = new File("output/chart/" + filename + ".jpg");
+            saveAsJpeg(outFile);
+        }
+        catch(IOException e) {
+            e.printStackTrace();
+        }
     }
 
     // private void fileTest(String... args) {
@@ -509,7 +518,7 @@ public class GPoint {
         // System.out.println(ret1);
         // System.out.println(ret2);
         gpoint.logfileTest(args[0]);
-        System.out.println(gpoint);
+        gpoint.saveResults(args[0]);
         // System.out.println("Distribution...");
         // gpoint.showCounting();
     }

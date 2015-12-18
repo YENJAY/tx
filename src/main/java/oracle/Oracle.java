@@ -24,6 +24,7 @@ public class Oracle {
     private KBarBuilder kbarBuilder = new KBarBuilder(duration); // in millisecond
     private Vector<Transaction> allTransactions = new Vector<Transaction>();
     private Date lastDate;
+    
     public void streamingInput(String time, String value) {
         // build kbar unit
         // String[] input = line.split("\\s");

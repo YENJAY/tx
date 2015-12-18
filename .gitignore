@@ -3,5 +3,5 @@ target/
 libs/Sinopac/logs/
 account.ini
 Sinopac.pfx
-output/
+output/**
 tmp/
