@@ -1,9 +1,9 @@
 {
    "configuration": {
          "BBAND_THRESHOLD": "5",
-         "KBAR_LENGTH": "3600000",
-         "LOST_TOLERANCE": "30",
-         "TRANS_LIFECYCLE": "3600000",
+         "KBAR_LENGTH": "2700000",
+         "LOST_TOLERANCE": "5",
+         "TRANS_LIFECYCLE": "2700000",
          "BBAND_BOUND_SIZE": "8",
          "TAX_FEE": "66",
          "NTD_PER_POINT": "50",
@@ -17,6 +17,8 @@
          "TRANSACTION_DEADLINE": "134200",
          "INSURANCE_FOR_SLIPPAGE": "50",
          "REALTIME_PRICE_REFRESH_RATE": "1000",
-         "TICKET_SLIPPAGE": "1"
+         "TICKET_SLIPPAGE": "1",
+         "MAX_MIN_DIFF": "30",
+         "AVG_V_THRESHOLD": "2"
     }
 }

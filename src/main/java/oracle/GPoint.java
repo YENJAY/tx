@@ -105,7 +105,7 @@ public class GPoint {
     private double Kmax() {
         double max = Double.MIN_VALUE;
         for(int i=0; i<K.length; i++) {
-            if(K[i] > max) {
+            if(K[i] > max && K[i] != newestPrice) {
                 max = K[i];
             }
         }
@@ -115,7 +115,7 @@ public class GPoint {
     private double Kmin() {
         double min = Double.MAX_VALUE;
         for(int i=0; i<K.length; i++) {
-            if(K[i] < min) {
+            if(K[i] < min && K[i] != newestPrice) {
                 min = K[i];
             }
         }
@@ -123,20 +123,23 @@ public class GPoint {
     }
 
     private void in() {
+        // if(tick < ConfigurableParameters.KBAR_LENGTH/1000) {
+        //     return;
+        // }
         // TODO
         // Relativity strategy here
         int prediction = 0;
-        if(Kmax() - Kmin() >= 30) {
-            if(newestPrice <= Kmin()) {
+        if(Kmax() - Kmin() >= ConfigurableParameters.MAX_MIN_DIFF) {
+            if(newestPrice < Kmin() - 2) {
                 prediction = -1;
             }
-            else if(newestPrice >= Kmax()) {
+            else if(newestPrice > Kmax() + 2) {
                 prediction = 1;
             }
         }
 
         if(prediction != 0) {
-            Transaction trans = new Transaction(newestPrice, newestDate, ConfigurableParameters.TRANS_LIFECYCLE, prediction, tolerance) {
+            Transaction trans = new Transaction(newestPrice, newestDate, Integer.MAX_VALUE, prediction, tolerance) {
                 public boolean order() { return true; }
             };
             // Toolkit.getDefaultToolkit().beep();
@@ -152,7 +155,6 @@ public class GPoint {
         }
     }
 
-
     private void out() {
         Vector<Transaction> transToRemove = new Vector<Transaction>();
         for(Transaction trans : transactions) {
@@ -164,13 +166,19 @@ public class GPoint {
                 System.out.println("Profit 0 = " + profit0);
                 // Toolkit.getDefaultToolkit().beep();
             }
-            else if( (newestPrice-trans.price)*trans.prediction <= -tolerance) {
+            else if( (newestPrice-lastPrice)*trans.prediction <= -tolerance ) {
                 profit1 += trans.offset(newestPrice, newestDate);
                 System.out.println("Offsetted transaction: " + trans);
                 System.out.println("Profit 1 = " + profit1);
                 transToRemove.add(trans);
                 // Toolkit.getDefaultToolkit().beep();
             }
+            // else if( (newestPrice-trans.price)*trans.prediction <= -5*tolerance) {
+            //     profit2 += trans.offset(newestPrice, newestDate);
+            //     System.out.println("Offsetted transaction: " + trans);
+            //     System.out.println("Profit 2 = " + profit2);
+            //     transToRemove.add(trans);
+            // }
             // else if( avgV * trans.prediction < 0) {
             //     trans.b2bWrongPrediction++;
             //     if(trans.b2bWrongPrediction >= ConfigurableParameters.MAX_B2B_WRONG_PREDICTION) {
@@ -203,6 +211,7 @@ public class GPoint {
     private int profit2 = 0;
     private int profit3 = 0;
     private int profit4 = 0;
+
     public void finishRemaining() {
         System.out.println("Finish remaining:");
         // Toolkit.getDefaultToolkit().beep();
@@ -320,8 +329,8 @@ public class GPoint {
         }
         ret += "# Total number of transactions = " + allTransactions.size() + "\n";
         ret += "# Profit 0: Transaction timeout\n";
-        ret += "# Profit 1: Stop losing.\n";
-        ret += "# Profit 2: Reach max wrong prediction limit\n";
+        ret += "# Profit 1: Stop instant max losing.\n";
+        ret += "# Profit 2: Max accumulated losing of a single transaction\n";
         ret += "# Profit 3: Remaining transactions.\n";
         ret += "# Profit 4: Seems not moving.\n";
         ret += "# -------------------------------------------------------\n";

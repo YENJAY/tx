@@ -21,7 +21,8 @@ public class ConfigurableParameters {
     public static int MIN_TICK;
     public static int PBB_UPPER;
     public static int PBB_LOWER;
-
+    public static int AVG_V_THRESHOLD;
+    public static int MAX_MIN_DIFF;
     static {
         String content = "";
         try {
@@ -53,6 +54,8 @@ public class ConfigurableParameters {
             MIN_TICK = Integer.parseInt(obj.getJSONObject("configuration").getString("MIN_TICK"));
             PBB_UPPER = Integer.parseInt(obj.getJSONObject("configuration").getString("PBB_UPPER"));
             PBB_LOWER = Integer.parseInt(obj.getJSONObject("configuration").getString("PBB_LOWER"));
+            AVG_V_THRESHOLD = Integer.parseInt(obj.getJSONObject("configuration").getString("AVG_V_THRESHOLD"));
+            MAX_MIN_DIFF = Integer.parseInt(obj.getJSONObject("configuration").getString("MAX_MIN_DIFF"));
             System.out.println("Configuration loaded successfully.");
         }
         catch (IOException e) {
