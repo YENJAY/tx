@@ -77,55 +77,19 @@ public class GPoint {
     }
 
     public void GPointStrategy() {
-        double profit = profit0+profit1+profit2+profit3+profit4;
+        // TODO "tick" is not tick since Howard's log is not continuous
+        // Has to be changed to Date object to identify the business hour
         if(tick > ConfigurableParameters.KBAR_LENGTH/1000 && tick < 5*60*60 - 15*60) {
             // do nothing in the last 15 minutes
             if(transactions.size() < ConfigurableParameters.MAX_CONCURRENT_TRANSACTION) {
                 in();
             }
+            out();
         }
         // System.out.println("# Maximum number of concurrent transactions has reached.");
-        out();
-    }
-
-    private int nextUpGPoint() {
-        for(int i=(int)newestPrice+5; i<priceCounting.length; i++) {
-            if(np[i] > 0.5) {
-                // System.out.println("Next Up G-Point = " + i);
-                return i;
-            }
+        if(tick >= 5*60*60 - 15*60) {
+            finishRemaining();
         }
-        return -1;
-    }
-
-    private int nextDownGPoint() {
-        for(int i=(int)newestPrice-5; i>0; i--) {
-            if(np[i] > 0.5) {
-                // System.out.println("Next Down G-Point = " + i);
-                return i;
-            }
-        }
-        return -1;
-    }
-
-    private double Kmax() {
-        double max = Double.MIN_VALUE;
-        for(int i=0; i<K.length; i++) {
-            if(K[i] > max && K[i] != newestPrice) {
-                max = K[i];
-            }
-        }
-        return max;
-    }
-
-    private double Kmin() {
-        double min = Double.MAX_VALUE;
-        for(int i=0; i<K.length; i++) {
-            if(K[i] < min && K[i] != newestPrice) {
-                min = K[i];
-            }
-        }
-        return min;
     }
 
     private void in() {
