@@ -81,7 +81,7 @@ public class GPoint {
         if(profit < -75) {
             return;
         }
-        if(tick > 15 * 60 && tick < 5*60*60 - 15*60) {
+        if(tick > 45 * 60 && tick < 5*60*60 - 15*60) {
             // do nothing in the last 15 minutes
             if(transactions.size() < ConfigurableParameters.MAX_CONCURRENT_TRANSACTION) {
                 in();
