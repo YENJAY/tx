@@ -30,7 +30,7 @@ public class GPoint {
     private double[] priceHistory = new double[60*60*5]; // business hour
     private double[] probHistory = new double[priceCounting.length];
     private double[] np = new double[priceCounting.length];
-    private double[] v = new double[1];
+    private double[] v = new double[5];
     private double avgV = 0;
     private double[] K = new double[ConfigurableParameters.KBAR_LENGTH/1000];
     private Date initDate;
@@ -78,10 +78,7 @@ public class GPoint {
 
     public void GPointStrategy() {
         double profit = profit0+profit1+profit2+profit3+profit4;
-        if(profit < -75) {
-            return;
-        }
-        if(tick > 45 * 60 && tick < 5*60*60 - 15*60) {
+        if(tick > ConfigurableParameters.KBAR_LENGTH/1000 && tick < 5*60*60 - 15*60) {
             // do nothing in the last 15 minutes
             if(transactions.size() < ConfigurableParameters.MAX_CONCURRENT_TRANSACTION) {
                 in();
@@ -92,8 +89,8 @@ public class GPoint {
     }
 
     private int nextUpGPoint() {
-        for(int i=(int)newestPrice; i<priceCounting.length; i++) {
-            if(np[i] > 0.8) {
+        for(int i=(int)newestPrice+5; i<priceCounting.length; i++) {
+            if(np[i] > 0.5) {
                 // System.out.println("Next Up G-Point = " + i);
                 return i;
             }
@@ -102,8 +99,8 @@ public class GPoint {
     }
 
     private int nextDownGPoint() {
-        for(int i=(int)newestPrice; i>0; i--) {
-            if(np[i] > 0.8) {
+        for(int i=(int)newestPrice-5; i>0; i--) {
+            if(np[i] > 0.5) {
                 // System.out.println("Next Down G-Point = " + i);
                 return i;
             }
@@ -135,12 +132,12 @@ public class GPoint {
         // TODO
         // Relativity strategy here
         int prediction = 0;
-        if(Kmax() - Kmin() >= ConfigurableParameters.MAX_MIN_DIFF) {
-            if(newestPrice < Kmin() - 2) {
-                prediction = -1;
-            }
-            else if(newestPrice > Kmax() + 2) {
+        if(np[(int)newestPrice] < 0.1) {
+            if(avgV > 0) {
                 prediction = 1;
+            }
+            else if(avgV < 0) {
+                prediction = -1;
             }
         }
 
@@ -179,7 +176,7 @@ public class GPoint {
                 transToRemove.add(trans);
                 // Toolkit.getDefaultToolkit().beep();
             }
-            else if( (newestPrice-trans.price)*trans.prediction <= -15*tolerance) {
+            else if( (newestPrice-trans.price)*trans.prediction >= 15) {
                 profit2 += trans.offset(newestPrice, newestDate);
                 System.out.println("Offsetted transaction: " + trans);
                 System.out.println("Profit 2 = " + profit2);
@@ -196,7 +193,7 @@ public class GPoint {
             //         // trans.b2bWrongPrediction = 0;
             //     }
             // }
-            // else if( np[(int)newestPrice] > 0.5) {
+            // else if( np[(int)newestPrice] > 0.9) {
             //     profit4 += trans.offset(newestPrice, newestDate);
             //     System.out.println("Offsetted transaction: " + trans);
             //     System.out.println("Profit 4 = " + profit4);
@@ -336,7 +333,7 @@ public class GPoint {
         ret += "# Total number of transactions = " + allTransactions.size() + "\n";
         ret += "# Profit 0: Transaction timeout\n";
         ret += "# Profit 1: Stop instant max losing.\n";
-        ret += "# Profit 2: Max accumulated losing of a single transaction\n";
+        ret += "# Profit 2: Check out\n";
         ret += "# Profit 3: Remaining transactions.\n";
         ret += "# Profit 4: Seems not moving.\n";
         ret += "# -------------------------------------------------------\n";
@@ -414,13 +411,13 @@ public class GPoint {
             e.printStackTrace();
         }
         // Write out graph
-        try {
-            File outFile = new File("output/chart/" + filename + ".jpg");
-            saveAsJpeg(outFile);
-        }
-        catch(IOException e) {
-            e.printStackTrace();
-        }
+        // try {
+        //     File outFile = new File("output/chart/" + filename + ".jpg");
+        //     saveAsJpeg(outFile);
+        // }
+        // catch(IOException e) {
+        //     e.printStackTrace();
+        // }
     }
 
     // private void fileTest(String... args) {
