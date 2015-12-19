@@ -19,6 +19,6 @@
          "REALTIME_PRICE_REFRESH_RATE": "1000",
          "TICKET_SLIPPAGE": "1",
          "MAX_MIN_DIFF": "30",
-         "AVG_V_THRESHOLD": "2"
+         "AVG_V_THRESHOLD": "0"
     }
 }

@@ -27,17 +27,14 @@ public class GPoint {
     private Date lastDate;
     private Date newestDate;
     private int[] priceCounting = new int[15000];
-    private double[] priceHistory = new double[60*60*5]; // business hour
+    private double[] priceHistory = new double[60*60*5+1]; // business hour
     private double[] probHistory = new double[priceCounting.length];
     private double[] np = new double[priceCounting.length];
-    private double[] v = new double[5];
+    private double[] v = new double[30];
     private double avgV = 0;
     private double[] K = new double[ConfigurableParameters.KBAR_LENGTH/1000];
     private Date initDate;
-
     private Vector<Transaction> allTransactions = new Vector<Transaction>();
-
-    private int tick;
 
     public void streamingInput(String time, String value) {
         try {
@@ -47,9 +44,6 @@ public class GPoint {
                 return;
             }
             newestPrice = Double.parseDouble(value);
-            priceHistory[tick] = newestPrice;
-            K[tick % K.length] = newestPrice;
-            tick++;
         }
         catch(ParseException e) {
             e.printStackTrace();
@@ -62,24 +56,68 @@ public class GPoint {
             initDate = newestDate;
         }
         else {
-            // update
-            updateProbability();
-            v[tick % v.length] = (newestPrice - lastPrice);
-
-            // velocity
-            for(int i=0; i<v.length; i++) {
-                avgV += v[i];
-            }
-            avgV /= v.length;
+            updateStatistics();
         }
         lastDate = newestDate;
         lastPrice = newestPrice;
     }
 
+    private void updateStatistics() {
+        // update
+        int start = (int)(lastDate.getTime() - initDate.getTime())/1000;
+        int end = (int)(newestDate.getTime() - initDate.getTime())/1000;
+        for(int i=start+1; i<=end; i++) {
+            priceHistory[i] = newestPrice;
+            K[i % K.length] = newestPrice;
+            v[i % v.length] = (newestPrice - lastPrice);
+        }
+        // velocity
+        for(int i=0; i<v.length; i++) {
+            avgV += v[i];
+        }
+        avgV /= v.length;
+        updateProbability();
+    }
+
+    private void updateProbability() {
+        int staying = (int) ((newestDate.getTime() - lastDate.getTime())/1000);
+        int p = (int) newestPrice;
+        priceCounting[p] += staying;
+
+        for(int i=0; i<priceCounting.length; i++) {
+            // if(priceCounting[i]!=0)
+            //     System.out.println(priceCounting[i] + " " + (newestDate.getTime() - initDate.getTime()));
+            probHistory[i] = priceCounting[i]/(double)(newestDate.getTime() - initDate.getTime()); // in second
+            // System.out.println(probHistory[i]);
+        }
+
+        // normalized
+        double max = Double.MIN_VALUE;
+        double min = Double.MAX_VALUE;
+        for(int i=0; i<priceCounting.length; i++) {
+            if(probHistory[i] > max) {
+                max = probHistory[i];
+            }
+            if(probHistory[i] < min) {
+                min = probHistory[i];
+            }
+        }
+
+        for(int i=0; i<priceCounting.length; i++) {
+            if(probHistory[i] != 0) {
+                np[i] = (probHistory[i]-min)/(max-min);
+            }
+        }
+    }
+
+    private int getElapsedTime() {
+        return (int) (newestDate.getTime() - initDate.getTime())/1000;
+    }
+
     public void GPointStrategy() {
         // TODO "tick" is not tick since Howard's log is not continuous
         // Has to be changed to Date object to identify the business hour
-        if(tick > ConfigurableParameters.KBAR_LENGTH/1000 && tick < 5*60*60 - 15*60) {
+        if(getElapsedTime() > ConfigurableParameters.KBAR_LENGTH/1000 && getElapsedTime() < 5*60*60 - 15*60) {
             // do nothing in the last 15 minutes
             if(transactions.size() < ConfigurableParameters.MAX_CONCURRENT_TRANSACTION) {
                 in();
@@ -87,21 +125,51 @@ public class GPoint {
             out();
         }
         // System.out.println("# Maximum number of concurrent transactions has reached.");
-        if(tick >= 5*60*60 - 15*60) {
+        if(getElapsedTime() >= 5*60*60 - 15*60) {
             finishRemaining();
         }
+    }
+
+    private int nextDownG() {
+        int p = (int) newestPrice;
+        for(int i=p-10; p>0; p--) {
+            // if(np[i]!=0)
+            //     System.out.println("np[i] = " + np[i] + " i = " + i + " p = " + p);
+            if(np[i] >= 0.7) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    private int nextUpG() {
+        int p = (int) newestPrice;
+        for(int i=p+10; p<probHistory.length; p++) {
+            // if(np[i]!=0)
+            //     System.out.println("np[i] = " + np[i] + " i = " + i + " p = " + p);
+            if(np[i] >= 0.7) {
+                return i;
+            }
+        }
+        return -1;
     }
 
     private void in() {
         // TODO
         // Relativity strategy here
         int prediction = 0;
-        if(np[(int)newestPrice] < 0.1) {
-            if(avgV > 0) {
-                prediction = 1;
+        if(np[(int)newestPrice] < 0.2) {
+            if(avgV > ConfigurableParameters.AVG_V_THRESHOLD) {
+                // System.out.println("UpG = " + nextUpG() + ", newestPrice = " + newestPrice);
+                if(nextUpG() != -1 && nextUpG() - newestPrice >= 10) {
+                    prediction = 1;
+                }
             }
-            else if(avgV < 0) {
-                prediction = -1;
+            else if(avgV < ConfigurableParameters.AVG_V_THRESHOLD) {
+                // System.out.println("DownG = " + nextDownG() + ", newestPrice = " + newestPrice);
+                if(nextDownG() != -1 && newestPrice - nextDownG() >= 10) {
+                    prediction = -1;
+                }
             }
         }
 
@@ -140,7 +208,14 @@ public class GPoint {
                 transToRemove.add(trans);
                 // Toolkit.getDefaultToolkit().beep();
             }
-            else if( (newestPrice-trans.price)*trans.prediction >= 15) {
+            else if( (newestPrice-trans.price)*trans.prediction >= 30) {
+                profit2 += trans.offset(newestPrice, newestDate);
+                System.out.println("Offsetted transaction: " + trans);
+                System.out.println("G point = " + np[(int)newestPrice]);
+                System.out.println("Profit 2 = " + profit2);
+                transToRemove.add(trans);
+            }
+            else if( (newestPrice-trans.price)*trans.prediction <= -15) {
                 profit2 += trans.offset(newestPrice, newestDate);
                 System.out.println("Offsetted transaction: " + trans);
                 System.out.println("Profit 2 = " + profit2);
@@ -157,7 +232,8 @@ public class GPoint {
             //         // trans.b2bWrongPrediction = 0;
             //     }
             // }
-            // else if( np[(int)newestPrice] > 0.9) {
+            // else if( np[(int)newestPrice] >= 0.7) {
+            //     // System.out.println(np[(int)newestPrice]);
             //     profit4 += trans.offset(newestPrice, newestDate);
             //     System.out.println("Offsetted transaction: " + trans);
             //     System.out.println("Profit 4 = " + profit4);
@@ -180,14 +256,17 @@ public class GPoint {
     private int profit4 = 0;
 
     public void finishRemaining() {
-        System.out.println("Finish remaining:");
-        // Toolkit.getDefaultToolkit().beep();
+        Vector<Transaction> transToRemove = new Vector<Transaction>();
         if(transactions.size() != 0) {
+            System.out.println("Finish remaining:");
+            // Toolkit.getDefaultToolkit().beep();
             for(Transaction trans : transactions) {
                 profit3 += trans.offset(newestPrice, newestDate);
                 System.out.println("Offsetted transaction: " + trans);
                 System.out.println("Profit 3 = " + profit3);
+                transToRemove.add(trans);
             }
+            transactions.removeAll(transToRemove);
         }
     }
 
@@ -313,7 +392,7 @@ public class GPoint {
         final XYSeriesCollection data = new XYSeriesCollection();
 
         XYSeries priceSeries = new XYSeries("Price");
-        for(int i=0; i<tick; i++) {
+        for(int i=0; i<getElapsedTime(); i++) {
             if(priceHistory[i]!=0) {
                 priceSeries.add(i, priceHistory[i]);
             }
@@ -436,33 +515,6 @@ public class GPoint {
     //     }
     // }
 
-    private void updateProbability() {
-        int staying = (int) ((newestDate.getTime() - lastDate.getTime())/1000);
-        int p = (int) newestPrice;
-        priceCounting[p] += staying;
-
-        for(int i=0; i<priceCounting.length; i++) {
-            probHistory[i] = priceCounting[i]/(double)tick;
-        }
-
-        // normalized
-        double max = Double.MIN_VALUE;
-        double min = Double.MAX_VALUE;
-        for(int i=0; i<priceCounting.length; i++) {
-            if(probHistory[i] > max) {
-                max = probHistory[i];
-            }
-            if(probHistory[i] < min) {
-                min = probHistory[i];
-            }
-        }
-
-        for(int i=0; i<priceCounting.length; i++) {
-            if(probHistory[i] != 0) {
-                np[i] = (probHistory[i]-min)/(max-min);
-            }
-        }
-    }
 
     private void showCounting() {
         double max = Double.MIN_VALUE;
@@ -481,7 +533,7 @@ public class GPoint {
         for(int i=0; i<priceCounting.length; i++) {
             if(probHistory[i] != 0) {
                 np[i] = (probHistory[i]-min)/(max-min);
-                // System.out.println(i + " " + df.format(np));
+                System.out.println(i + " " + df.format(np));
             }
         }
     }
@@ -495,7 +547,7 @@ public class GPoint {
         // System.out.println(ret2);
         gpoint.logfileTest(args[0]);
         gpoint.saveResults(args[0]);
-        // System.out.println("Distribution...");
+        System.out.println("Distribution...");
         // gpoint.showCounting();
     }
 }
